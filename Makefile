@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/21 15:08:09 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/21 18:56:38 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes
+CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc
@@ -40,7 +40,11 @@ NORM = @norminette Includes Sources | awk '$$NF!="OK!" {print "$(_RED)" $$0 "\03
 FILES = cub3D\
 		Errors/print_error\
 		Mlx/start_mlx\
+		Initialization/parser_init\
+		Parsing/parsing\
+		Parsing/get_file_content\
 		Free/free_data\
+		Free/free_parser\
 		Exit/exit_prog
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
@@ -59,7 +63,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Free Objects/Exit
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else

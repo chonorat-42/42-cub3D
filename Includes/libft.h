@@ -18,7 +18,7 @@
 # include <stdint.h>
 # include <stdarg.h>
 
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 
 typedef struct s_list
 {
@@ -111,5 +111,6 @@ char		*read_save(int fd, char *stash);
 void		ft_free_null(char **str);
 char		*strjoin_free_first(char **s1, char *s2);
 char		*strjoin_free_both(char *s1, char *s2);
+void		ft_free_arr(char **arr);
 
 #endif

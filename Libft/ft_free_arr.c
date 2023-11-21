@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   ft_free_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 18:57:47 by pgouasmi         ###   ########.fr       */
+/*   Created: 2023/11/21 17:57:12 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/11/21 17:59:51 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../Includes/libft.h"
 
-void	free_data(t_data *data)
+void	ft_free_arr(char **arr)
 {
-	if (data->mlx.mlx)
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
 	{
-		mlx_destroy_display(data->mlx.mlx);
-		free(data->mlx.mlx);
+		free(arr[i]);
+		i++;
 	}
+	free(arr);
+	arr = NULL;
 }
