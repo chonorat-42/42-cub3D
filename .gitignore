@@ -1,0 +1,22 @@
+# System files
+.DS_Store
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Executables
+*.out
+cub3D
+
+# Temp files
+*.swp
+
+# Debug files
+*.dSYM/
+
+# VS_Code files
+.vscode/
