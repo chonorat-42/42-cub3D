@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/21 19:33:34 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:56:04 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ void	get_texture_path(t_parser *parser, char *id, size_t	*i, char *type)
 		return (free_parser(parser), print_error(PARSING, TEXTURES), exit(1));
 }
 
+void	get_color(t_parser *parser, char *id, size_t *i, char *type)
+{
+	char	*current_color;
+
+	while (ft_isws(parser->line[*i]))
+		(*i)++;
+}
+
 void	parse_id(t_parser *parser, char *id, size_t	*i)
 {
 	if (!ft_strcmp(id, "NO"))
@@ -99,6 +107,11 @@ void	parse_id(t_parser *parser, char *id, size_t	*i)
 	{
 		parser->textures.ea_flag = 1;
 		get_texture_path(parser, id, i, "EA");
+	}
+	if (!ft_strcmp(id, "F"))
+	{
+		parser->colors.f_flag = 1;
+		get_colors(parser, id, i, "F");
 	}
 }
 
