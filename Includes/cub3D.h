@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 11:50:13 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:53:59 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include "libft.h"
-# include "minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 #endif
