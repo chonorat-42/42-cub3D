@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/21 11:51:50 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/21 12:29:27 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ MLX = minilibx-linux/libmlx.a
 MAKE_MLX = @make -C minilibx-linux
 CLEAN_MLX = @make clean -C minilibx-linux
 NORM = @norminette Includes Sources | awk '$$NF!="OK!" {print "$(_RED)" $$0 "\033[0;0m"}'
-FILES = 
+FILES = cub3D\
+		Errors/print_error
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
@@ -54,6 +55,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
+	$(DIR) Objects/Errors
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else

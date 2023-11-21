@@ -1,42 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 12:41:37 by chonorat         ###   ########.fr       */
+/*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
+/*   Updated: 2023/11/21 12:42:31 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3D.h"
 
-//POLICE
-# define RED "\033[31m"
-# define END "\033[0m"
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <math.h>
-# include <fcntl.h>
-# include "libft.h"
-# include "../minilibx-linux/mlx.h"
-
-enum	e_errors
+void	print_error(int type, int error)
 {
-	ARGC,
-};
-
-enum	e_boolean
-{
-	TRUE,
-	FALSE,
-};
-
-//ERROR
-void	print_error(int type, int error);
-
-#endif
+	(void)error;
+	ft_dprintf(2, "%sError\n", RED);
+	if (type == ARGC)
+		ft_dprintf(2, "usage: ./cub3D Maps/map_name.cub\n%s", END);
+}
