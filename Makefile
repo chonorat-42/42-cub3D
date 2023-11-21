@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/21 12:29:27 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/21 15:08:09 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OS = $(shell uname)
 
 NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -IIncludes
+MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc
 DIR = @mkdir -p
@@ -37,7 +38,10 @@ MAKE_MLX = @make -C minilibx-linux
 CLEAN_MLX = @make clean -C minilibx-linux
 NORM = @norminette Includes Sources | awk '$$NF!="OK!" {print "$(_RED)" $$0 "\033[0;0m"}'
 FILES = cub3D\
-		Errors/print_error
+		Errors/print_error\
+		Mlx/start_mlx\
+		Free/free_data\
+		Exit/exit_prog
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
@@ -46,7 +50,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(OBJS) -o $(NAME) $(LIBFT) $(MLX)
+	$(CC) $(MLX_FLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(MLX)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
@@ -55,7 +59,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors
+	$(DIR) Objects/Errors Objects/Mlx Objects/Free Objects/Exit
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 12:41:37 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:30:55 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 //POLICE
 # define RED "\033[31m"
 # define END "\033[0m"
+
+//HOOK
+# define KEY_PRESS 2
+# define ON_DESTROY 17
+
+# define FOV 90
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -36,7 +42,28 @@ enum	e_boolean
 	FALSE,
 };
 
+struct	s_mlx_data
+{
+	void	*mlx;
+	void	*window;
+};
+
+typedef	struct s_data
+{
+	struct s_mlx_data	mlx;
+	int					screen_res[2];
+}		t_data;
+
 //ERROR
 void	print_error(int type, int error);
+
+//MLX
+int		start_mlx(t_data *data);
+
+//FREE
+void	free_data(t_data *data);
+
+//EXIT
+int		exit_prog(t_data *data);
 
 #endif
