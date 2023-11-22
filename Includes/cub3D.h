@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 19:23:03 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:05:45 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,18 @@ typedef struct	s_parser
 	t_colors	*colors;
 }		t_parser;
 
+struct	s_player
+{
+	double	dir;
+	double	x_pos;
+	double	y_pos;
+};
+
 typedef	struct s_data
 {
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
+	struct s_player		player;
 }		t_data;
 
 //ERROR
