@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 14:05:45 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:51:18 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ enum	e_errors
 
 enum	e_boolean
 {
-	TRUE,
 	FALSE,
+	TRUE,
 };
 
 struct	s_mlx_data
