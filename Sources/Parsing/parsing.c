@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/21 18:59:52 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:47:31 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_extension_correct(char *str)
 
 void	parsing(char *file_path, char *file_name)
 {
-	t_parser parser;
+	t_parser	parser;
 
 	if (!is_extension_correct(file_name))
 		return (free(file_name), exit(1));

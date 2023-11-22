@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 13:53:20 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:07:05 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ enum	e_errors
 	OPEN,
 	TEXTURES,
 	COLORS,
+	NOMAP,
 };
 
 enum	e_boolean
@@ -58,6 +59,12 @@ struct	s_mlx_data
 	void	*mlx;
 	void	*window;
 };
+
+typedef	struct	s_maplst
+{
+	char 			*content;
+	struct s_maplst	*next;
+}		t_maplst;
 
 typedef struct s_textures
 {
@@ -106,10 +113,14 @@ void	initialize_parser(t_parser *parser);
 //PARSING
 void	parsing(char *file_path, char *file_name);
 void	get_file_content(t_parser *parser, char *file_path);
+void	get_map(t_parser *parser);
+int 	str_isws(char *str);
 
 //FREE
 void	free_data(t_data *data);
 void	free_parser(t_parser *parser);
+void	free_maplst(t_maplst *lst);
+
 
 //EXIT
 int		exit_prog(t_data *data);

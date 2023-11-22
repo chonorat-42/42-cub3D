@@ -6,7 +6,7 @@
 #    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/22 14:19:37 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/22 19:05:57 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,10 @@ FILES = cub3D\
 		Initialization/parser_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
+		Parsing/get_map\
 		Free/free_data\
 		Free/free_parser\
+		Free/free_utils\
 		Exit/exit_prog
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
