@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 19:23:03 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:53:20 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ enum	e_errors
 	NOFNAME,
 	OPEN,
 	TEXTURES,
+	COLORS,
 };
 
 enum	e_boolean
@@ -84,7 +85,7 @@ typedef struct	s_parser
 	char		*line;
 	char		**map;
 	t_textures	textures;
-	t_colors	*colors;
+	t_colors	colors;
 }		t_parser;
 
 typedef	struct s_data

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 19:25:50 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:48:12 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	parsing_errors(int error)
 	if (error == OPEN)
 		ft_dprintf(2, "Could not open the map. Do you have the right permissions?\n%s", END);
 	if (error == TEXTURES)
+		ft_dprintf(2, "Textures : Wrong syntax\n%s", END);
+	if (error == COLORS)
 		ft_dprintf(2, "Textures : Wrong syntax\n%s", END);
 }
 

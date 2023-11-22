@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/21 19:56:04 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:55:17 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,26 @@ void	get_texture_path(t_parser *parser, char *id, size_t	*i, char *type)
 		return (free_parser(parser), print_error(PARSING, TEXTURES), exit(1));
 }
 
-void	get_color(t_parser *parser, char *id, size_t *i, char *type)
+void	get_colors(t_parser *parser, char *id, size_t *i, char *type)
 {
 	char	*current_color;
+	size_t	j;
 
-	while (ft_isws(parser->line[*i]))
+	(void)id;
+	(void)type;
+	while (parser->line[*i] && ft_isws(parser->line[*i]))
 		(*i)++;
+	if (!ft_isalnum(parser->line[*i]))
+		return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
+	j = *i;
+	while (ft_isalnum(parser->line[*i]))
+		(*i)++;
+	if (parser->line[*i] != ',')
+		return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
+	current_color = ft_substr(parser->line, j, *i - j);
+	if (!current_color)
+		return (free_parser(parser), print_error(MALLOC, 0), exit(1));
+	printf("color = %s\n", current_color);
 }
 
 void	parse_id(t_parser *parser, char *id, size_t	*i)
