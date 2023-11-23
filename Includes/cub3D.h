@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
 /*   Updated: 2023/11/23 14:16:57 by pgouasmi         ###   ########.fr       */
@@ -50,8 +50,8 @@ enum	e_errors
 
 enum	e_boolean
 {
-	TRUE,
 	FALSE,
+	TRUE,
 };
 
 struct	s_mlx_data
@@ -96,10 +96,18 @@ typedef struct s_parser
 	t_colors	colors;
 }		t_parser;
 
-typedef struct s_data
+struct	s_player
+{
+	double	dir;
+	double	x_pos;
+	double	y_pos;
+};
+
+typedef	struct s_data
 {
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
+	struct s_player		player;
 }		t_data;
 
 //ERROR
