@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:57:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 14:41:02 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:47:44 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	parse_before_map(t_parser *parser, t_dlst *lst)
 		free(parser->line);
 		parser->line = NULL;
 	}
-	lst = NULL;
 	if (add_to_maplst(&lst, parser->line))
 		return (free_parser(parser), free_maplst(lst),
 			print_error(MALLOC, 0), exit(1));
@@ -181,10 +180,23 @@ void	remove_empty_up(t_dlst **lst)
 	}
 }
 
+void	print_arr(char **arr)
+{
+	size_t i = 0;
+
+	while (arr[i])
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
+}
+
 void	get_map(t_parser *parser)
 {
 	t_dlst	*map_list;
 
+	map_list = NULL;
+	parse_before_map(parser, map_list);
 	while (1)
 	{
 		parser->line = get_next_line(parser->fd);
@@ -197,4 +209,6 @@ void	get_map(t_parser *parser)
 	remove_empty_up(&map_list);
 	remove_empty_down(&map_list);
 	lst_to_arr(parser, map_list);
+
+	print_arr(parser->map);
 }
