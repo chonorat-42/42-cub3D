@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/22 19:47:31 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:01:44 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	parsing(char *file_path, char *file_name)
 		return (free(file_name), exit(1));
 	initialize_parser(&parser);
 	get_file_content(&parser, file_path);
+	map_parser(&parser);
 	free_parser(&parser);
 }

@@ -26,6 +26,12 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_clst
+{
+	char			*content;
+	struct s_clst	*next;
+}					t_clst;
+
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -112,5 +118,6 @@ void		ft_free_null(char **str);
 char		*strjoin_free_first(char **s1, char *s2);
 char		*strjoin_free_both(char *s1, char *s2);
 void		ft_free_arr(char **arr);
+int			ft_isstrws(char *str);
 
 #endif

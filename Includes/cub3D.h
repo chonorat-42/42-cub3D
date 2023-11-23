@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 19:07:05 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:16:57 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ struct	s_mlx_data
 	void	*window;
 };
 
-typedef	struct	s_maplst
+typedef struct s_dlst
 {
-	char 			*content;
-	struct s_maplst	*next;
-}		t_maplst;
+	char			*content;
+	struct s_dlst	*next;
+	struct s_dlst	*prev;
+}		t_dlst;
 
 typedef struct s_textures
 {
@@ -78,7 +79,7 @@ typedef struct s_textures
 	char	*ea_path;
 }		t_textures;
 
-typedef	struct	s_colors
+typedef struct s_colors
 {
 	int	f_flag;
 	int	f_colors[3];
@@ -86,7 +87,7 @@ typedef	struct	s_colors
 	int	c_colors[3];
 }		t_colors;
 
-typedef struct	s_parser
+typedef struct s_parser
 {
 	int			fd;
 	char		*line;
@@ -95,7 +96,7 @@ typedef struct	s_parser
 	t_colors	colors;
 }		t_parser;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
@@ -113,14 +114,18 @@ void	initialize_parser(t_parser *parser);
 //PARSING
 void	parsing(char *file_path, char *file_name);
 void	get_file_content(t_parser *parser, char *file_path);
+int		check_parsing_flags(t_textures textures, t_colors colors);
+void	parse_line(t_parser *parser, char *line);
+void	parse_id(t_parser *parser, char *id, size_t	*i);
+void	get_textures_and_colors(t_parser *parser);
+void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_map(t_parser *parser);
-int 	str_isws(char *str);
+void	map_parser(t_parser *parser);
 
 //FREE
 void	free_data(t_data *data);
 void	free_parser(t_parser *parser);
-void	free_maplst(t_maplst *lst);
-
+void	free_maplst(t_dlst *lst);
 
 //EXIT
 int		exit_prog(t_data *data);
