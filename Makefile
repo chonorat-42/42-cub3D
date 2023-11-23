@@ -6,7 +6,7 @@
 #    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/21 18:56:38 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/23 14:01:22 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,14 @@ FILES = cub3D\
 		Initialization/parser_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
+		Parsing/get_file_utils\
+		Parsing/get_textures\
+		Parsing/get_colors\
+		Parsing/get_map\
+		Parsing/map_parsing\
 		Free/free_data\
 		Free/free_parser\
+		Free/free_utils\
 		Exit/exit_prog
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 

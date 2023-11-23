@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_content.c                                 :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 13:59:53 by pgouasmi         ###   ########.fr       */
+/*   Created: 2023/11/22 19:01:03 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/11/23 14:16:39 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	open_file(t_parser *parser, char *file_path)
+void	free_maplst(t_dlst *lst)
 {
-	parser->fd = open(file_path, O_RDONLY);
-	if (parser->fd == -1)
-	{
-		print_error(PARSING, OPEN);
-		exit (1);
-	}
-}
+	t_dlst	*temp;
 
-void	get_file_content(t_parser *parser, char *file_path)
-{
-	open_file(parser, file_path);
-	get_textures_and_colors(parser);
-	get_map(parser);
+	temp = lst;
+	while (lst)
+	{
+		if (lst->content)
+			free(lst->content);
+		temp = lst;
+		lst = lst->next;
+		free(temp);
+	}
+	lst = NULL;
 }

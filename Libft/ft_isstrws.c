@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_content.c                                 :+:      :+:    :+:   */
+/*   ft_isstrws.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 13:59:53 by pgouasmi         ###   ########.fr       */
+/*   Created: 2023/11/23 13:16:12 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/11/23 13:16:53 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../Includes/libft.h"
 
-void	open_file(t_parser *parser, char *file_path)
+int	ft_isstrws(char *str)
 {
-	parser->fd = open(file_path, O_RDONLY);
-	if (parser->fd == -1)
+	size_t	i;
+
+	i = 0;
+	while (str[i])
 	{
-		print_error(PARSING, OPEN);
-		exit (1);
+		if (!ft_isws(str[i]))
+			return (0);
+		i++;
 	}
-}
-
-void	get_file_content(t_parser *parser, char *file_path)
-{
-	open_file(parser, file_path);
-	get_textures_and_colors(parser);
-	get_map(parser);
+	return (1);
 }
