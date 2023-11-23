@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:57:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 14:47:44 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:48:12 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	maplst_size(t_dlst *lst)
 	size_t	count;
 	t_dlst	*temp;
 
-	count = 0;
+	count = 1;
 	temp = lst;
 	while (temp)
 	{
@@ -81,7 +81,7 @@ void	lst_to_arr(t_parser *parser, t_dlst *lst)
 			print_error(MALLOC, 0), exit(1));
 	index = 0;
 	temp = lst;
-	while (temp->next)
+	while (temp)
 	{
 		parser->map[index] = ft_strdup(temp->content);
 		if (!parser->map[index])
@@ -94,7 +94,7 @@ void	lst_to_arr(t_parser *parser, t_dlst *lst)
 	free_maplst(lst);
 }
 
-void	parse_before_map(t_parser *parser, t_dlst *lst)
+void	parse_before_map(t_parser *parser, t_dlst **lst)
 {
 	while (1)
 	{
@@ -106,8 +106,8 @@ void	parse_before_map(t_parser *parser, t_dlst *lst)
 		free(parser->line);
 		parser->line = NULL;
 	}
-	if (add_to_maplst(&lst, parser->line))
-		return (free_parser(parser), free_maplst(lst),
+	if (add_to_maplst(lst, parser->line))
+		return (free_parser(parser), free_maplst(*lst),
 			print_error(MALLOC, 0), exit(1));
 	free(parser->line);
 }
@@ -123,15 +123,15 @@ void	remove_empty_down(t_dlst **lst)
 		temp = temp->next;
 	while (!temp->content[0] || ft_isstrws(temp->content))
 	{
-		if (temp == *lst)
+		if (temp->next == NULL)
 		{
 			prev = temp->prev;
 			next = NULL;
 			prev->next = next;
-			next->prev = prev;
 			if (temp->content)
 				free(temp->content);
 			free(temp);
+			temp = prev;
 		}
 		else
 		{
@@ -142,8 +142,8 @@ void	remove_empty_down(t_dlst **lst)
 			if (temp->content)
 				free(temp->content);
 			free(temp);
+
 		}
-		temp = temp->prev;
 	}
 }
 
@@ -191,12 +191,25 @@ void	print_arr(char **arr)
 	}
 }
 
+void print_dlst(t_dlst *lst)
+{
+	t_dlst *temp;
+
+	temp = lst;
+	printf("in printdlist\n");
+	while (temp)
+	{
+		printf("%s\n", temp->content);
+		temp = temp->next;
+	}
+}
+
 void	get_map(t_parser *parser)
 {
 	t_dlst	*map_list;
 
 	map_list = NULL;
-	parse_before_map(parser, map_list);
+	parse_before_map(parser, &map_list);
 	while (1)
 	{
 		parser->line = get_next_line(parser->fd);
@@ -206,9 +219,14 @@ void	get_map(t_parser *parser)
 			return (free_parser(parser), free_maplst(map_list),
 				print_error(MALLOC, 0), exit(1));
 	}
+	// print_dlst(map_list);
 	remove_empty_up(&map_list);
+	// printf("\n");
+	// print_dlst(map_list);
 	remove_empty_down(&map_list);
+	// printf("\n");
+	// print_dlst(map_list);
 	lst_to_arr(parser, map_list);
-
+	// printf("\n");
 	print_arr(parser->map);
 }
