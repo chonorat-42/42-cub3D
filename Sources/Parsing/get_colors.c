@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:27:03 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 13:34:08 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:05:10 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,22 @@ static int	parse_color(char *str, int nbr)
 	return (0);
 }
 
-static void	check_color_end(t_parser *parser, char *str, int index)
+static int	check_color_end(t_parser *parser, char *str, int index)
 {
 	if (index < 2)
 	{
 		if (!ft_isdigit(str[0]))
-			return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
+			return (free_parser(parser), print_error(PARSING, COLORS), 1);
 	}
 	else
 	{
 		if (!ft_isstrws(str))
-			return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
+			return (free_parser(parser), print_error(PARSING, COLORS), 1);
 	}
+	return (0);
 }
 
-static void	get_each_color(t_parser *parser, int *color, size_t *i, int index)
+static int	get_each_color(t_parser *parser, int *color, size_t *i, int index)
 {
 	size_t	j;
 	char	*current_color;
@@ -51,17 +52,19 @@ static void	get_each_color(t_parser *parser, int *color, size_t *i, int index)
 	while (ft_isalnum(parser->line[*i]))
 		(*i)++;
 	if (index < 2 && parser->line[*i] != ',')
-		return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
+		return (free_parser(parser), print_error(PARSING, COLORS), 1);
 	current_color = ft_substr(parser->line, j, *i - j);
 	if (!current_color)
-		return (free_parser(parser), print_error(MALLOC, 0), exit(1));
+		return (free_parser(parser), print_error(MALLOC, 0), 1);
 	color[index] = ft_atoi(current_color);
 	if (parse_color(current_color, color[index]))
 		return (free(current_color), free_parser(parser),
-			print_error(PARSING, COLORS), exit(1));
+			print_error(PARSING, COLORS), 1);
 	free(current_color);
 	(*i)++;
-	check_color_end(parser, &parser->line[*i], index);
+	if (check_color_end(parser, &parser->line[*i], index))
+		return (1);
+	return (0);
 }
 
 void	get_colors(t_parser *parser, char *id, size_t *i)
@@ -71,10 +74,14 @@ void	get_colors(t_parser *parser, char *id, size_t *i)
 	while (parser->line[*i] && ft_isws(parser->line[*i]))
 		(*i)++;
 	if (!ft_isalnum(parser->line[*i]))
-		return (free_parser(parser), print_error(PARSING, COLORS), exit(1));
-	get_each_color(parser, color, i, 0);
-	get_each_color(parser, color, i, 1);
-	get_each_color(parser, color, i, 2);
+		return (free_parser(parser), free(id),
+			print_error(PARSING, COLORS), exit(1));
+	if (get_each_color(parser, color, i, 0))
+		return (free(id), exit(1));
+	if (get_each_color(parser, color, i, 1))
+		return (free(id), exit(1));
+	if (get_each_color(parser, color, i, 2))
+		return (free(id), exit(1));
 	if (!ft_strcmp(id, "F"))
 	{
 		parser->colors.f_colors[0] = color[0];

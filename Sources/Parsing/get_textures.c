@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:02 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 12:43:54 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:01:41 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void	get_east_and_west(t_parser *parser, char *id, size_t *i, size_t j)
 {
 	if (!ft_strcmp(id, "WE"))
 	{
-		parser->textures.we_path = ft_substr(parser->line, j, *i);
+		parser->textures.we_path = ft_substr(parser->line, j, *i - j);
+		printf("we = %s\n", parser->textures.so_path);
 		if (!parser->textures.we_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
 	}
 	if (!ft_strcmp(id, "EA"))
 	{
-		parser->textures.ea_path = ft_substr(parser->line, j, *i);
+		parser->textures.ea_path = ft_substr(parser->line, j, *i - j);
+		printf("ea = %s\n", parser->textures.so_path);
 		if (!parser->textures.ea_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
@@ -34,14 +36,15 @@ void	get_north_and_south(t_parser *parser, char *id, size_t *i, size_t j)
 {
 	if (!ft_strcmp(id, "NO"))
 	{
-		parser->textures.no_path = ft_substr(parser->line, j, *i);
+		parser->textures.no_path = ft_substr(parser->line, j, (*i - j));
 		if (!parser->textures.no_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
 	}
 	if (!ft_strcmp(id, "SO"))
 	{
-		parser->textures.so_path = ft_substr(parser->line, j, *i);
+		parser->textures.so_path = ft_substr(parser->line, j, (*i - j));
+		printf("so = %s\n", parser->textures.so_path);
 		if (!parser->textures.so_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
@@ -52,10 +55,10 @@ void	get_texture_path(t_parser *parser, char *id, size_t	*i)
 {
 	size_t	j;
 
-	while (ft_isws(parser->line[(*i)]))
+	while (parser->line[*i] && ft_isws(parser->line[(*i)]))
 		(*i)++;
 	j = *i;
-	while (!ft_isws(parser->line[*i]))
+	while (parser->line[*i] && !ft_isws(parser->line[*i]))
 		(*i)++;
 	if (!ft_isstrws(&parser->line[*i]))
 		return (free_parser(parser),
@@ -64,12 +67,12 @@ void	get_texture_path(t_parser *parser, char *id, size_t	*i)
 	get_east_and_west(parser, id, i, j);
 }
 
-void	parse_id(t_parser *parser, char *id, size_t	*i)
+void	parse_id(t_parser *parser, char *id, size_t *i)
 {
 	if (!ft_strcmp(id, "NO"))
 	{
 		parser->textures.no_flag++;
-		get_texture_path(parser, id, i);
+		get_texture_path (parser, id, i);
 	}
 	else if (!ft_strcmp(id, "SO"))
 	{
@@ -89,7 +92,8 @@ void	parse_id(t_parser *parser, char *id, size_t	*i)
 	else if (!ft_strcmp(id, "F") || !ft_strcmp(id, "C"))
 		get_colors(parser, id, i);
 	else
-		return (free_parser(parser), print_error(PARSING, TEXTURES), exit(1));
+		return (free_parser(parser), free(id),
+			print_error(PARSING, TEXTURES), exit(1));
 }
 
 void	get_textures_and_colors(t_parser *parser)
@@ -104,10 +108,7 @@ void	get_textures_and_colors(t_parser *parser)
 			break ;
 		if (!ft_isstrws(parser->line))
 		{
-			line_count++;
-			parse_line(parser, parser->line);
-			free(parser->line);
-			parser->line = NULL;
+			line_found(parser, &line_count);
 			if (line_count == 6)
 			{
 				if (!check_parsing_flags(parser->textures, parser->colors))
@@ -116,10 +117,7 @@ void	get_textures_and_colors(t_parser *parser)
 				break ;
 			}
 		}
-		if (parser->line)
-		{
-			free(parser->line);
-			parser->line = NULL;
-		}
+		free(parser->line);
+		parser->line = NULL;
 	}
 }

@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_content.c                                 :+:      :+:    :+:   */
+/*   prints.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 17:55:26 by pgouasmi         ###   ########.fr       */
+/*   Created: 2023/11/24 13:07:54 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/11/24 13:35:12 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	open_file(t_parser *parser, char *file_path)
+void	print_arr(char **arr)
 {
-	parser->fd = open(file_path, O_RDONLY);
-	if (parser->fd == -1)
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
 	{
-		print_error(PARSING, OPEN);
-		exit (1);
+		printf("%s\n", arr[i]);
+		i++;
 	}
+	printf("\n");
 }
 
-void	get_file_content(t_parser *parser, char *file_path)
+void	print_dlst(t_dlst *lst)
 {
-	open_file(parser, file_path);
-	get_textures_and_colors(parser);
-	get_map(parser);
+	t_dlst	*temp;
+
+	temp = lst;
+	while (temp)
+	{
+		printf("%s\n", temp->content);
+		temp = temp->next;
+	}
+	printf("\n");
 }

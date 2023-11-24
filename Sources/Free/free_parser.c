@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:43:37 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/21 18:52:45 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:59:20 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ void	free_parser(t_parser *parser)
 {
 	if (parser->line)
 		free(parser->line);
+	close(parser->fd);
 	if (parser->map)
+	{
 		ft_free_arr(parser->map);
+		parser->map = NULL;
+	}
 	free_textures(&parser->textures);
 	nullify_parser(parser);
 }
