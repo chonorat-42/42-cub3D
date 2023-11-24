@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 17:51:18 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:53:29 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,10 @@ void	initialize_parser(t_parser *parser);
 //PARSING
 void	parsing(char *file_path, char *file_name);
 void	get_file_content(t_parser *parser, char *file_path);
+
+//PRINT
+void	print_cub(t_data *data);
+void	print_minimap(t_data *data, char **map);
 
 //FREE
 void	free_data(t_data *data);

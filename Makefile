@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/21 18:56:38 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/24 15:36:29 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ FILES = cub3D\
 		Initialization/parser_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
+		Print/print_cub\
+		Print/print_minimap\
 		Free/free_data\
 		Free/free_parser\
 		Exit/exit_prog
@@ -54,7 +56,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(MLX_FLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(MLX)
+	$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
@@ -64,6 +66,7 @@ Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit
+	$(DIR) Objects/Print
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else

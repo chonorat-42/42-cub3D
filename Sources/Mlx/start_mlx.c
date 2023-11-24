@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/21 15:41:30 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:31:03 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	start_mlx(t_data *data)
 		return (0);
 	mlx_get_screen_size(data->mlx.mlx, &data->screen_res[0],
 		&data->screen_res[1]);
+	//data->screen_res[0] = 1920;
+	//data->screen_res[1] = 1080;
 	data->mlx.window = mlx_new_window(data->mlx.mlx, data->screen_res[0],
 		data->screen_res[1], "cub3D");
 	if (!data->mlx.window)
 		return (0);
+	print_cub(data);
 	mlx_hook(data->mlx.window, ON_DESTROY, 0L, exit_prog, data);
 	mlx_loop(data->mlx.mlx);
 	return (1);
