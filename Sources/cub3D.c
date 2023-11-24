@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:02:54 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 17:51:02 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:14:48 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ static int	valid_path(char *path)
 	return (FALSE);
 }
 
-static void	init_data(t_data *data)
-{
-	data->mlx.mlx = NULL;
-	data->mlx.window = NULL;
-	data->screen_res[0] = 0;
-	data->screen_res[1] = 0;
-	data->player.dir = 0;
-	data->player.x_pos = 0;
-	data->player.y_pos = 0;
-}
-
 int	main(int argc, char *argv[])
 {
 	t_data	data;
@@ -38,9 +27,10 @@ int	main(int argc, char *argv[])
 	{
 		init_data(&data);
 		//PARSING
-		parsing(argv[1], &argv[1][5]);
+		parsing(&data, argv[1], &argv[1][5]);
 		if (!start_mlx(&data))
 			return (free_data(&data), EXIT_FAILURE);
+		free_data(&data);
 	}
 	else
 		return (print_error(ARGC, 0), EXIT_FAILURE);

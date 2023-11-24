@@ -6,13 +6,13 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 17:58:05 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 18:51:24 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	print_square(t_data *data, int color, size_t size)
+static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 {
 	static size_t	y_pos = 0;
 	static size_t	x_pos = 0;
@@ -27,10 +27,15 @@ static void	print_square(t_data *data, int color, size_t size)
 			mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
 		x++;
 	}
-	if (x == size * (data->screen_res[1] >> 7))
+	if (x == x_size * (data->screen_res[1] >> 7))
 	{
 		x_pos = 0;
 		y_pos = y;
+		if (y == (y_size) * (data->screen_res[1] >> 7))
+		{
+			y_pos = 0;
+			x_pos = 0;
+		}
 	}
 	else
 		x_pos = x;
@@ -39,9 +44,11 @@ static void	print_square(t_data *data, int color, size_t size)
 void	print_minimap(t_data *data, char **map)
 {
 	size_t	index[2];
-	size_t	size;
+	size_t	x_size;
+	size_t	y_size;
 
-	size = ft_strlen(map[0]);
+	x_size = ft_strlen(map[0]);
+	y_size = ft_arr_size(map);
 	index[0] = 0;
 	while (map[index[0]])
 	{
@@ -49,9 +56,9 @@ void	print_minimap(t_data *data, char **map)
 		while (map[index[0]][index[1]])
 		{
 			if (map[index[0]][index[1]] == '1')
-				print_square(data, (int)0xb3b3b3, size);
+				print_square(data, (int)0xb3b3b3, x_size, y_size);
 			else
-				print_square(data, (int)0xffffff, size);
+				print_square(data, (int)0xffffff, x_size, y_size);
 			index[1]++;
 		}
 		index[0]++;

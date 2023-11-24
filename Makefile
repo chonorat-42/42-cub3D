@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/24 18:00:55 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2023/11/24 18:54:28 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,23 @@ FILES = cub3D\
 		Errors/print_error\
 		Mlx/start_mlx\
 		Initialization/parser_init\
+		Initialization/data_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
 		Print/print_cub\
 		Print/print_minimap\
 		Print/print_player\
+		Parsing/get_file_utils\
+		Parsing/get_textures\
+		Parsing/get_colors\
+		Parsing/get_map\
+		Parsing/get_map_utils\
+		Parsing/map_parsing\
 		Free/free_data\
 		Free/free_parser\
-		Exit/exit_prog
+		Free/free_utils\
+		Exit/exit_prog\
+		Prints/prints
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
 $(NAME): $(OBJS) | $(LIBFT) $(MLX)
@@ -66,8 +75,8 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit
-	$(DIR) Objects/Print
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
+	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else

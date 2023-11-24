@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 18:05:56 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 18:20:18 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static char	**getTempMap(void)
 	return (temp);
 }
 
-static void	print_map(char **map)
-{
-	int	index = 0;
+// static void	print_map(char **map)
+// {
+// 	int	index = 0;
 
-	while (map[index])
-		printf("%s\n", map[index++]);
-}
+// 	while (map[index])
+// 		printf("%s\n", map[index++]);
+// }
 
 int	print_cub(t_data *data)
 {
@@ -41,9 +41,8 @@ int	print_cub(t_data *data)
 
 	map = getTempMap();
 	//data->player.dir = 90 * (M_PI / 180);
-	print_map(map);
+	//print_map(map);
 	print_minimap(data, map);
 	print_player(data);
-	free_map(map);
 	return (1);
 }

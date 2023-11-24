@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 18:06:47 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 18:12:08 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ enum	e_errors
 	NOFNAME,
 	OPEN,
 	TEXTURES,
+	COLORS,
+	NOMAP,
+	TEXOP,
 };
 
 enum	e_boolean
@@ -58,19 +61,30 @@ struct	s_mlx_data
 	void	*window;
 };
 
+typedef struct s_dlst
+{
+	char			*content;
+	struct s_dlst	*next;
+	struct s_dlst	*prev;
+}		t_dlst;
+
 typedef struct s_textures
 {
 	int		no_flag;
 	char	*no_path;
+	void	*no_img;
 	int		so_flag;
 	char	*so_path;
+	void	*so_img;
 	int		we_flag;
 	char	*we_path;
+	void	*we_img;
 	int		ea_flag;
 	char	*ea_path;
+	void	*ea_img;
 }		t_textures;
 
-typedef	struct	s_colors
+typedef struct s_colors
 {
 	int	f_flag;
 	int	f_colors[3];
@@ -78,13 +92,21 @@ typedef	struct	s_colors
 	int	c_colors[3];
 }		t_colors;
 
-typedef struct	s_parser
+typedef struct s_tex_img
+{
+	void	*no_img;
+	void	*so_img;
+	void	*ea_img;
+	void	*we_img;
+}		t_tex_img;
+
+typedef struct s_parser
 {
 	int			fd;
 	char		*line;
 	char		**map;
 	t_textures	textures;
-	t_colors	*colors;
+	t_colors	colors;
 }		t_parser;
 
 struct	s_player
@@ -94,11 +116,13 @@ struct	s_player
 	double	y_pos;
 };
 
-typedef	struct s_data
+typedef struct s_data
 {
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
 	struct s_player		player;
+	struct s_parser		parser;
+	struct s_tex_img	tex_img;
 }		t_data;
 
 //ERROR
@@ -108,23 +132,41 @@ void	print_error(int type, int error);
 int		start_mlx(t_data *data);
 
 //INITIALIZATION
+void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
 
 //PARSING
-void	parsing(char *file_path, char *file_name);
+void	parsing(t_data *data, char *file_path, char *file_name);
 void	get_file_content(t_parser *parser, char *file_path);
+int		check_parsing_flags(t_textures textures, t_colors colors);
+void	line_found(t_parser *parser, size_t *line_count);
+void	parse_id(t_parser *parser, char *id, size_t	*i);
+void	get_textures_and_colors(t_parser *parser);
+int		open_textures(t_data *data, t_parser *parser);
+void	get_colors(t_parser *parser, char *id, size_t *i);
+void	get_map(t_parser *parser);
+void	map_parser(t_parser *parser);
+size_t	maplst_size(t_dlst *lst);
+int		initialize_dlst_content(t_dlst *new, char *str);
+int		add_to_maplst(t_dlst **lst, char *str);
+size_t	maplst_size(t_dlst *lst);
+void	delete_middle_node(t_dlst **temp);
 
 //PRINT
-void	print_cub(t_data *data);
+int		print_cub(t_data *data);
 void	print_minimap(t_data *data, char **map);
 void	print_player(t_data *data);
 
 //FREE
 void	free_data(t_data *data);
 void	free_parser(t_parser *parser);
-void	free_map(char **map);
+void	free_maplst(t_dlst *lst);
 
 //EXIT
 int		exit_prog(t_data *data);
+
+//PRINTS
+void	print_arr(char **arr);
+void	print_dlst(t_dlst *lst);
 
 #endif
