@@ -12,17 +12,19 @@
 
 #include "../Includes/libft.h"
 
-char	**ft_arr_copy(char **envp, size_t size)
+char	**ft_arr_copy(char **envp)
 {
 	char	**arr;
 	size_t	j;
 	size_t	k;
+	size_t	arr_size;
 
-	arr = malloc(sizeof(char *) * (size + 1));
+	arr_size = ft_arr_size(envp);
+	arr = malloc(sizeof(char *) * (arr_size + 1));
 	if (!arr)
 		return (NULL);
 	j = 0;
-	while (j < size)
+	while (j < arr_size)
 	{
 		arr[j] = ft_strdup(envp[j]);
 		if (!arr[j])
@@ -34,6 +36,6 @@ char	**ft_arr_copy(char **envp, size_t size)
 		}
 		j++;
 	}
-	arr[size] = NULL;
+	arr[arr_size] = NULL;
 	return (arr);
 }
