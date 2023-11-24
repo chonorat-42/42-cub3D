@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 14:01:44 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:57:04 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ int	is_extension_correct(char *str)
 	return (1);
 }
 
-void	parsing(char *file_path, char *file_name)
+void	parsing(t_data *data, char *file_path, char *file_name)
 {
-	t_parser	parser;
-
 	if (!is_extension_correct(file_name))
 		return (free(file_name), exit(1));
-	initialize_parser(&parser);
-	get_file_content(&parser, file_path);
-	map_parser(&parser);
-	free_parser(&parser);
+	initialize_parser(&data->parser);
+	get_file_content(&data->parser, file_path);
+	open_textures(data, &data->parser);
+	map_parser(&data->parser);
+	free_parser(&data->parser);
 }

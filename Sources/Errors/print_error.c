@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/22 19:44:10 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:48:47 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	parsing_errors(int error)
 			Do you have the right permissions?\n%s", END);
 	if (error == TEXTURES)
 		ft_dprintf(2, "TEXTURES : Wrong syntax\n%s", END);
+	if (error == TEXOP)
+		ft_dprintf(2, "TEXTURES : A texture could not be opened\n%s", END);
 	if (error == COLORS)
 		ft_dprintf(2, "COLORS : Wrong syntax\n%s", END);
 	if (error == NOMAP)

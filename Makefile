@@ -6,7 +6,7 @@
 #    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/23 14:01:22 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/24 16:06:51 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,20 @@ FILES = cub3D\
 		Errors/print_error\
 		Mlx/start_mlx\
 		Initialization/parser_init\
+		Initialization/data_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
 		Parsing/get_map\
+		Parsing/get_map_utils\
 		Parsing/map_parsing\
 		Free/free_data\
 		Free/free_parser\
 		Free/free_utils\
-		Exit/exit_prog
+		Exit/exit_prog\
+		Prints/prints
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
@@ -69,7 +72,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit Objects/Prints
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else
