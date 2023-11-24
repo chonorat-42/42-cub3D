@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   print_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 15:44:36 by chonorat         ###   ########.fr       */
+/*   Created: 2023/11/24 17:51:50 by chonorat          #+#    #+#             */
+/*   Updated: 2023/11/24 18:00:34 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_map(char **map)
+void	print_player(t_data *data)
 {
-	int	index;
+	size_t	pixel[2];
 
-	index = 0;
-	while (map[index])
-		free(map[index++]);
-	free(map);
-}
+	pixel[0] = data->player.y_pos;
+	pixel[1] = data->player.x_pos;
 
-void	free_data(t_data *data)
-{
-	if (data->mlx.mlx)
-	{
-		mlx_destroy_display(data->mlx.mlx);
-		free(data->mlx.mlx);
-	}
+	mlx_pixel_put(data->mlx.mlx, data->mlx.window,
+		(int)data->player.x_pos, (int)data->player.y_pos, (int)0xff0000);
 }

@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/24 15:36:29 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/24 18:00:55 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,12 +45,13 @@ FILES = cub3D\
 		Parsing/get_file_content\
 		Print/print_cub\
 		Print/print_minimap\
+		Print/print_player\
 		Free/free_data\
 		Free/free_parser\
 		Exit/exit_prog
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
+$(NAME): $(OBJS) | $(LIBFT) $(MLX)
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_BOLD}Waiting for norminette...${_END}"
 	$(NORM)
@@ -73,7 +74,7 @@ else
 	$(PRINT) "$(OS)" > .OS
 endif
 
-$(LIBFT): force
+$(LIBFT):
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_YELLOW}Checking Libft...${_END}"
 	$(MAKE_LIBFT)
@@ -81,7 +82,7 @@ else
 	$(PRINT) "\nThis $(NAME) was made for Linux only.\a\n"
 endif
 
-$(MLX): force
+$(MLX):
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_YELLOW}Waiting for MLX...${_END}"
 	$(MAKE_MLX)
@@ -125,6 +126,4 @@ norminette:
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 
-force:
-
-.PHONY: all clean fclean re norminette force
+.PHONY: all clean fclean re norminette $(LIBFT) $(MLX)

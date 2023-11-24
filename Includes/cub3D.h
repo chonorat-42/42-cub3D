@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/23 15:53:29 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:06:47 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,12 @@ void	get_file_content(t_parser *parser, char *file_path);
 //PRINT
 void	print_cub(t_data *data);
 void	print_minimap(t_data *data, char **map);
+void	print_player(t_data *data);
 
 //FREE
 void	free_data(t_data *data);
 void	free_parser(t_parser *parser);
+void	free_map(char **map);
 
 //EXIT
 int		exit_prog(t_data *data);
