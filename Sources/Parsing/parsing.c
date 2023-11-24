@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 18:28:27 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:02:23 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 		free_data(data);
 	if (open_textures(data, &data->parser))
 		exit(1);
-	map_parser(&data->parser);
+	map_parser(data, &data->parser);
 	free_parser(&data->parser);
 }
