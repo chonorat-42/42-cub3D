@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:02 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 18:01:41 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:20:30 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	get_east_and_west(t_parser *parser, char *id, size_t *i, size_t j)
 	if (!ft_strcmp(id, "WE"))
 	{
 		parser->textures.we_path = ft_substr(parser->line, j, *i - j);
-		printf("we = %s\n", parser->textures.so_path);
 		if (!parser->textures.we_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
@@ -25,7 +24,6 @@ void	get_east_and_west(t_parser *parser, char *id, size_t *i, size_t j)
 	if (!ft_strcmp(id, "EA"))
 	{
 		parser->textures.ea_path = ft_substr(parser->line, j, *i - j);
-		printf("ea = %s\n", parser->textures.so_path);
 		if (!parser->textures.ea_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));
@@ -44,7 +42,6 @@ void	get_north_and_south(t_parser *parser, char *id, size_t *i, size_t j)
 	if (!ft_strcmp(id, "SO"))
 	{
 		parser->textures.so_path = ft_substr(parser->line, j, (*i - j));
-		printf("so = %s\n", parser->textures.so_path);
 		if (!parser->textures.so_path)
 			return (free(id), free_parser(parser),
 				print_error(MALLOC, 0), exit(1));

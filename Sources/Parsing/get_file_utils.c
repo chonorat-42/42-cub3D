@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:25:30 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 17:53:58 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:19:54 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	open_textures(t_data *data, t_parser *parser)
 	int	width;
 	int	height;
 
-	if (data->mlx.mlx)
-		printf("mlx exists\n");
-	printf("no = %s\n", parser->textures.no_path);
 	data->tex_img.no_img = mlx_xpm_file_to_image(data->mlx.mlx,
 			parser->textures.no_path, &width, &height);
 	if (data->tex_img.no_img == NULL)

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 17:55:42 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:24:25 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,12 @@ typedef struct s_textures
 {
 	int		no_flag;
 	char	*no_path;
-	void	*no_img;
 	int		so_flag;
 	char	*so_path;
-	void	*so_img;
 	int		we_flag;
 	char	*we_path;
-	void	*we_img;
 	int		ea_flag;
 	char	*ea_path;
-	void	*ea_img;
 }		t_textures;
 
 typedef struct s_colors
@@ -120,6 +116,7 @@ typedef struct s_data
 {
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
+	char				**map;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;

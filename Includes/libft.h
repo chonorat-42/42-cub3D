@@ -71,7 +71,7 @@ int			ft_putendl_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
 
 size_t		ft_arr_size(char **arr);
-char		**ft_arr_copy(char **envp, size_t size);
+char		**ft_arr_copy(char **envp);
 long		ft_char_index(char *str, int c);
 
 t_list		*ft_lstnew(void *content);

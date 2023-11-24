@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:57:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 13:27:08 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:21:16 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,4 @@ void	get_map(t_parser *parser)
 	remove_empty_up(&map_list);
 	remove_empty_down(&map_list);
 	lst_to_arr(parser, map_list);
-	print_arr(parser->map);
 }

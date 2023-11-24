@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 17:04:01 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:19:02 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	free_tex_img(t_tex_img *data, void *mlx)
 void	free_data(t_data *data)
 {
 	free_parser(&data->parser);
+	ft_free_arr(data->map);
 	if (data->mlx.mlx)
 	{
 		free_tex_img(&data->tex_img, data->mlx.mlx);
