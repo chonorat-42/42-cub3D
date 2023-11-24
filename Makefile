@@ -63,7 +63,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(MLX_FLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(MLX)
+	$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
