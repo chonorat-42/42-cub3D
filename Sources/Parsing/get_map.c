@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:57:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 17:48:12 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:45:35 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,11 @@ void	get_map(t_parser *parser)
 		if (add_to_maplst(&map_list, parser->line))
 			return (free_parser(parser), free_maplst(map_list),
 				print_error(MALLOC, 0), exit(1));
+		if (parser->line)
+		{
+			free(parser->line);
+			parser->line = NULL;
+		}
 	}
 	// print_dlst(map_list);
 	remove_empty_up(&map_list);
