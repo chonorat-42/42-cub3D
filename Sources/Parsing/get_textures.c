@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:02 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/23 13:42:15 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:43:54 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ void	get_textures_and_colors(t_parser *parser)
 						free_parser(parser), exit(1));
 				break ;
 			}
+		}
+		if (parser->line)
+		{
+			free(parser->line);
+			parser->line = NULL;
 		}
 	}
 }
