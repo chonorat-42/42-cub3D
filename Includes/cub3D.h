@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/25 14:35:35 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:36:53 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 # define L_MOVE 113
 # define F_MOVE 122
 # define ESC 65307
+# define MAJ 65505
 
-# define FOV 90
+# define FOV 70
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -117,6 +118,7 @@ struct	s_move
 	int	b_move;
 	int	l_move;
 	int	r_move;
+	int	sprint;
 };
 
 struct	s_player

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/25 15:02:50 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:35:15 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_data(t_data *data)
 	data->player.move.b_move = 0;
 	data->player.move.l_move = 0;
 	data->player.move.r_move = 0;
+	data->player.move.sprint = 0;
 	data->map = NULL;
 	init_tex_img(&data->tex_img);
 	data->mlx.mlx = mlx_init();

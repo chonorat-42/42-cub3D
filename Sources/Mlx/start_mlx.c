@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/25 14:25:39 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:37:46 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	key_press(int keycode, t_data *data)
 {
+	if (keycode == MAJ)
+		data->player.move.sprint = 1;
 	if (keycode == L_MOVE)
 		data->player.move.l_move = 1;
 	if (keycode == R_MOVE)
@@ -29,6 +31,8 @@ static int	key_press(int keycode, t_data *data)
 
 static int	key_release(int keycode, t_data *data)
 {
+	if (keycode == MAJ)
+		data->player.move.sprint = 0;
 	if (keycode == L_MOVE)
 		data->player.move.l_move = 0;
 	if (keycode == R_MOVE)
