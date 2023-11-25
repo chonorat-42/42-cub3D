@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/24 18:54:28 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2023/11/24 23:39:04 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
+CFLAGS = -Wall -Wextra -Werror -IIncludes
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc

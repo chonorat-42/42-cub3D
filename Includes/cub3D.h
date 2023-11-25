@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 19:02:27 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 14:35:35 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@
 
 //HOOK
 # define KEY_PRESS 2
+# define KEY_RELEASE 3
 # define ON_DESTROY 17
+# define R_MOVE 100
+# define B_MOVE 115
+# define L_MOVE 113
+# define F_MOVE 122
+# define ESC 65307
 
 # define FOV 90
 
@@ -105,11 +111,20 @@ typedef struct s_parser
 	t_colors	colors;
 }		t_parser;
 
+struct	s_move
+{
+	int	f_move;
+	int	b_move;
+	int	l_move;
+	int	r_move;
+};
+
 struct	s_player
 {
-	double	dir;
-	double	x_pos;
-	double	y_pos;
+	double			dir;
+	double			x_pos;
+	double			y_pos;
+	struct s_move	move;
 };
 
 typedef struct s_data
@@ -152,7 +167,7 @@ void	delete_middle_node(t_dlst **temp);
 //PRINT
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data, char **map);
-void	print_player(t_data *data);
+void	print_player(t_data *data, size_t radius, int color);
 
 //FREE
 void	free_data(t_data *data);
