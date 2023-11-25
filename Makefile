@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/24 23:39:04 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/25 22:58:17 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ FILES = cub3D\
 		Print/print_cub\
 		Print/print_minimap\
 		Print/print_player\
+		Move/move_player\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
@@ -76,7 +77,7 @@ Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
-	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints
+	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else
