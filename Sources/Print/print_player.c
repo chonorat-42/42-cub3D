@@ -6,13 +6,13 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:51:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/25 14:35:23 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:44:15 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_player(t_data *data, size_t radius, int color)
+void	print_player(t_data *data, double radius, int color)
 {
 	size_t	pixel[2];
 	double	player_x;

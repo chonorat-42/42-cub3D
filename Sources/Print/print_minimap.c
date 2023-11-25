@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 18:51:24 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/26 00:35:05 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 	{
 		x_pos = 0;
 		y_pos = y;
-		if (y == (y_size) * (data->screen_res[1] >> 7))
+		if (y == y_size * (data->screen_res[1] >> 7))
 		{
 			y_pos = 0;
 			x_pos = 0;
