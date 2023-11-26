@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 18:24:25 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/26 19:57:44 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ enum	e_errors
 	COLORS,
 	NOMAP,
 	TEXOP,
+	NOP,
+	DPP,
 };
 
 enum	e_boolean
@@ -142,7 +144,7 @@ void	get_textures_and_colors(t_parser *parser);
 int		open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_map(t_parser *parser);
-void	map_parser(t_parser *parser);
+void	map_parser(t_data *data, t_parser *parser);
 size_t	maplst_size(t_dlst *lst);
 int		initialize_dlst_content(t_dlst *new, char *str);
 int		add_to_maplst(t_dlst **lst, char *str);

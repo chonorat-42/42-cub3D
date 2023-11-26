@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/24 13:48:47 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/26 19:59:32 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	parsing_errors(int error)
 		ft_dprintf(2, "COLORS : Wrong syntax\n%s", END);
 	if (error == NOMAP)
 		ft_dprintf(2, "MAP : No map found\n%s", END);
+	if (error == NOP)
+		ft_dprintf(2, "MAP : No player found\n%s", END);
+	if (error == DPP)
+		ft_dprintf(2, "MAP : Several players found\n%s", END);
 }
 
 void	print_error(int type, int error)
