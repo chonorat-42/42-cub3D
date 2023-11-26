@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/24 16:06:51 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/25 22:58:17 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
+CFLAGS = -Wall -Wextra -Werror -IIncludes
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc
@@ -44,6 +44,10 @@ FILES = cub3D\
 		Initialization/data_init\
 		Parsing/parsing\
 		Parsing/get_file_content\
+		Print/print_cub\
+		Print/print_minimap\
+		Print/print_player\
+		Move/move_player\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
@@ -57,7 +61,7 @@ FILES = cub3D\
 		Prints/prints
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
+$(NAME): $(OBJS) | $(LIBFT) $(MLX)
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_BOLD}Waiting for norminette...${_END}"
 	$(NORM)
@@ -72,14 +76,15 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Free Objects/Exit Objects/Prints
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
+	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 else
 	$(PRINT) "$(OS)" > .OS
 endif
 
-$(LIBFT): force
+$(LIBFT):
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_YELLOW}Checking Libft...${_END}"
 	$(MAKE_LIBFT)
@@ -87,7 +92,7 @@ else
 	$(PRINT) "\nThis $(NAME) was made for Linux only.\a\n"
 endif
 
-$(MLX): force
+$(MLX):
 ifeq ($(OS),Linux)
 	$(PRINT) "\n${_YELLOW}Waiting for MLX...${_END}"
 	$(MAKE_MLX)
@@ -131,6 +136,4 @@ norminette:
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 
-force:
-
-.PHONY: all clean fclean re norminette force
+.PHONY: all clean fclean re norminette $(LIBFT) $(MLX)
