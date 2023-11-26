@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 00:35:05 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/26 01:15:27 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 {
-	static size_t	y_pos = 0;
-	static size_t	x_pos = 0;
+	static size_t	y_pos = 10;
+	static size_t	x_pos = 10;
 	size_t			y;
 	size_t			x;
 
@@ -27,14 +27,14 @@ static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 			mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
 		x++;
 	}
-	if (x == x_size * (data->screen_res[1] >> 7))
+	if (x - 10 == x_size * (data->screen_res[1] >> 7))
 	{
-		x_pos = 0;
+		x_pos = 10;
 		y_pos = y;
-		if (y == y_size * (data->screen_res[1] >> 7))
+		if (y - 10 == y_size * (data->screen_res[1] >> 7))
 		{
-			y_pos = 0;
-			x_pos = 0;
+			y_pos = 10;
+			x_pos = 10;
 		}
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:51:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 00:44:15 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/26 01:17:33 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	print_player(t_data *data, double radius, int color)
 	double	player_x;
 	double	player_y;
 
-	player_x = data->player.x_pos * (data->screen_res[1] >> 7);
-	player_y = data->player.y_pos * (data->screen_res[1] >> 7);
+	player_x = (data->player.x_pos * (data->screen_res[1] >> 7)) + 10;
+	player_y = (data->player.y_pos * (data->screen_res[1] >> 7)) + 10;
 	pixel[0] = player_x - radius;
 	while (pixel[0] <= player_x + radius)
 	{
