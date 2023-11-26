@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 00:25:04 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/26 16:42:27 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,12 @@ struct	s_move
 
 struct	s_player
 {
-	double			dir;
 	double			x_pos;
 	double			y_pos;
+	double			x_dir;
+	double			y_dir;
+	double			x_plane;
+	double			y_plane;
 	struct s_move	move;
 };
 
