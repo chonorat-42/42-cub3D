@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/25 22:58:17 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/26 18:20:04 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) -O2 $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
@@ -79,7 +79,7 @@ ifeq ($(OS),Linux)
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
 	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -O2 -c $(CFLAGS) $< -o $@
 else
 	$(PRINT) "$(OS)" > .OS
 endif

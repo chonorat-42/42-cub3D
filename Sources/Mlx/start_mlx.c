@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 00:52:45 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:04:45 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	start_mlx(t_data *data)
 	data->map = getTempMap();
 	data->player.x_pos = 20.5;
 	data->player.y_pos = 5.3;
-	print_cub(data);
 	mlx_loop_hook(data->mlx.mlx, print_cub, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);
