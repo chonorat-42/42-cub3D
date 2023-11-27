@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 18:04:45 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:05:07 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,6 @@ static int	key_release(int keycode, t_data *data)
 	return (1);
 }
 
-static char	**getTempMap(void)
-{
-	char	**temp = NULL;
-	int		index = 0;
-
-	temp = malloc(sizeof(char *) * 11);
-	temp[index++] = ft_strdup("1111111111111111111111111111111111111111");
-	while (index < 8)
-		temp[index++] = ft_strdup("1000000000000000000000000000000000000001");
-	temp[index++] = ft_strdup("1000000010000000000N00000000000000000001");
-	temp[index++] = ft_strdup("1111111111111111111111111111111111111111");
-	temp[index] = NULL;
-	return (temp);
-}
-
 int	start_mlx(t_data *data)
 {
 	mlx_get_screen_size(data->mlx.mlx, &data->screen_res[0],
@@ -69,9 +54,6 @@ int	start_mlx(t_data *data)
 			data->screen_res[1], "cub3D");
 	if (!data->mlx.window)
 		return (0);
-	data->map = getTempMap();
-	data->player.x_pos = 20.5;
-	data->player.y_pos = 5.3;
 	mlx_loop_hook(data->mlx.mlx, print_cub, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);

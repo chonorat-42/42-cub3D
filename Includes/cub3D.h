@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/27 14:31:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:55:24 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define ON_DESTROY 17
 # define R_MOVE 100
 # define B_MOVE 115
-# define L_MOVE 113
-# define F_MOVE 122
+# define L_MOVE 97
+# define F_MOVE 119
 # define ESC 65307
 # define MAJ 65505
 
@@ -170,7 +170,7 @@ void	delete_middle_node(t_dlst **temp);
 
 //PRINT
 int		print_cub(t_data *data);
-void	print_minimap(t_data *data, char **map);
+void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 
 //MOVE
