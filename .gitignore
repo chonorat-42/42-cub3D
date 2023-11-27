@@ -20,3 +20,6 @@ cub3D
 
 # VS_Code files
 .vscode/
+
+#mlx-test
+minilibx-linux/test
