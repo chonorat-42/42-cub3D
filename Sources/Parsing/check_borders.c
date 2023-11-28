@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:01:43 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/28 15:08:52 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:11:00 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,13 @@ int	check_borders(char **map)
 	while (map[j])
 	{
 		if (!border_is_one(map, map[j], j))
-		{
-			printf("out by border is one, j = %zu\n", j);
 			return (print_error(PARSING, BORD), 1);
-		}
 		beginning = 0;
 		end = ft_strlen(map[j]);
 		while (map[j][beginning] == ' ')
 			beginning++;
 		if (are_space_bordered(map, j, beginning, end))
-		{
-			printf("out by space border, j = %zu\n", j);
 			return (print_error(PARSING, SPACEB), 1);
-		}
 		j++;
 	}
 	return (0);
