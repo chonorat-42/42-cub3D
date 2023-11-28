@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/25 22:58:17 by chonorat         ###   ########.fr        #
+#    Updated: 2023/11/27 15:28:25 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes
+CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc
@@ -67,7 +67,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) -O2 $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
@@ -79,7 +79,7 @@ ifeq ($(OS),Linux)
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
 	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -O2 -c $(CFLAGS) $< -o $@
 else
 	$(PRINT) "$(OS)" > .OS
 endif

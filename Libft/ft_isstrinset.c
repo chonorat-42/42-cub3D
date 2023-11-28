@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cub.c                                        :+:      :+:    :+:   */
+/*   ft_isstrinset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 00:46:03 by chonorat         ###   ########.fr       */
+/*   Created: 2023/11/27 14:46:49 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/11/27 14:50:52 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../Includes/libft.h"
 
-int	print_cub(t_data *data)
+int	ft_isstrinset(char *str, char *set)
 {
-	move_player(data);
-	print_minimap(data);
-	return (1);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_ischarinset(str[i], set))
+			return (1);
+		i++;
+	}
+	return (0);
 }

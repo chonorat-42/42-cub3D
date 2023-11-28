@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 16:42:27 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:26:25 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define ON_DESTROY 17
 # define R_MOVE 100
 # define B_MOVE 115
-# define L_MOVE 113
-# define F_MOVE 122
+# define L_MOVE 97
+# define F_MOVE 119
 # define ESC 65307
 # define MAJ 65505
 
@@ -54,6 +54,8 @@ enum	e_errors
 	COLORS,
 	NOMAP,
 	TEXOP,
+	NOP,
+	DPP,
 };
 
 enum	e_boolean
@@ -137,6 +139,7 @@ typedef struct s_data
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
 	char				**map;
+	int					minimap_ratio;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
@@ -162,7 +165,7 @@ void	get_textures_and_colors(t_parser *parser);
 int		open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_map(t_parser *parser);
-void	map_parser(t_parser *parser);
+void	map_parser(t_data *data, t_parser *parser);
 size_t	maplst_size(t_dlst *lst);
 int		initialize_dlst_content(t_dlst *new, char *str);
 int		add_to_maplst(t_dlst **lst, char *str);
@@ -171,7 +174,7 @@ void	delete_middle_node(t_dlst **temp);
 
 //PRINT
 int		print_cub(t_data *data);
-void	print_minimap(t_data *data, char **map);
+void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 
 //MOVE

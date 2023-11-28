@@ -119,5 +119,7 @@ char		*strjoin_free_first(char **s1, char *s2);
 char		*strjoin_free_both(char *s1, char *s2);
 void		ft_free_arr(char **arr);
 int			ft_isstrws(char *str);
+int			ft_ischarinset(char c, char *set);
+int			ft_isstrinset(char *str, char *set);
 
 #endif
