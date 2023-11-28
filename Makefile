@@ -6,7 +6,7 @@
 #    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/27 15:28:25 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/28 15:09:19 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ FILES = cub3D\
 		Parsing/get_map\
 		Parsing/get_map_utils\
 		Parsing/map_parsing\
+		Parsing/fill_map\
+		Parsing/check_borders\
+		Parsing/get_player_position\
 		Free/free_data\
 		Free/free_parser\
 		Free/free_utils\
