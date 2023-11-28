@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
 /*   Updated: 2023/11/28 15:07:31 by pgouasmi         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
 /*   Updated: 2023/11/28 15:05:52 by pgouasmi         ###   ########.fr       */
@@ -23,8 +23,8 @@
 # define ON_DESTROY 17
 # define R_MOVE 100
 # define B_MOVE 115
-# define L_MOVE 113
-# define F_MOVE 122
+# define L_MOVE 97
+# define F_MOVE 119
 # define ESC 65307
 # define MAJ 65505
 
@@ -139,6 +139,7 @@ typedef struct s_data
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
 	char				**map;
+	int					minimap_ratio;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
@@ -176,7 +177,7 @@ void	get_player_position(t_data *data);
 
 //PRINT
 int		print_cub(t_data *data);
-void	print_minimap(t_data *data, char **map);
+void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 
 //MOVE
