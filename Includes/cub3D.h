@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/27 14:55:24 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 00:47:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct s_data
 	struct s_mlx_data	mlx;
 	int					screen_res[2];
 	char				**map;
+	int					minimap_ratio;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
@@ -172,6 +173,7 @@ void	delete_middle_node(t_dlst **temp);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
+void	get_ratio(t_data *data, int	minimap_x, int minimap_y);
 
 //MOVE
 void	move_player(t_data *data);

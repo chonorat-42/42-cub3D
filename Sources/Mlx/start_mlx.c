@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/27 15:05:07 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 01:02:09 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	start_mlx(t_data *data)
 			data->screen_res[1], "cub3D");
 	if (!data->mlx.window)
 		return (0);
+	data->minimap_ratio = ((data->screen_res[0] + data->screen_res[1]) / ((ft_strlen(data->map[0]) * ft_arr_size(data->map) / 2)));
 	mlx_loop_hook(data->mlx.mlx, print_cub, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);

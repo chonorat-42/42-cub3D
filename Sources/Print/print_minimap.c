@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/27 15:58:56 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 00:49:48 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 
 	x = x_pos;
 	y = 0;
-	while (x < (x_pos + (data->screen_res[1] >> 7)))
+	while (x < (x_pos + data->minimap_ratio))
 	{
 		y = y_pos;
-		while (y < (y_pos + (data->screen_res[1] >> 7)))
+		while (y < (y_pos + data->minimap_ratio))
 			mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
 		x++;
 	}
-	if (x - 10 == x_size * (data->screen_res[1] >> 7))
+	if (x - 10 == x_size * data->minimap_ratio)
 	{
 		x_pos = 10;
 		y_pos = y;
-		if (y - 10 == y_size * (data->screen_res[1] >> 7))
+		if (y - 10 == y_size * data->minimap_ratio)
 		{
 			y_pos = 10;
 			x_pos = 10;
@@ -63,7 +63,7 @@ void	print_minimap(t_data *data)
 			else
 				print_square(data, -1, x_size, y_size);
 			index[1]++;
-			print_player(data, 0.25 * (data->screen_res[1] >> 7), (int)0xff0000);
+			print_player(data, 0.25 * data->minimap_ratio, (int)0xff0000);
 		}
 		index[0]++;
 	}
