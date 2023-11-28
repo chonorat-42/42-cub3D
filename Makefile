@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/27 15:28:25 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/11/28 12:54:14 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FILES = cub3D\
 		Parsing/get_map\
 		Parsing/get_map_utils\
 		Parsing/map_parsing\
+		Parsing/get_player_dir\
 		Free/free_data\
 		Free/free_parser\
 		Free/free_utils\

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/27 17:21:15 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 13:02:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	player_position_found(t_data *data, int *found,
 {
 	if (!*found)
 	{
+		get_player_dir(data, i, j);
 		data->player.x_pos = (double)i + 0.5;
 		data->player.y_pos = (double)j + 0.5;
 		(*found)++;

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 12:26:25 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 12:52:14 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int		initialize_dlst_content(t_dlst *new, char *str);
 int		add_to_maplst(t_dlst **lst, char *str);
 size_t	maplst_size(t_dlst *lst);
 void	delete_middle_node(t_dlst **temp);
+void	get_player_dir(t_data *data, long long i, long long j);
 
 //PRINT
 int		print_cub(t_data *data);
