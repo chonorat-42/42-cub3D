@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/28 12:54:14 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2023/11/28 13:24:34 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ FILES = cub3D\
 		Print/print_cub\
 		Print/print_minimap\
 		Print/print_player\
+		Print/raycasting\
 		Move/move_player\
 		Parsing/get_file_utils\
 		Parsing/get_textures\

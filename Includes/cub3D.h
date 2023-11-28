@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 12:52:14 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 16:40:21 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,22 @@ struct	s_move
 	int	sprint;
 };
 
+struct s_raycast
+{
+	double	x_cam;
+	double	x_ray;
+	double	y_ray;
+	int		x_map;
+	int		y_map;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		x_step;
+	int		y_step;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	distance;
+};
+
 struct	s_player
 {
 	double			x_pos;
@@ -131,6 +147,7 @@ struct	s_player
 	double			y_dir;
 	double			x_plane;
 	double			y_plane;
+	int				side;
 	struct s_move	move;
 };
 
@@ -154,6 +171,7 @@ int		start_mlx(t_data *data);
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
+void	init_raycast(struct s_raycast *data_rc);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);
@@ -177,6 +195,7 @@ void	get_player_dir(t_data *data, long long i, long long j);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
+void	raycasting(t_data *data);
 
 //MOVE
 void	move_player(t_data *data);
