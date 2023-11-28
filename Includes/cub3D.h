@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 15:51:32 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:31:29 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ enum	e_errors
 	SPACEB,
 	UNKCHAR,
 	EMPTYL,
+	SEP,
 };
 
 enum	e_boolean
@@ -135,6 +136,13 @@ struct	s_player
 	struct s_move	move;
 };
 
+typedef struct s_flood
+{
+	size_t			y;
+	size_t			x;
+	struct s_flood *next;
+}		t_flood;
+
 typedef struct s_data
 {
 	struct s_mlx_data	mlx;
@@ -175,6 +183,8 @@ void	delete_middle_node(t_dlst **temp);
 void	fill_map(t_data *data, t_parser *parser);
 int		check_borders(char **map);
 void	get_player_position(t_data *data);
+int		is_map_separated(char **map);
+
 
 //PRINT
 int		print_cub(t_data *data);

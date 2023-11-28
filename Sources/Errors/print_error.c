@@ -6,21 +6,22 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 15:57:29 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:55:52 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	more_errors(int error)
+static int	more_parsing_errors(int error)
 {
 	if (error == SPACEB)
-		return (ft_dprintf(2, "MAP : A white space is \
-			not enclosed by `1'\n%s", END));
+		return (ft_dprintf(2, "MAP : A white space is not enclosed by `1'\n%s", END));
 	if (error == UNKCHAR)
 		return (ft_dprintf(2, "MAP : Found an unknown character\n%s", END));
 	if (error == EMPTYL)
 		return (ft_dprintf(2, "MAP : Found an empty line\n%s", END));
+	if (error == SEP)
+		return (ft_dprintf(2, "MAP : The map is separated\n%s", END));
 	return (0);
 }
 
@@ -31,8 +32,7 @@ static int	parsing_errors(int error)
 	if (error == NOFNAME)
 		return (ft_dprintf(2, "No file name before `.cub'\n%s", END));
 	if (error == OPEN)
-		return (ft_dprintf(2, "Could not open the map. \
-			Do you have the right permissions?\n%s", END));
+		return (ft_dprintf(2, "Could not open the map. Do you have the right permissions?\n%s", END));
 	if (error == TEXTURES)
 		return (ft_dprintf(2, "TEXTURES : Wrong syntax\n%s", END));
 	if (error == TEXOP)
@@ -48,7 +48,7 @@ static int	parsing_errors(int error)
 		return (ft_dprintf(2, "MAP : Several players found\n%s", END));
 	if (error == BORD)
 		return (ft_dprintf(2, "MAP : Map is not enclosed by `1'\n%s", END));
-	more_errors(error);
+	more_parsing_errors(error);
 	return (0);
 }
 

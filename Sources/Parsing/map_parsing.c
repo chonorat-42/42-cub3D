@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/28 15:57:47 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:40:35 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	map_parser(t_data *data, t_parser *parser)
 	if (check_unknown_char(parser->map))
 		return (free_data(data), exit(1));
 	fill_map(data, parser);
-	print_arr(data->map);
+	if (is_map_separated(data->map))
+		return (free_data(data), exit(1));
 	if (check_borders(data->map))
 		return (free_data(data), exit(1));
 }
