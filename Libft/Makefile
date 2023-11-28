@@ -82,6 +82,7 @@ FILES = ft_isalpha\
 		ft_isstrws\
 		ft_ischarinset\
 		ft_isstrinset\
+		ft_isstronlyset\
 		ft_printf/ft_printf\
 		ft_printf/ft_putchar_pf\
 		ft_printf/ft_putnbr_base_p\

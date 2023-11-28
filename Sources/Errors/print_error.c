@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/26 19:59:32 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:05:34 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	parsing_errors(int error)
 		ft_dprintf(2, "MAP : No player found\n%s", END);
 	if (error == DPP)
 		ft_dprintf(2, "MAP : Several players found\n%s", END);
+	if (error == BORD)
+		ft_dprintf(2, "MAP : Map is not enclosed by `1'\n%s", END);
+	if (error == SPACEB)
+		ft_dprintf(2, "MAP : A white space is not enclosed by `1'\n%s", END);
+	if (error == UNKCHAR)
+		ft_dprintf(2, "MAP : Found an unknown character\n%s", END);
 }
 
 void	print_error(int type, int error)
