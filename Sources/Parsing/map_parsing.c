@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/27 15:48:55 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:34:22 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,104 @@ void	fill_map(t_data *data, t_parser *parser)
 	}
 }
 
+int border_is_one(char **map, char *str, size_t j)
+{
+	size_t	k;
+	size_t	l;
+
+	if (j == 0 || !map[j + 1])
+	{
+		if (!ft_isstronlyset(map[j], " 1"))
+			return (1);
+	}
+	k = 0;
+	while (str[k] && ft_ischarinset(str[k], " "))
+		k++;
+	if (str[k] != '1')
+		return (1);
+	l = ft_strlen(str);
+	while (l && ft_ischarinset(str[l], " "))
+		l--;
+	if (str[l] != '1')
+		return (1);
+	return (0);
+}
+
+int	are_space_bordered(char **map, size_t j, size_t beginning, size_t end)
+{
+	size_t	i;
+
+	i = beginning;
+	while (i < end)
+	{
+		if (map[j][i] == ' ')
+		{
+			if (j != 0)
+			{
+				if (!ft_ischarinset(map[j - 1][i], " 1"))
+				return (1);
+			}
+			if (i != 0)
+			{
+				if (!ft_ischarinset(map[j][i - 1], " 1"))
+				return (1);
+			}
+			if (map[j + 1])
+			{
+				if (!ft_ischarinset(map[j + 1][i], " 1"))
+				return (1);
+			}
+			if (!ft_ischarinset(map[j][i + 1], " 1\0"))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	check_borders(char **map)
+{
+	size_t	j;
+	size_t	beginning;
+	size_t	end;
+
+	j = 0;
+	while (map[j])
+	{
+		if (!border_is_one(map, map[j], j))
+			return (print_error(PARSING, BORD), 1);
+		beginning = 0;
+		end = ft_strlen(map[j]);
+		while (map[j][beginning] == ' ')
+			beginning++;
+		if (are_space_bordered(map, j, beginning, end))
+			return (print_error(PARSING, SPACEB), 1);
+		j++;
+	}
+	return (0);
+}
+
+int	check_unknown_char(char **map)
+{
+	size_t	j;
+
+	j = 0;
+	while (map[j])
+	{
+		if (!ft_isstronlyset(map[j], "01NSWE "))
+			return (print_error(PARSING, UNKCHAR), 1);
+		j++;
+	}
+	return (0);
+}
+
 void	map_parser(t_data *data, t_parser *parser)
 {
 	(void)parser;
+	if (check_unknown_char(parser->map))
+		return (free_data(data), exit(1));
+	if (check_borders(parser->map))
+		return (free_data(data), exit(1));
 	fill_map(data, parser);
 	get_player_position(data);
 	print_arr(data->map);

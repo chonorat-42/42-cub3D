@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/27 14:31:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:04:46 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ enum	e_errors
 	TEXOP,
 	NOP,
 	DPP,
+	BORD,
+	SPACEB,
+	UNKCHAR,
 };
 
 enum	e_boolean
