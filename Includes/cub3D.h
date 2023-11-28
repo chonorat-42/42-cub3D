@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 00:47:54 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/28 01:28:25 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ void	delete_middle_node(t_dlst **temp);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
-void	get_ratio(t_data *data, int	minimap_x, int minimap_y);
 
 //MOVE
 void	move_player(t_data *data);
