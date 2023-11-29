@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:45:39 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 13:28:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 01:21:01 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,30 @@ void	get_player_dir(t_data *data, long long i, long long j)
 {
 	if (data->parser.map[j][i] == 'N')
 	{
-		data->player.x_dir = 0.0;
-		data->player.y_dir = 1.0;
+		data->player.x_dir = -1.0;
+		data->player.y_dir = 0.0;
+		data->player.y_plane = 0.66;
+		data->player.x_plane = 0;
 	}
 	else if (data->parser.map[j][i] == 'S')
 	{
-		data->player.x_dir = 0.0;
-		data->player.y_dir = -1.0;
+		data->player.x_dir = 1.0;
+		data->player.y_dir = 0.0;
+		data->player.y_plane = -0.66;
+		data->player.x_plane = 0;
 	}
 	else if (data->parser.map[j][i] == 'E')
 	{
 		data->player.x_dir = 1.0;
 		data->player.y_dir = 0.0;
+		data->player.x_plane = 0.66;
+		data->player.y_plane = 0;
 	}
 	else if (data->parser.map[j][i] == 'W')
 	{
-		data->player.x_dir = -1.0;
-		data->player.y_dir = 0.0;
+		data->player.x_dir = 0.0;
+		data->player.y_dir = -1.0;
+		data->player.x_plane = -0.66;
+		data->player.y_plane = 0;
 	}
 }
