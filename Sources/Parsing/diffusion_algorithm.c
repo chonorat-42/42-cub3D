@@ -6,69 +6,152 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:59 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/28 19:55:09 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:12:23 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void print_last(t_flood *flood, char **map)
-{
-	map[flood->y][flood->x] = 'W';
-}
+// void	print_coor(t_flood *flood)
+// {
+// 	t_flood *temp;
 
-static void delete_last(t_flood **flood)
-{
+// 	temp = flood;
+// 	while (temp)
+// 	{
+// 		printf("x = %zu, y = %zu\n", temp->x, temp->y);
+// 		temp = temp->next;
+// 	}
+// }
 
-}
+// size_t	flood_size(t_flood *flood)
+// {
+// 	t_flood *temp;
+// 	size_t res;
 
-static void	add_to_flood(t_flood **flood, size_t j, size_t i)
-{
-	t_flood	*new;
-	t_flood *temp;
+// 	res = 0;
+// 	temp = flood;
+// 	while (temp)
+// 	{
+// 		res++;
+// 		temp = temp->next;
+// 	}
+// 	return (res);
+// }
 
-	new = malloc(sizeof(*new));
-	if (!new)
-		return (print_error(MALLOC, 0));
-	new->y = j;
-	new->x = i;
-	new->next = NULL;
-	if (!flood)
-		flood = new;
-	else
-	{
-		new->next = flood;
-		flood = new;
-	}
-}
+// static void print_flood(t_flood *flood, char **map)
+// {
+// 	t_flood *temp;
 
-static void iterative_diffusion_algorithm(char **map)
-{
-	t_flood *flood;
-	size_t	j;
-	size_t	i;
+// 	size_t size = flood_size(flood);
+// 	printf("%zu\n", size);
 
-	j = 0;
-	i = 0;
-	while (map[j][i] == '?')
-		i++;
-	add_to_flood(&flood, j, i);
-	while (flood)
-	{
-		print_last(flood, map);
-		delete_last(flood);
-		if (j != 0 && ft_ischarinset(map[j - 1][i], "W?"))
-			add_to_flood(flood, j - 1, i);
-		if (map[j + 1] && ft_ischarinset(map[j + 1][i], "W?"))
-			add_to_flood(flood, j + 1, i);
-		if (i != 0 && ft_ischarinset(map[j][i - 1], "W?"))
-			add_to_flood(flood, j, i - 1);
-		if (map[j][i + 1] && ft_ischarinset(map[j][i + 1], "W?"))
-			add_to_flood(flood, j, i + 1);
-	}
+// 	temp = flood;
+// 	while (temp)
+// 	{
+// 		map[flood->y][flood->x] = 'W';
+// 		temp = temp->next;
+// 	}
+// 	print_arr(map);
+// }
 
+// static void free_flood(t_flood **flood)
+// {
+// 	t_flood *temp;
 
-}
+// 	temp = *flood;
+// 	if (!temp->next)
+// 	{
+// 		free(*flood);
+// 		*flood = NULL;
+// 		return ;
+// 	}
+// 	while (*flood)
+// 	{
+// 		temp = *flood;
+// 		*flood = temp->next;
+// 		free(temp);
+// 	}
+// 	*flood = NULL;
+// }
+
+// static void	add_to_flood(t_flood **flood, size_t j, size_t i)
+// {
+// 	t_flood	*new;
+// 	t_flood *temp;
+
+// 	new = malloc(sizeof(*new));
+// 	if (!new)
+// 		return (print_error(MALLOC, 0));
+// 	new->y = j;
+// 	new->x = i;
+// 	new->next = NULL;
+// 	if (!*flood)
+// 		*flood = new;
+// 	else
+// 	{
+// 		temp = *flood;
+// 		while (temp->next)
+// 			temp = temp->next;
+// 		temp->next = new;
+// 	}
+// }
+
+// static void iterative_diffusion_algorithm(char **map)
+// {
+// 	t_flood *flood;
+// 	size_t	j;
+// 	size_t	i;
+// 	size_t	diff;
+
+// 	j = 0;
+// 	i = 0;
+// 	while (map[j][i] == '?')
+// 		i++;
+// 	flood = NULL;
+// 	add_to_flood(&flood, j, i);
+// 	while (flood)
+// 	{
+// 		print_flood(flood, map);
+// 		free_flood(&flood);
+// 		diff = 0;
+// 		while (map[j][i + 1] && !ft_ischarinset(map[j][i + 1], "W?"))
+// 		{
+// 			add_to_flood(&flood, j, i + 1);
+// 			i++;
+// 			diff++;
+// 			// i -= diff;
+// 			diff = 0;
+// 		}
+// 		while (j != 0 && !ft_ischarinset(map[j - 1][i], "W?"))
+// 		{
+// 			add_to_flood(&flood, j - 1, i);
+// 			j--;
+// 			diff++;
+// 			// j += diff - 1;
+// 			diff = 0;
+// 		}
+// 		while (map[j + 1] && !ft_ischarinset(map[j + 1][i], "W?"))
+// 		{
+// 			add_to_flood(&flood, j + 1, i);
+// 			j++;
+// 			diff++;
+// 			// j -= diff - 1;
+// 			diff = 0;
+// 		}
+// 		while (i != 0 && !ft_ischarinset(map[j][i - 1], "W?"))
+// 		{
+// 			add_to_flood(&flood, j, i - 1);
+// 			i--;
+// 			diff++;
+// 			// i += diff - 1;
+// 			diff = 0;
+// 		}
+// 		size_t	fsize = flood_size(flood);
+// 		printf("size = %zu\n", fsize);
+// 		print_coor(flood);
+// 	}
+// }
 
 static void	diffusion_algorithm(char **map, size_t j, size_t i)
 {
@@ -106,6 +189,7 @@ static int	check_after_diffusion(char **map)
 int	is_map_separated(char **map)
 {
 	char	**dup;
+
 	size_t	i;
 
 	dup = ft_arr_copy(map);
@@ -114,8 +198,11 @@ int	is_map_separated(char **map)
 	i = 0;
 	while (map[0][i] == '?')
 		i++;
-	diffusion_algorithm(dup, (size_t)0, i);
+	diffusion_algorithm(dup, 0, i);
+	// iterative_diffusion_algorithm(dup);
+	print_arr(dup);
 	if (check_after_diffusion(dup))
 		return (print_error(PARSING, SEP), ft_free_arr(dup), 1);
 	return (ft_free_arr(dup), 0);
+	return (0);
 }
