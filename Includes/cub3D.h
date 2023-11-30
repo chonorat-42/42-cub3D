@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 16:40:21 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/11/30 01:08:40 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,10 @@ struct	s_move
 struct s_raycast
 {
 	double	x_cam;
-	double	x_ray;
-	double	y_ray;
+	double	xpos_ray;
+	double	ypos_ray;
+	double	xdir_ray;
+	double	ydir_ray;
 	int		x_map;
 	int		y_map;
 	double	delta_dist_x;
@@ -136,7 +138,11 @@ struct s_raycast
 	int		y_step;
 	double	side_dist_x;
 	double	side_dist_y;
-	double	distance;
+	double	pwall_dist;
+	int		height;
+	int		width;
+	int		wall_side;
+	int		wall_hit;
 };
 
 struct	s_player
@@ -147,7 +153,6 @@ struct	s_player
 	double			y_dir;
 	double			x_plane;
 	double			y_plane;
-	int				side;
 	struct s_move	move;
 };
 
@@ -171,7 +176,7 @@ int		start_mlx(t_data *data);
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
-void	init_raycast(struct s_raycast *data_rc);
+void	init_raycast(t_data *data, struct s_raycast *data_rc);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);

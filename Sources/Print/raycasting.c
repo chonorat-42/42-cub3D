@@ -6,125 +6,121 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/29 01:08:34 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/30 01:35:58 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-/*
-static void	init_plane(t_data *data)
-{
-	double	length;
 
-	data->player.x_plane = data->player.y_dir;
-	data->player.y_plane = -data->player.x_dir;
-	length = sqrt(pow(data->player.x_plane, 2) + pow(data->player.y_plane, 2));
-	data->player.x_plane /= length;
-	data->player.y_plane /= length;
-}*/
-
-static void	get_step(t_data *data, struct s_raycast *data_rc)
+static void	get_value(t_data *data, struct s_raycast *data_rc, int x)
 {
-	if (data_rc->x_ray < 0)
+	data_rc->x_cam = (2 * x / data_rc->width) + 1;
+	data_rc->xpos_ray = data->player.x_pos;
+	data_rc->ypos_ray = data->player.y_pos;
+	data_rc->xdir_ray = data->player.x_dir + data->player.x_plane * data_rc->x_cam;
+	data_rc->ydir_ray = data->player.y_dir + data->player.y_plane * data_rc->x_cam;
+	data_rc->x_map = (int)data_rc->xpos_ray;
+	data_rc->y_map = (int)data_rc->ypos_ray;
+	data_rc->delta_dist_x = sqrt(1 + (data_rc->ydir_ray * data_rc->ydir_ray) / (data_rc->xdir_ray * data_rc->xdir_ray));
+	data_rc->delta_dist_y = sqrt(1 + (data_rc->xdir_ray * data_rc->xdir_ray) / (data_rc->ydir_ray * data_rc->ydir_ray));
+}
+
+static void	get_initial_dist(struct s_raycast *data_rc)
+{
+	if (data_rc->xdir_ray < 0)
 	{
 		data_rc->x_step = -1;
-		data_rc->side_dist_x = (data->player.x_pos - data_rc->x_map) * data_rc->delta_dist_x;
+		data_rc->side_dist_x = (data_rc->xpos_ray - data_rc->x_map) * data_rc->delta_dist_x;
 	}
 	else
 	{
 		data_rc->x_step = 1;
-		data_rc->side_dist_x = (data_rc->x_map + 1 - data->player.x_pos) * data_rc->delta_dist_x;
+		data_rc->side_dist_x = (data_rc->x_map + 1.0 - data_rc->xpos_ray) * data_rc->delta_dist_x;
 	}
-	if (data_rc->y_ray < 0)
+	if (data_rc->ydir_ray < 0)
 	{
 		data_rc->y_step = -1;
-		data_rc->side_dist_y = (data->player.y_pos - data_rc->y_map) * data_rc->delta_dist_y;
+		data_rc->side_dist_y = (data_rc->ypos_ray - data_rc->y_map) * data_rc->delta_dist_y;
 	}
 	else
 	{
 		data_rc->y_step = 1;
-		data_rc->side_dist_y = (data_rc->y_map + 1 - data->player.y_pos) * data_rc->delta_dist_y;
+		data_rc->side_dist_y = (data_rc->y_map + 1.0 - data_rc->ypos_ray) * data_rc->delta_dist_y;
 	}
 }
 
-static void	do_dda(t_data *data, struct s_raycast *data_rc)
+static void	get_wall(t_data *data, struct s_raycast *data_rc)
 {
-	while (TRUE)
+	while (!data_rc->wall_hit)
 	{
 		if (data_rc->side_dist_x < data_rc->side_dist_y)
 		{
 			data_rc->side_dist_x += data_rc->delta_dist_x;
 			data_rc->x_map += data_rc->x_step;
-			data->player.side = 0;
+			data_rc->wall_side = 0;
 		}
 		else
 		{
 			data_rc->side_dist_y += data_rc->delta_dist_y;
 			data_rc->y_map += data_rc->y_step;
-			data->player.side = 1;
+			data_rc->wall_side = 1;
 		}
-		if (data->map[data_rc->x_map][data_rc->y_map] == '1')
-			break;
+		if (data->map[data_rc->y_map][data_rc->x_map] == '1')
+			data_rc->wall_hit = 1;
 	}
 }
 
 static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 {
-	int	index;
+	int	h_line;
 	int	start;
 	int	end;
-	int	h_line;
+	int	color;
+	int	y;
 
-	index = 0;
-	h_line = (int)(data->screen_res[1] / data_rc->distance);
-	start = -h_line / 2 + data->screen_res[1] / 2;
+	h_line = abs((int)(data_rc->height / data_rc->pwall_dist));
+	start = -h_line / 2 + data_rc->height / 2;
+	end = h_line / 2 + data_rc->height / 2;
 	if (start < 0)
 		start = 0;
-	end = data->screen_res[1] - start;
-	while (index < start)
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, index++, (int)0xffffff);
-	while (index <= end)
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, index++, (int)0xb3b3b3);
-	index = end;
-	while (index < data->screen_res[1])
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, index++, (int)0xff0000);
+	if (end >= data_rc->height)
+		end = data_rc->height - 1;
+	y = start;
+	while (y < end)
+	{
+		color = (int)0xf2f2f2;
+		if (data_rc->wall_side == 1)
+			color = (int)0xCCCCCC;
+		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
+	}
+	if (end < 0)
+		end = data_rc->height;
+	y = end;
+	while (y < data_rc->height)
+	{
+		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y, (int)0x8b0000);
+		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, data_rc->height - y - 1, (int)0x8b0000);
+		y++;
+	}
 }
 
 void	raycasting(t_data *data)
 {
-	struct s_raycast	data_rc;
 	int					x;
+	struct s_raycast	data_rc;
 
 	x = 0;
-	init_raycast(&data_rc);
-	//init_plane(data);
 	while (x < data->screen_res[0])
 	{
-		data_rc.x_cam = 2 * x / (double)data->screen_res[0] - 1;
-		data_rc.x_ray = data->player.x_dir + data->player.x_plane * data_rc.x_cam;
-		data_rc.y_ray = data->player.y_dir + data->player.y_plane * data_rc.x_cam;
-		data_rc.x_map = (int)data->player.x_pos;
-		data_rc.y_map = (int)data->player.y_pos;
-		if (!data_rc.y_ray)
-			data_rc.delta_dist_x = 0;
-		else if (!data_rc.x_ray)
-			data_rc.delta_dist_x = 1;
+		minit_raycast(data, &data_rc);
+		get_value(data, &data_rc, x);
+		get_initial_dist(&data_rc);
+		get_wall(data, &data_rc);
+		if (!data_rc.wall_side)
+			data_rc.pwall_dist = abs((int)((data_rc.x_map - data_rc.xpos_ray + (1 - data_rc.x_step) / 2) / data_rc.xdir_ray));
 		else
-			data_rc.delta_dist_x = sqrt(1 + data_rc.y_ray * data_rc.y_ray / data_rc.x_ray * data_rc.x_ray);
-		if (!data_rc.x_ray)
-			data_rc.delta_dist_y = 0;
-		else if (!data_rc.y_ray)
-			data_rc.delta_dist_y = 1;
-		else
-			data_rc.delta_dist_y = sqrt(1 + data_rc.x_ray * data_rc.x_ray / data_rc.y_ray * data_rc.y_ray);
-		get_step(data, &data_rc);
-		do_dda(data, &data_rc);
-		if (!data->player.side)
-			data_rc.distance = ((double)data_rc.x_map - data->player.x_pos
-				+ (1 - (double)data_rc.x_step) / 2) / data_rc.x_ray;
-		else
-			data_rc.distance = ((double)data_rc.y_map - data->player.y_pos
-				+ (1 - (double)data_rc.y_step) / 2) / data_rc.y_ray;
-		print_column(data, &data_rc, x++);
+			data_rc.pwall_dist = abs((int)((data_rc.y_map - data_rc.ypos_ray + (1 - data_rc.y_step) / 2) / data_rc.ydir_ray));
+		print_column(data, &data_rc, x);
+		x++;
 	}
 }
