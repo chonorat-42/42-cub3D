@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/30 01:08:37 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:02:31 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	init_player(t_data *data)
 	data->player.move.sprint = 0;
 }
 
-void	init_raycast(t_data *data, struct s_raycast *data_rc)
+void	init_raycast(struct s_raycast *data_rc)
 {
 	data_rc->delta_dist_x = 0;
 	data_rc->delta_dist_y = 0;
@@ -53,8 +53,6 @@ void	init_raycast(t_data *data, struct s_raycast *data_rc)
 	data_rc->y_step = 0;
 	data_rc->wall_side = 0;
 	data_rc->wall_hit = 0;
-	data_rc->height = data->screen_res[1];
-	data_rc->width = data->screen_res[0];
 }
 
 void	init_data(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/30 01:08:40 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:02:36 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int		start_mlx(t_data *data);
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
-void	init_raycast(t_data *data, struct s_raycast *data_rc);
+void	init_raycast(struct s_raycast *data_rc);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);

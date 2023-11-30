@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/30 01:35:58 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:09:48 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static void	get_value(t_data *data, struct s_raycast *data_rc, int x)
 {
-	data_rc->x_cam = (2 * x / data_rc->width) + 1;
+	data_rc->x_cam = (2 * x / (double)data_rc->width) - 1;
 	data_rc->xpos_ray = data->player.x_pos;
 	data_rc->ypos_ray = data->player.y_pos;
-	data_rc->xdir_ray = data->player.x_dir + data->player.x_plane * data_rc->x_cam;
-	data_rc->ydir_ray = data->player.y_dir + data->player.y_plane * data_rc->x_cam;
+	data_rc->xdir_ray = data->player.x_dir + (data->player.x_plane * data_rc->x_cam);
+	data_rc->ydir_ray = data->player.y_dir + (data->player.y_plane * data_rc->x_cam);
 	data_rc->x_map = (int)data_rc->xpos_ray;
 	data_rc->y_map = (int)data_rc->ypos_ray;
-	data_rc->delta_dist_x = sqrt(1 + (data_rc->ydir_ray * data_rc->ydir_ray) / (data_rc->xdir_ray * data_rc->xdir_ray));
-	data_rc->delta_dist_y = sqrt(1 + (data_rc->xdir_ray * data_rc->xdir_ray) / (data_rc->ydir_ray * data_rc->ydir_ray));
+	data_rc->delta_dist_x = sqrtf(1 + (data_rc->ydir_ray * data_rc->ydir_ray) / (data_rc->xdir_ray * data_rc->xdir_ray));
+	data_rc->delta_dist_y = sqrtf(1 + (data_rc->xdir_ray * data_rc->xdir_ray) / (data_rc->ydir_ray * data_rc->ydir_ray));
+	data_rc->wall_hit = 0;
 }
 
 static void	get_initial_dist(struct s_raycast *data_rc)
@@ -68,6 +69,10 @@ static void	get_wall(t_data *data, struct s_raycast *data_rc)
 		if (data->map[data_rc->y_map][data_rc->x_map] == '1')
 			data_rc->wall_hit = 1;
 	}
+	if (data_rc->wall_side == 0)
+		data_rc->pwall_dist = fabs(((double)data_rc->x_map - data_rc->xpos_ray + (1 - (double)data_rc->x_step) / 2) / data_rc->xdir_ray);
+	else
+		data_rc->pwall_dist = fabs(((double)data_rc->y_map - data_rc->ypos_ray + (1 - (double)data_rc->y_step) / 2) / data_rc->ydir_ray);
 }
 
 static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
@@ -78,7 +83,7 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	int	color;
 	int	y;
 
-	h_line = abs((int)(data_rc->height / data_rc->pwall_dist));
+	h_line = fabs((data_rc->height / data_rc->pwall_dist));
 	start = -h_line / 2 + data_rc->height / 2;
 	end = h_line / 2 + data_rc->height / 2;
 	if (start < 0)
@@ -110,16 +115,14 @@ void	raycasting(t_data *data)
 	struct s_raycast	data_rc;
 
 	x = 0;
-	while (x < data->screen_res[0])
+	data_rc.height = data->screen_res[1];
+	data_rc.width = data->screen_res[0];
+	while (x <= data_rc.width)
 	{
-		minit_raycast(data, &data_rc);
+		//init_raycast(&data_rc);
 		get_value(data, &data_rc, x);
 		get_initial_dist(&data_rc);
 		get_wall(data, &data_rc);
-		if (!data_rc.wall_side)
-			data_rc.pwall_dist = abs((int)((data_rc.x_map - data_rc.xpos_ray + (1 - data_rc.x_step) / 2) / data_rc.xdir_ray));
-		else
-			data_rc.pwall_dist = abs((int)((data_rc.y_map - data_rc.ypos_ray + (1 - data_rc.y_step) / 2) / data_rc.ydir_ray));
 		print_column(data, &data_rc, x);
 		x++;
 	}
