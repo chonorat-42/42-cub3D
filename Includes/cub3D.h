@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 11:55:15 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:15:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ enum	e_errors
 	BORD,
 	SPACEB,
 	UNKCHAR,
+	EMPTYL,
+	SEP,
 };
 
 enum	e_boolean
@@ -159,6 +161,13 @@ struct	s_player
 	struct s_move	move;
 };
 
+typedef struct s_flood
+{
+	size_t			y;
+	size_t			x;
+	struct s_flood *next;
+}		t_flood;
+
 typedef struct s_data
 {
 	struct s_mlx_data	mlx;
@@ -201,6 +210,12 @@ void	get_player_dir(t_data *data, long long i, long long j);
 void	fill_map(t_data *data, t_parser *parser);
 int		check_borders(char **map);
 void	get_player_position(t_data *data);
+int		is_map_separated(t_data *data, char **map);
+void	iterative_flood(t_data *data, char **map);
+void	first_position(t_data *data, t_flood **flood, char **map);
+int		add_to_flood(t_flood **flood, size_t j, size_t i);
+void 	free_flood(t_flood **flood);
+
 
 //PRINT
 int		print_cub(t_data *data);
