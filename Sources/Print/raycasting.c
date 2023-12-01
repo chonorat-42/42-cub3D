@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 13:09:14 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:14:46 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,18 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 		color = (int)0xf2f2f2;
 		if (data_rc->wall_side == 1)
 			color = (int)0xCCCCCC;
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
+		pixel_to_frame(data, x, y++, color);
+		//mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
 	}
 	if (end < 0)
 		end = data_rc->height;
 	y = end;
 	while (y < data_rc->height)
 	{
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y, (int)0x8b0000);
-		mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, data_rc->height - y - 1, (int)0x8b0000);
+		pixel_to_frame(data, x, y, (int)0x8b0000);
+		pixel_to_frame(data, x, data_rc->height - y - 1, (int)0x8b0000);
+		//mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y, (int)0x8b0000);
+		//mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, data_rc->height - y - 1, (int)0x8b0000);
 		y++;
 	}
 }

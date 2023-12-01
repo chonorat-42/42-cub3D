@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 14:00:25 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:17:16 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # define ESC 65307
 # define MAJ 65505
 
-# define S_PLAYER_SPEED 0.10
-# define PLAYER_SPEED 0.05
-# define CAM_SPEED 0.10
+# define S_PLAYER_SPEED 0.05
+# define PLAYER_SPEED 0.025
+# define CAM_SPEED 0.025
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -73,10 +73,20 @@ enum	e_boolean
 	TRUE,
 };
 
+struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+};
+
 struct	s_mlx_data
 {
-	void	*mlx;
-	void	*window;
+	void			*mlx;
+	void			*window;
+	struct s_img	frame;
 };
 
 typedef struct s_dlst
@@ -191,6 +201,7 @@ void	print_error(int type, int error);
 
 //MLX
 int		start_mlx(t_data *data);
+void	pixel_to_frame(t_data *data, int x, int y, int color);
 
 //HOOK
 int		key_press(int keycode, t_data *data);
