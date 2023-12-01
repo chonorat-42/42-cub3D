@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:22:51 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:26:19 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	print_cub(t_data *data)
 	init_raycast(&data_rc);
 	get_move(data);
 	raycasting(data, &data_rc);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window, data->mlx.frame.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
+		data->mlx.frame.img, 0, 0);
 	print_minimap(data);
 	return (1);
 }

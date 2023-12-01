@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:18:56 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:32:26 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	raycasting(t_data *data, struct s_raycast *data_rc)
 	x = 0;
 	data_rc->height = data->screen_res[1];
 	data_rc->width = data->screen_res[0];
-	while (x <= data_rc->width)
+	while (x < data_rc->width)
 	{
 		get_value(data, data_rc, x);
 		get_initial_dist(data_rc);
