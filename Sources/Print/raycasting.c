@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 17:15:10 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 23:18:59 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 		color = (int)0xf2f2f2;
 		if (data_rc->wall_side == 1)
 			color = (int)0xCCCCCC;
-		color = get_fog(data_rc, color, 1.2);
+		color = get_fog(data_rc, color, 2.2);
 		pixel_to_frame(data, x, y++, color);
 	}
 	if (end < 0)
