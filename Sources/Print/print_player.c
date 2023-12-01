@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:51:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 00:50:42 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:22:38 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	print_player(t_data *data, double radius, int color)
 		{
 			if (pow(pixel[0] - player_x, 2)
 				+ pow(pixel[1] - player_y, 2) <= pow(radius, 2))
-				mlx_pixel_put(data->mlx.mlx, data->mlx.window, pixel[0], pixel[1],
-					color);
+				pixel_to_frame(data, pixel[0], pixel[1], color);
 			pixel[1]++;
 		}
 		pixel[0]++;

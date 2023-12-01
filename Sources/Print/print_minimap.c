@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 00:49:48 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:21:42 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	print_square(t_data *data, int color, size_t x_size, size_t y_size)
 	{
 		y = y_pos;
 		while (y < (y_pos + data->minimap_ratio))
-			mlx_pixel_put(data->mlx.mlx, data->mlx.window, x, y++, color);
+			pixel_to_frame(data, x, y++, color);
 		x++;
 	}
 	if (x - 10 == x_size * data->minimap_ratio)
