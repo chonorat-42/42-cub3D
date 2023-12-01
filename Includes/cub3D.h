@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 19:31:29 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:02:47 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,11 @@ void	delete_middle_node(t_dlst **temp);
 void	fill_map(t_data *data, t_parser *parser);
 int		check_borders(char **map);
 void	get_player_position(t_data *data);
-int		is_map_separated(char **map);
+int		is_map_separated(t_data *data, char **map);
+void	iterative_flood(t_data *data, char **map);
+void	first_position(t_data *data, t_flood **flood, char **map);
+int		add_to_flood(t_flood **flood, size_t j, size_t i);
+void 	free_flood(t_flood **flood);
 
 
 //PRINT
