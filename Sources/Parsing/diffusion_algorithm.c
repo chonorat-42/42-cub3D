@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:59 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/01 11:13:06 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:18:30 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,11 +236,10 @@ int	iterative_flood(char **map)
 					return (1);
 			}
 			temp = temp->next;
-			print_arr(map);
+			// print_arr(map);
 		}
 		free_flood(&flood);
 		flood = new_flood;
-		printf("FLOOD EMPTIED\n");
 	}
 	return (0);
 }
