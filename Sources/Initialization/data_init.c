@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/30 13:02:31 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:51:22 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	init_player(t_data *data)
 	data->player.move.b_move = 0;
 	data->player.move.l_move = 0;
 	data->player.move.r_move = 0;
+	data->player.move.l_cam = 0;
+	data->player.move.r_cam = 0;
 	data->player.move.sprint = 0;
 }
 

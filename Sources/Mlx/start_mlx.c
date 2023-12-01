@@ -6,43 +6,11 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/30 17:46:21 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:59:36 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static int	key_press(int keycode, t_data *data)
-{
-	if (keycode == MAJ)
-		data->player.move.sprint = 1;
-	if (keycode == L_MOVE)
-		data->player.move.l_move = 1;
-	if (keycode == R_MOVE)
-		data->player.move.r_move = 1;
-	if (keycode == F_MOVE)
-		data->player.move.f_move = 1;
-	if (keycode == B_MOVE)
-		data->player.move.b_move = 1;
-	if (keycode == ESC)
-		exit_prog(data);
-	return (1);
-}
-
-static int	key_release(int keycode, t_data *data)
-{
-	if (keycode == MAJ)
-		data->player.move.sprint = 0;
-	if (keycode == L_MOVE)
-		data->player.move.l_move = 0;
-	if (keycode == R_MOVE)
-		data->player.move.r_move = 0;
-	if (keycode == F_MOVE)
-		data->player.move.f_move = 0;
-	if (keycode == B_MOVE)
-		data->player.move.b_move = 0;
-	return (1);
-}
 
 static int	get_ratio(t_data *data, int minimap_x, int minimap_y)
 {

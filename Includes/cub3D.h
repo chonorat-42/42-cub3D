@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 12:15:40 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:00:25 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@
 # define B_MOVE 115
 # define L_MOVE 97
 # define F_MOVE 119
+# define L_CAM 65361
+# define R_CAM 65363
 # define ESC 65307
 # define MAJ 65505
 
-# define FOV 70
+# define S_PLAYER_SPEED 0.10
+# define PLAYER_SPEED 0.05
+# define CAM_SPEED 0.10
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -125,6 +129,8 @@ struct	s_move
 	int	b_move;
 	int	l_move;
 	int	r_move;
+	int	l_cam;
+	int	r_cam;
 	int	sprint;
 };
 
@@ -158,6 +164,7 @@ struct	s_player
 	double			y_dir;
 	double			x_plane;
 	double			y_plane;
+	double			angle;
 	struct s_move	move;
 };
 
@@ -184,6 +191,10 @@ void	print_error(int type, int error);
 
 //MLX
 int		start_mlx(t_data *data);
+
+//HOOK
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
 
 //INITIALIZATION
 void	init_data(t_data *data);
@@ -221,10 +232,16 @@ void 	free_flood(t_flood **flood);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
-void	raycasting(t_data *data);
+void	raycasting(t_data *data, struct s_raycast *data_rc);
+int		wall_hit(t_data *data, int pos_x, int pos_y);
 
 //MOVE
-void	move_player(t_data *data);
+void	get_move(t_data *data);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	rotate_cam(t_data *data);
 
 //FREE
 void	free_data(t_data *data);

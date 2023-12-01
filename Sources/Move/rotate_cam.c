@@ -1,46 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_player_dir.c                                   :+:      :+:    :+:   */
+/*   rotate_cam.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 12:45:39 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 12:41:05 by chonorat         ###   ########lyon.fr   */
+/*   Created: 2023/12/01 13:36:37 by chonorat          #+#    #+#             */
+/*   Updated: 2023/12/01 13:58:00 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_player_dir(t_data *data, long long i, long long j)
+void	rotate_cam(t_data *data)
 {
-	if (data->parser.map[j][i] == 'N')
+	if (data->player.move.l_cam)
 	{
-		data->player.angle = -M_PI_2;
+		data->player.angle -= CAM_SPEED;
 		data->player.x_dir = cos(data->player.angle);
 		data->player.y_dir = sin(data->player.angle);
 		data->player.x_plane = cos(data->player.angle + M_PI_2);
 		data->player.y_plane = sin(data->player.angle + M_PI_2);
 	}
-	else if (data->parser.map[j][i] == 'S')
+	if (data->player.move.r_cam)
 	{
-		data->player.angle = M_PI_2;
-		data->player.x_dir = cos(data->player.angle);
-		data->player.y_dir = sin(data->player.angle);
-		data->player.x_plane = cos(data->player.angle + M_PI_2);
-		data->player.y_plane = sin(data->player.angle + M_PI_2);
-	}
-	else if (data->parser.map[j][i] == 'E')
-	{
-		data->player.angle = 0.0;
-		data->player.x_dir = cos(data->player.angle);
-		data->player.y_dir = sin(data->player.angle);
-		data->player.x_plane = cos(data->player.angle + M_PI_2);
-		data->player.y_plane = sin(data->player.angle + M_PI_2);
-	}
-	else if (data->parser.map[j][i] == 'W')
-	{
-		data->player.angle = M_PI;
+		data->player.angle += CAM_SPEED;
 		data->player.x_dir = cos(data->player.angle);
 		data->player.y_dir = sin(data->player.angle);
 		data->player.x_plane = cos(data->player.angle + M_PI_2);

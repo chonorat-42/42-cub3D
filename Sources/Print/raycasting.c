@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 11:57:24 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:09:14 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,21 +109,19 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	}
 }
 
-void	raycasting(t_data *data)
+void	raycasting(t_data *data, struct s_raycast *data_rc)
 {
-	int					x;
-	struct s_raycast	data_rc;
+	int	x;
 
 	x = 0;
-	data_rc.height = data->screen_res[1];
-	data_rc.width = data->screen_res[0];
-	while (x <= data_rc.width)
+	data_rc->height = data->screen_res[1];
+	data_rc->width = data->screen_res[0];
+	while (x <= data_rc->width)
 	{
-		init_raycast(&data_rc);
-		get_value(data, &data_rc, x);
-		get_initial_dist(&data_rc);
-		get_wall(data, &data_rc);
-		print_column(data, &data_rc, x);
+		get_value(data, data_rc, x);
+		get_initial_dist(data_rc);
+		get_wall(data, data_rc);
+		print_column(data, data_rc, x);
 		x++;
 	}
 }
