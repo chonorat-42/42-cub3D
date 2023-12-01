@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:38:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 14:34:17 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 16:05:56 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	move_forward(t_data *data)
 {
 	if (data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos + data->player.x_dir * S_PLAYER_SPEED * 2,
-		data->player.y_pos + data->player.y_dir * S_PLAYER_SPEED * 2))
+		data->player.x_pos + (data->player.x_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.y_dir * S_PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos += data->player.x_dir * S_PLAYER_SPEED;
 		data->player.y_pos += data->player.y_dir * S_PLAYER_SPEED;
 	}
 	else if (!data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos + data->player.x_dir * PLAYER_SPEED * 2,
-		data->player.y_pos + data->player.y_dir * PLAYER_SPEED * 2))
+		data->player.x_pos + (data->player.x_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.y_dir * PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos += data->player.x_dir * PLAYER_SPEED;
 		data->player.y_pos += data->player.y_dir * PLAYER_SPEED;
@@ -33,15 +33,15 @@ void	move_forward(t_data *data)
 void	move_backward(t_data *data)
 {
 	if (data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos - data->player.x_dir * S_PLAYER_SPEED * 2,
-		data->player.y_pos - data->player.y_dir * S_PLAYER_SPEED * 2))
+		data->player.x_pos - (data->player.x_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.y_dir * S_PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos -= data->player.x_dir * S_PLAYER_SPEED;
 		data->player.y_pos -= data->player.y_dir * S_PLAYER_SPEED;
 	}
 	else if (!data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos - data->player.x_dir * PLAYER_SPEED * 2,
-		data->player.y_pos - data->player.y_dir * PLAYER_SPEED * 2))
+		data->player.x_pos - (data->player.x_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.y_dir * PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos -= data->player.x_dir * PLAYER_SPEED;
 		data->player.y_pos -= data->player.y_dir * PLAYER_SPEED;
@@ -51,15 +51,15 @@ void	move_backward(t_data *data)
 void	move_left(t_data *data)
 {
 	if (data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos + data->player.y_dir * S_PLAYER_SPEED * 2,
-		data->player.y_pos - data->player.x_dir * S_PLAYER_SPEED * 2))
+		data->player.x_pos + (data->player.y_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.x_dir * S_PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos += data->player.y_dir * S_PLAYER_SPEED;
 		data->player.y_pos -= data->player.x_dir * S_PLAYER_SPEED;
 	}
 	else if (!data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos + data->player.y_dir * PLAYER_SPEED * 2,
-		data->player.y_pos - data->player.x_dir * PLAYER_SPEED * 2))
+		data->player.x_pos + (data->player.y_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.x_dir * PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos += data->player.y_dir * PLAYER_SPEED;
 		data->player.y_pos -= data->player.x_dir * PLAYER_SPEED;
@@ -69,15 +69,15 @@ void	move_left(t_data *data)
 void	move_right(t_data *data)
 {
 	if (data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos - data->player.y_dir * S_PLAYER_SPEED * 2,
-		data->player.y_pos + data->player.x_dir * S_PLAYER_SPEED * 2))
+		data->player.x_pos - (data->player.y_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.x_dir * S_PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos -= data->player.y_dir * S_PLAYER_SPEED;
 		data->player.y_pos += data->player.x_dir * S_PLAYER_SPEED;
 	}
 	else if (!data->player.move.sprint && !wall_hit(data,
-		data->player.x_pos - data->player.y_dir * PLAYER_SPEED * 2,
-		data->player.y_pos + data->player.x_dir * PLAYER_SPEED * 2))
+		data->player.x_pos - (data->player.y_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.x_dir * PLAYER_SPEED) * 2))
 	{
 		data->player.x_pos -= data->player.y_dir * PLAYER_SPEED;
 		data->player.y_pos += data->player.x_dir * PLAYER_SPEED;

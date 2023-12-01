@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:26 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 17:15:10 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,34 @@ static void	get_wall(t_data *data, struct s_raycast *data_rc)
 		data_rc->pwall_dist = fabs(((double)data_rc->y_map - data_rc->ypos_ray + (1 - (double)data_rc->y_step) / 2) / data_rc->ydir_ray);
 }
 
+static int	apply_fog(int color, double fog_factor)
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = (color >> 16) & 0xFF;
+	red = (int)(red * fog_factor);
+	green = (color >> 8) & 0xFF;
+	green = (int)(green * fog_factor);
+	blue = color & 0xFF;
+	blue = (int)(blue * fog_factor);
+	return ((red << 16) | (green << 8) | blue);
+}
+
+static int	get_fog(struct s_raycast *data_rc, int color, double fog_intensity)
+{
+	double	fog_factor;
+	int		final_color;
+
+	fog_factor = 1.0 / (data_rc->pwall_dist * fog_intensity);
+	if (fog_factor > 0.5)
+		fog_factor = 0.5;
+	final_color = apply_fog(color, fog_factor);
+	//printf("fog[%lf]\n", fog_factor);
+	return (final_color);
+}
+
 static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 {
 	int	h_line;
@@ -96,6 +124,7 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 		color = (int)0xf2f2f2;
 		if (data_rc->wall_side == 1)
 			color = (int)0xCCCCCC;
+		color = get_fog(data_rc, color, 1.2);
 		pixel_to_frame(data, x, y++, color);
 	}
 	if (end < 0)
@@ -103,8 +132,10 @@ static void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	y = end;
 	while (y < data_rc->height)
 	{
-		pixel_to_frame(data, x, y, (int)0x8b0000);
-		pixel_to_frame(data, x, data_rc->height - y++ - 1, (int)0x8b0000);
+		color = get_fog(data_rc, (int)0x333333, 0.6);
+		pixel_to_frame(data, x, y, color);
+		color = get_fog(data_rc, (int)0x0, 0.6);
+		pixel_to_frame(data, x, data_rc->height - y++ - 1, (int)0x0);
 	}
 }
 
