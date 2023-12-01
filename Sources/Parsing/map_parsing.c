@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/01 12:16:26 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:37:00 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	map_parser(t_data *data, t_parser *parser)
 	if (check_unknown_char(parser->map))
 		return (free_data(data), exit(1));
 	fill_map(data, parser);
-	if (is_map_separated(data, data->map))
-		return (free_data(data), exit(1));
 	if (check_borders(data->map))
+		return (free_data(data), exit(1));
+	if (is_map_separated(data, data->map))
 		return (free_data(data), exit(1));
 }
