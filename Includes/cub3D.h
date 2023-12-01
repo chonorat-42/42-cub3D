@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/30 13:02:36 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 11:55:15 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ enum	e_errors
 	TEXOP,
 	NOP,
 	DPP,
+	BORD,
+	SPACEB,
+	UNKCHAR,
 };
 
 enum	e_boolean
@@ -195,6 +198,9 @@ int		add_to_maplst(t_dlst **lst, char *str);
 size_t	maplst_size(t_dlst *lst);
 void	delete_middle_node(t_dlst **temp);
 void	get_player_dir(t_data *data, long long i, long long j);
+void	fill_map(t_data *data, t_parser *parser);
+int		check_borders(char **map);
+void	get_player_position(t_data *data);
 
 //PRINT
 int		print_cub(t_data *data);
