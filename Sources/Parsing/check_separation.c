@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:58:07 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/01 12:00:11 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:15:30 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	is_map_separated(t_data *data, char **map)
 	if (!dup)
 		return (print_error(MALLOC, 0), ft_free_arr(dup), 1);
 	iterative_flood(data, dup);
-	print_arr(dup);
 	if (check_after_diffusion(dup))
 		return (print_error(PARSING, SEP), ft_free_arr(dup), 1);
 	return (ft_free_arr(dup), 0);
