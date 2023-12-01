@@ -3,48 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   diffusion_algorithm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:59 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/30 18:12:23 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:01:16 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// void	print_coor(t_flood *flood)
+void	print_coor(t_flood *flood)
+{
+	t_flood *temp;
+
+	temp = flood;
+	while (temp)
+	{
+		printf("x = %zu, y = %zu\n", temp->x, temp->y);
+		temp = temp->next;
+	}
+}
+
+size_t	flood_size(t_flood *flood)
+{
+	t_flood *temp;
+	size_t res;
+
+	res = 0;
+	temp = flood;
+	while (temp)
+	{
+		res++;
+		temp = temp->next;
+	}
+	return (res);
+}
+
+// static void mark_map(t_flood *flood, char **map)
 // {
 // 	t_flood *temp;
 
-// 	temp = flood;
-// 	while (temp)
-// 	{
-// 		printf("x = %zu, y = %zu\n", temp->x, temp->y);
-// 		temp = temp->next;
-// 	}
-// }
-
-// size_t	flood_size(t_flood *flood)
-// {
-// 	t_flood *temp;
-// 	size_t res;
-
-// 	res = 0;
-// 	temp = flood;
-// 	while (temp)
-// 	{
-// 		res++;
-// 		temp = temp->next;
-// 	}
-// 	return (res);
-// }
-
-// static void print_flood(t_flood *flood, char **map)
-// {
-// 	t_flood *temp;
-
-// 	size_t size = flood_size(flood);
-// 	printf("%zu\n", size);
+// 	// size_t size = flood_size(flood);
+// 	// printf("%zu\n", size);
 
 // 	temp = flood;
 // 	while (temp)
@@ -55,47 +55,48 @@
 // 	print_arr(map);
 // }
 
-// static void free_flood(t_flood **flood)
-// {
-// 	t_flood *temp;
+static void free_flood(t_flood **flood)
+{
+	t_flood *temp;
 
-// 	temp = *flood;
-// 	if (!temp->next)
-// 	{
-// 		free(*flood);
-// 		*flood = NULL;
-// 		return ;
-// 	}
-// 	while (*flood)
-// 	{
-// 		temp = *flood;
-// 		*flood = temp->next;
-// 		free(temp);
-// 	}
-// 	*flood = NULL;
-// }
+	temp = *flood;
+	if (!temp->next)
+	{
+		free(*flood);
+		*flood = NULL;
+		return ;
+	}
+	while (*flood)
+	{
+		temp = *flood;
+		*flood = temp->next;
+		free(temp);
+	}
+	*flood = NULL;
+}
 
-// static void	add_to_flood(t_flood **flood, size_t j, size_t i)
-// {
-// 	t_flood	*new;
-// 	t_flood *temp;
+static int	add_to_flood(t_flood **flood, size_t j, size_t i)
+{
+	t_flood	*new;
+	t_flood *temp;
 
-// 	new = malloc(sizeof(*new));
-// 	if (!new)
-// 		return (print_error(MALLOC, 0));
-// 	new->y = j;
-// 	new->x = i;
-// 	new->next = NULL;
-// 	if (!*flood)
-// 		*flood = new;
-// 	else
-// 	{
-// 		temp = *flood;
-// 		while (temp->next)
-// 			temp = temp->next;
-// 		temp->next = new;
-// 	}
-// }
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (print_error(MALLOC, 0), 1);
+	new->y = j;
+	new->x = i;
+	new->next = NULL;
+	if (!*flood)
+		*flood = new;
+	else
+	{
+		temp = *flood;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+	}
+	return (0);
+}
 
 // static void iterative_diffusion_algorithm(char **map)
 // {
@@ -110,66 +111,137 @@
 // 		i++;
 // 	flood = NULL;
 // 	add_to_flood(&flood, j, i);
+// 	map[j][i] = 'W';
 // 	while (flood)
 // 	{
-// 		print_flood(flood, map);
+// 		// mark_map(flood, map);
 // 		free_flood(&flood);
 // 		diff = 0;
 // 		while (map[j][i + 1] && !ft_ischarinset(map[j][i + 1], "W?"))
 // 		{
 // 			add_to_flood(&flood, j, i + 1);
 // 			i++;
+// 			map[j][i] = 'W';
 // 			diff++;
-// 			// i -= diff;
-// 			diff = 0;
-// 		}
-// 		while (j != 0 && !ft_ischarinset(map[j - 1][i], "W?"))
-// 		{
-// 			add_to_flood(&flood, j - 1, i);
-// 			j--;
-// 			diff++;
-// 			// j += diff - 1;
 // 			diff = 0;
 // 		}
 // 		while (map[j + 1] && !ft_ischarinset(map[j + 1][i], "W?"))
 // 		{
 // 			add_to_flood(&flood, j + 1, i);
 // 			j++;
+// 			map[j][i] = 'W';
 // 			diff++;
-// 			// j -= diff - 1;
+// 			// j += diff - 1;
 // 			diff = 0;
 // 		}
-// 		while (i != 0 && !ft_ischarinset(map[j][i - 1], "W?"))
+// 		while (j != 0 && !ft_ischarinset(map[j - 1][i], "W?"))
+// 		{
+// 			add_to_flood(&flood, j - 1, i);
+// 			j--;
+// 			map[j][i] = 'W';
+// 			diff++;
+// 			// i += diff - 1;
+// 			diff = 0;
+// 		}
+// 		while (i - 1 != 0 && !ft_ischarinset(map[j][i--], "W?"))
 // 		{
 // 			add_to_flood(&flood, j, i - 1);
 // 			i--;
+// 			map[j][i] = 'W';
 // 			diff++;
-// 			// i += diff - 1;
+// 			// j -= diff - 1;
 // 			diff = 0;
 // 		}
 // 		size_t	fsize = flood_size(flood);
 // 		printf("size = %zu\n", fsize);
 // 		print_coor(flood);
+// 		print_arr(map);
 // 	}
 // }
 
-static void	diffusion_algorithm(char **map, size_t j, size_t i)
+// static void	diffusion_algorithm(char **map, size_t j, size_t i)
+// {
+// 	if (ft_ischarinset(map[j][i], "?W"))
+// 		return ;
+// 	else if (map[j][i] != '?')
+// 	{
+// 		map[j][i] = 'W';
+// 		if (j != 0)
+// 			diffusion_algorithm(map, j - 1, i);
+// 		if (map[j + 1])
+// 			diffusion_algorithm(map, j + 1, i);
+// 		if (i != 0)
+// 			diffusion_algorithm(map, j, i - 1);
+// 		if (map[j][i + 1])
+// 			diffusion_algorithm(map, j, i + 1);
+// 	}
+// 	return ;
+// }
+
+int	iterative_flood(char **map)
 {
-	if (ft_ischarinset(map[j][i], "?W"))
-		return ;
-	else if (map[j][i] != '?')
+	size_t	j;
+	size_t	i;
+	t_flood *flood;
+	t_flood *new_flood;
+	t_flood *temp;
+
+	j = 0;
+	i = 0;
+	while (map[j][i] && map[j][i] != '?')
+		i++;
+	flood = NULL;
+	if (add_to_flood(&flood, j, i))
+		return (1);
+	while (flood)
 	{
-		map[j][i] = 'W';
-		if (j != 0)
-			diffusion_algorithm(map, j - 1, i);
-		if (map[j + 1])
-			diffusion_algorithm(map, j + 1, i);
-		if (i != 0)
-			diffusion_algorithm(map, j, i - 1);
-		if (map[j][i + 1])
-			diffusion_algorithm(map, j, i + 1);
+		temp = flood;
+		new_flood = NULL;
+		while (temp)
+		{
+			j = temp->y;
+			i = temp->x;
+			if (map[j][i + 1] && !ft_ischarinset(map[j][i + 1], "W?"))
+			{
+				i++;
+				map[j][i] = 'W';
+				if (add_to_flood(&new_flood, j, i))
+					return (1);
+			}
+			j = temp->y;
+			i = temp->x;
+			if (map[j + 1] && !ft_ischarinset(map[j + 1][i], "W?"))
+			{
+				j++;
+				map[j][i] = 'W';
+				if (add_to_flood(&new_flood, j, i))
+					return (1);
+			}
+			j = temp->y;
+			i = temp->x;
+			if (i && !ft_ischarinset(map[j][i - 1], "W?"))
+			{
+				i--;
+				map[j][i] = 'W';
+				if (add_to_flood(&new_flood, j, i))
+					return (1);
+			}
+			j = temp->y;
+			i = temp->x;
+			if (j && !ft_ischarinset(map[j - 1][i], "W?"))
+			{
+				j--;
+				map[j][i] = 'W';
+				if (add_to_flood(&new_flood, j, i))
+					return (1);
+			}
+			temp = temp->next;
+		}
+		free_flood(&flood);
+		flood = new_flood;
+		printf("FLOOD EMPTIED\n");
 	}
-	return ;
+	return (0);
 }
 
 static int	check_after_diffusion(char **map)
@@ -198,8 +270,10 @@ int	is_map_separated(char **map)
 	i = 0;
 	while (map[0][i] == '?')
 		i++;
-	diffusion_algorithm(dup, 0, i);
+	// diffusion_algorithm(dup, 0, i);
 	// iterative_diffusion_algorithm(dup);
+	if (iterative_flood(dup))
+		return (ft_free_arr(dup), 2);
 	print_arr(dup);
 	if (check_after_diffusion(dup))
 		return (print_error(PARSING, SEP), ft_free_arr(dup), 1);
