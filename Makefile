@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/11/28 15:09:19 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/01 12:03:28 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,9 @@ FILES = cub3D\
 		Parsing/fill_map\
 		Parsing/check_borders\
 		Parsing/get_player_position\
+		Parsing/check_separation\
+		Parsing/flood_fill_algorithm\
+		Parsing/flood_fill_utils\
 		Free/free_data\
 		Free/free_parser\
 		Free/free_utils\
