@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:52:40 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:38:35 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ typedef struct s_colors
 	int	c_colors[3];
 }		t_colors;
 
+typedef struct s_trgb
+{
+	int	ceiling;
+	int	floor;
+}		t_trgb;
+
 typedef struct s_tex_img
 {
 	void	*no_img;
@@ -152,6 +158,7 @@ typedef struct s_data
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
+	struct s_trgb		colors;
 }		t_data;
 
 //ERROR
