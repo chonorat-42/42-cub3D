@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:09:02 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 18:20:30 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:49:34 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	parse_id(t_parser *parser, char *id, size_t *i)
 			print_error(PARSING, TEXTURES), exit(1));
 }
 
-void	get_textures_and_colors(t_parser *parser)
+void	get_textures(t_parser *parser)
 {
 	size_t	line_count;
 

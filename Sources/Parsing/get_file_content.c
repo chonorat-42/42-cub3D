@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_content.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 17:55:26 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:50:00 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	open_file(t_parser *parser, char *file_path)
 void	get_file_content(t_parser *parser, char *file_path)
 {
 	open_file(parser, file_path);
-	get_textures_and_colors(parser);
+	get_textures(parser);
 	get_map(parser);
 }
