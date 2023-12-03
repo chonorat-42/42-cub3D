@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:17:16 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/03 16:43:02 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define ON_DESTROY 17
+# define ON_MOUSE_MOVE 6
+
 # define R_MOVE 100
 # define B_MOVE 115
 # define L_MOVE 97
@@ -32,7 +34,11 @@
 
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
-# define CAM_SPEED 0.025
+# define CAM_SPEED 0.05
+# define MOUSE_SPEED 0.015
+
+# define SCREEN_RES_X 1920
+# define SCREEN_RES_Y 1080
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -144,26 +150,28 @@ struct	s_move
 	int	sprint;
 };
 
-struct s_raycast
+struct	s_raycast
 {
-	double	x_cam;
-	double	xpos_ray;
-	double	ypos_ray;
-	double	xdir_ray;
-	double	ydir_ray;
-	int		x_map;
-	int		y_map;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	int		x_step;
-	int		y_step;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	pwall_dist;
-	int		height;
-	int		width;
-	int		wall_side;
-	int		wall_hit;
+	double			x_cam;
+	double			xpos_ray;
+	double			ypos_ray;
+	double			xdir_ray;
+	double			ydir_ray;
+	int				x_map;
+	int				y_map;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	int				x_step;
+	int				y_step;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			pwall_dist;
+	int				height;
+	int				width;
+	int				wall_side;
+	int				wall_hit;
+	struct s_img	wall;
+	double			wall_hit_point;
 };
 
 struct	s_player
@@ -191,6 +199,7 @@ typedef struct s_data
 	int					screen_res[2];
 	char				**map;
 	int					minimap_ratio;
+	int					mouse_pos[2];
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;

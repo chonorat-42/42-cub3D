@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/01 12:51:22 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/03 15:35:53 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	init_raycast(struct s_raycast *data_rc)
 	data_rc->y_step = 0;
 	data_rc->wall_side = 0;
 	data_rc->wall_hit = 0;
+	data_rc->wall_hit_point = 0;
+	data_rc->wall.img = NULL;
 }
 
 void	init_data(t_data *data)
@@ -63,6 +65,8 @@ void	init_data(t_data *data)
 	data->mlx.window = NULL;
 	data->screen_res[0] = 0;
 	data->screen_res[1] = 0;
+	data->mouse_pos[0] = 0;
+	data->mouse_pos[1] = 0;
 	data->map = NULL;
 	init_player(data);
 	init_tex_img(&data->tex_img);

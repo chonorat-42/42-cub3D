@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 15:28:54 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/03 16:46:51 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,27 @@ static int	get_ratio(t_data *data, int minimap_x, int minimap_y)
 	return ((ratio_x + ratio_y) / 2);
 }
 
+static void	get_screen_res(t_data *data)
+{
+	int	x_res;
+	int	y_res;
+
+	mlx_get_screen_size(data->mlx.mlx, &x_res, &y_res);
+	if (x_res < SCREEN_RES_X || y_res < SCREEN_RES_Y)
+	{
+		data->screen_res[0] = x_res;
+		data->screen_res[1] = y_res;
+	}
+	else
+	{
+		data->screen_res[0] = SCREEN_RES_X;
+		data->screen_res[1] = SCREEN_RES_Y;
+	}
+}
+
 int	start_mlx(t_data *data)
 {
-	//mlx_get_screen_size(data->mlx.mlx, &data->screen_res[0],
-	//	&data->screen_res[1]);
-	data->screen_res[0] = 1920;
-	data->screen_res[1] = 1080;
+	get_screen_res(data);
 	data->mlx.window = mlx_new_window(data->mlx.mlx, data->screen_res[0],
 			data->screen_res[1], "cub3D");
 	if (!data->mlx.window)
@@ -39,6 +54,8 @@ int	start_mlx(t_data *data)
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);
 	mlx_hook(data->mlx.window, ON_DESTROY, 0L, exit_prog, data);
+	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window, &data->mouse_pos[0], &data->mouse_pos[1]);
+	mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
 	mlx_loop(data->mlx.mlx);
 	return (1);
 }
