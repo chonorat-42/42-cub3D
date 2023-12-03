@@ -6,7 +6,7 @@
 #    By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/01 12:03:28 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/01 15:52:03 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ FILES = cub3D\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
+		Parsing/trgb\
 		Parsing/get_map\
 		Parsing/get_map_utils\
 		Parsing/map_parsing\

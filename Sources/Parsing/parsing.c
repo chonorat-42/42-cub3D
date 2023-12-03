@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/30 13:25:16 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:53:02 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 		return (free(file_name), exit(1));
 	initialize_parser(&data->parser);
 	get_file_content(&data->parser, file_path);
+	get_trgb(data, &data->parser);
 	if (open_textures(data, &data->parser))
 		exit(1);
 	map_parser(data, &data->parser);

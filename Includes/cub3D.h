@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 12:02:47 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:52:40 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void	parse_id(t_parser *parser, char *id, size_t	*i);
 void	get_textures_and_colors(t_parser *parser);
 int		open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
+void	get_trgb(t_data *data, t_parser *parser);
 void	get_map(t_parser *parser);
 void	map_parser(t_data *data, t_parser *parser);
 size_t	maplst_size(t_dlst *lst);
