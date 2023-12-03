@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/03 18:38:35 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:49:45 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	get_file_content(t_parser *parser, char *file_path);
 int		check_parsing_flags(t_textures textures, t_colors colors);
 void	line_found(t_parser *parser, size_t *line_count);
 void	parse_id(t_parser *parser, char *id, size_t	*i);
-void	get_textures_and_colors(t_parser *parser);
+void	get_textures(t_parser *parser);
 int		open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_trgb(t_data *data, t_parser *parser);
