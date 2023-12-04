@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/01 15:13:25 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2023/12/04 16:27:06 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ FILES = cub3D\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
+		Parsing/trgb\
 		Parsing/get_map\
 		Parsing/get_map_utils\
 		Parsing/map_parsing\

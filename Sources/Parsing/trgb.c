@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_content.c                                 :+:      :+:    :+:   */
+/*   trgb.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 18:54:41 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/03 18:50:00 by pgouasmi         ###   ########.fr       */
+/*   Created: 2023/12/01 15:42:00 by pgouasmi          #+#    #+#             */
+/*   Updated: 2023/12/03 18:47:25 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	open_file(t_parser *parser, char *file_path)
+int	convert_trgb(int *colors, int transparency)
 {
-	parser->fd = open(file_path, O_RDONLY);
-	if (parser->fd == -1)
-	{
-		print_error(PARSING, OPEN);
-		exit (1);
-	}
+	return (transparency << 24 | colors[0] << 16 | colors[1] << 8 | colors[2]);
 }
 
-void	get_file_content(t_parser *parser, char *file_path)
+void	get_trgb(t_data *data, t_parser *parser)
 {
-	open_file(parser, file_path);
-	get_textures(parser);
-	get_map(parser);
+	data->colors.ceiling = convert_trgb(parser->colors.c_colors, 0);
+	data->colors.floor = convert_trgb(parser->colors.f_colors, 0);
 }

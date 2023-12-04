@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 16:14:49 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/04 16:27:08 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,12 @@ typedef struct s_colors
 	int	c_colors[3];
 }		t_colors;
 
+typedef struct s_trgb
+{
+	int	ceiling;
+	int	floor;
+}		t_trgb;
+
 typedef struct s_tex_img
 {
 	void	*no_img;
@@ -206,6 +212,7 @@ typedef struct s_data
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
+	struct s_trgb		colors;
 }		t_data;
 
 //ERROR
@@ -230,9 +237,10 @@ void	get_file_content(t_parser *parser, char *file_path);
 int		check_parsing_flags(t_textures textures, t_colors colors);
 void	line_found(t_parser *parser, size_t *line_count);
 void	parse_id(t_parser *parser, char *id, size_t	*i);
-void	get_textures_and_colors(t_parser *parser);
+void	get_textures(t_parser *parser);
 int		open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
+void	get_trgb(t_data *data, t_parser *parser);
 void	get_map(t_parser *parser);
 void	map_parser(t_data *data, t_parser *parser);
 size_t	maplst_size(t_dlst *lst);

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/30 13:25:16 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:32:02 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int	is_extension_correct(char *str)
 void	parsing(t_data *data, char *file_path, char *file_name)
 {
 	if (!is_extension_correct(file_name))
-		return (free(file_name), exit(1));
+		return (exit(1));
 	initialize_parser(&data->parser);
 	get_file_content(&data->parser, file_path);
+	init_data(data);
+	get_trgb(data, &data->parser);
 	if (open_textures(data, &data->parser))
 		exit(1);
 	map_parser(data, &data->parser);
