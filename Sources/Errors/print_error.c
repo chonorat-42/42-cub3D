@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 16:55:52 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:17:58 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 static int	more_parsing_errors(int error)
 {
 	if (error == SPACEB)
-		return (ft_dprintf(2, "MAP : A white space is not enclosed by `1'\n%s", END));
+	{
+		ft_dprintf(2, "MAP : A white space ");
+		return (ft_dprintf(2, "is not enclosed by `1'\n%s", END));
+	}
 	if (error == UNKCHAR)
 		return (ft_dprintf(2, "MAP : Found an unknown character\n%s", END));
 	if (error == EMPTYL)
@@ -32,12 +35,14 @@ static int	parsing_errors(int error)
 	if (error == NOFNAME)
 		return (ft_dprintf(2, "No file name before `.cub'\n%s", END));
 	if (error == OPEN)
-		return (ft_dprintf(2, "Could not open the map. Do you have the right permissions?\n%s", END));
+		return (ft_dprintf(2, "Could not open the map.\n%s", END));
 	if (error == TEXTURES)
 		return (ft_dprintf(2, "TEXTURES : Wrong syntax\n%s", END));
 	if (error == TEXOP)
-		return (ft_dprintf(2, "TEXTURES : A texture could \
-			not be opened\n%s", END));
+	{
+		ft_dprintf(2, "TEXTURES : ");
+		return (ft_dprintf(2, "A texture could not be opened\n%s", END));
+	}
 	if (error == COLORS)
 		return (ft_dprintf(2, "COLORS : Wrong syntax\n%s", END));
 	if (error == NOMAP)
