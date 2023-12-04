@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:36:37 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 15:54:49 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/04 16:22:54 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	mouse_rotate_cam(t_data *data)
 
 void	rotate_cam(t_data *data)
 {
-	mouse_rotate_cam(data);
+	if (data->mouse_enabled)
+		mouse_rotate_cam(data);
 	if (data->player.move.l_cam)
 	{
 		data->player.angle -= CAM_SPEED;

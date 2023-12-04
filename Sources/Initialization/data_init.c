@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:56:15 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/04 16:13:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_data(t_data *data)
 	data->mouse_pos[0] = 0;
 	data->mouse_pos[1] = 0;
 	data->reset_mouse = 0;
+	data->mouse_enabled = 0;
 	data->map = NULL;
 	init_player(data);
 	init_tex_img(&data->tex_img);

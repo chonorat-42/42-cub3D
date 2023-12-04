@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 14:55:38 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/04 16:14:49 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define R_CAM 65363
 # define ESC 65307
 # define MAJ 65505
+# define TAB 65289
 
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
@@ -201,6 +202,7 @@ typedef struct s_data
 	int					minimap_ratio;
 	int					mouse_pos[2];
 	int					reset_mouse;
+	int					mouse_enabled;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;

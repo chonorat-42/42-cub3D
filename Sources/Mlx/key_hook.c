@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/01 13:59:44 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/04 16:22:13 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	key_press(int keycode, t_data *data)
 		data->player.move.r_cam = 1;
 	else if (keycode == ESC)
 		exit_prog(data);
+	else if (keycode == TAB)
+	{
+		data->mouse_enabled++;
+		data->mouse_enabled %= 2;
+	}
 	return (1);
 }
 
