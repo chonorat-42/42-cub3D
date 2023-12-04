@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:36:37 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/03 16:46:39 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:54:49 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,27 @@ static void	mouse_rotate_cam(t_data *data)
 	int		mouse_x;
 	double	mouse_move;
 
-	mouse_x = data->mouse_pos[0];
-	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
-		&data->mouse_pos[0], &data->mouse_pos[1]);
-	mouse_move = (data->mouse_pos[0] - mouse_x) * MOUSE_SPEED;
-	//printf("mm[%lf]\n", mouse_move);
-	data->player.angle += mouse_move;
-	data->player.x_dir = cos(data->player.angle);
-	data->player.y_dir = sin(data->player.angle);
-	data->player.x_plane = cos(data->player.angle + M_PI_2);
-	data->player.y_plane = sin(data->player.angle + M_PI_2);
+	if (!data->reset_mouse)
+	{
+		mouse_x = data->mouse_pos[0];
+		mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
+			&data->mouse_pos[0], &data->mouse_pos[1]);
+		mouse_move = (data->mouse_pos[0] - mouse_x) * MOUSE_SPEED;
+		data->player.angle += mouse_move;
+		data->player.x_dir = cos(data->player.angle);
+		data->player.y_dir = sin(data->player.angle);
+		data->player.x_plane = cos(data->player.angle + M_PI_2);
+		data->player.y_plane = sin(data->player.angle + M_PI_2);
+	}
+	data->reset_mouse = 0;
+	if (data->mouse_pos[0] <= 0 || data->mouse_pos[0] >= data->screen_res[0]
+		|| data->mouse_pos[1] <= 0 || data->mouse_pos[1] >= data->screen_res[1])
+	{
+		mlx_mouse_move(data->mlx.mlx, data->mlx.window, data->screen_res[0] >> 1, data->screen_res[1] >> 1);
+		mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
+			&data->mouse_pos[0], &data->mouse_pos[1]);
+		data->reset_mouse = 1;
+	}
 }
 
 void	rotate_cam(t_data *data)

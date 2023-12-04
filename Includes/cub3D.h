@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/03 16:43:02 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:55:38 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
 # define CAM_SPEED 0.05
-# define MOUSE_SPEED 0.015
+# define MOUSE_SPEED 0.005
 
 # define SCREEN_RES_X 1920
 # define SCREEN_RES_Y 1080
@@ -200,6 +200,7 @@ typedef struct s_data
 	char				**map;
 	int					minimap_ratio;
 	int					mouse_pos[2];
+	int					reset_mouse;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
