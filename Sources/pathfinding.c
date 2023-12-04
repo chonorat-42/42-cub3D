@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/04 19:42:27 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:01:41 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void	solve_maze(char **map, double y, double x)
 	int pos[2];
 	char	c;
 
-	pos[0] = 2;
-	pos[1] = 19;
+	pos[0] = 3;
+	pos[1] = 4;
 	map[pos[0]][pos[1]] = 'X';
 	map[(int)y][(int)x] = 'P';
 
-	// printf("player x = %lf, y = %lf\n", x, y);
-	// printf("ennemy x = %d, y = %d\n", pos[1], pos[0]);
+	printf("player x = %lf, y = %lf\n", x, y);
+	printf("ennemy x = %d, y = %d\n", pos[1], pos[0]);
 	print_arr(map);
-	while (difference(pos[0], y) && difference(pos[1], x))
+	while (pos[0] != y && pos[1] != x)
 	{
 		c = best_path(map, pos, (size_t)y, (size_t)x);
 		if (c == 'n')
@@ -101,5 +101,7 @@ void	solve_maze(char **map, double y, double x)
 			pos[1]--;
 		map[pos[0]][pos[1]] = '!';
 		print_arr(map);
+		printf("player x = %lf, y = %lf\n", x, y);
+		printf("ennemy x = %d, y = %d\n", pos[1], pos[0]);
 	}
 }
