@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/03 18:49:45 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:06:00 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,7 @@ int		exit_prog(t_data *data);
 //PRINTS
 void	print_arr(char **arr);
 void	print_dlst(t_dlst *lst);
+
+void	solve_maze(char **map, double y, double x);
 
 #endif
