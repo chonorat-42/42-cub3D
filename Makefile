@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/01 15:52:03 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/04 16:27:06 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ NORM = @norminette Includes Sources | awk '$$NF!="OK!" {print "$(_RED)" $$0 "\03
 FILES = cub3D\
 		Errors/print_error\
 		Mlx/start_mlx\
+		Mlx/key_hook\
+		Mlx/pixel_to_frame\
 		Initialization/parser_init\
 		Initialization/data_init\
 		Parsing/parsing\
@@ -47,7 +49,10 @@ FILES = cub3D\
 		Print/print_cub\
 		Print/print_minimap\
 		Print/print_player\
+		Print/raycasting\
 		Move/move_player\
+		Move/get_move\
+		Move/rotate_cam\
 		Parsing/get_file_utils\
 		Parsing/get_textures\
 		Parsing/get_colors\
@@ -55,6 +60,7 @@ FILES = cub3D\
 		Parsing/get_map\
 		Parsing/get_map_utils\
 		Parsing/map_parsing\
+		Parsing/get_player_dir\
 		Parsing/fill_map\
 		Parsing/check_borders\
 		Parsing/get_player_position\
