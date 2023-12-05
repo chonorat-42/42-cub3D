@@ -6,11 +6,26 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 14:45:23 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:35:56 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	free_ennemy(t_ennemy *ennemy)
+{
+	size_t	j;
+
+	if (!ennemy->mask)
+		return ;
+	j = 0;
+	while (j < ennemy->height)
+	{
+		free(ennemy->mask[j]);
+		j++;
+	}
+	free(ennemy->mask);
+}
 
 static void	free_tex_img(t_tex_img *data, void *mlx)
 {
@@ -27,6 +42,7 @@ static void	free_tex_img(t_tex_img *data, void *mlx)
 void	free_data(t_data *data)
 {
 	free_parser(&data->parser);
+	free_ennemy(&data->ennemy);
 	if (data->map)
 		ft_free_arr(data->map);
 	if (data->mlx.mlx)

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/05 10:59:19 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:18:21 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,10 @@ typedef struct s_ennemy
 	double	d_pos[2];
 	int		pos[2];
 	int		last;
+	int		**mask;
+	size_t	len;
+	size_t	height;
+	char	c;
 }		t_ennemy;
 
 struct	s_player
@@ -154,6 +158,7 @@ struct	s_player
 	double			dir;
 	double			x_pos;
 	double			y_pos;
+	int				l_pos[2];
 	struct s_move	move;
 };
 
@@ -170,6 +175,7 @@ typedef struct s_data
 	int					screen_res[2];
 	char				**map;
 	int					minimap_ratio;
+	struct s_ennemy		ennemy;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
@@ -217,6 +223,7 @@ void 	free_flood(t_flood **flood);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
+void	print_ennemy(t_data *data, double radius, int color);
 
 //MOVE
 void	move_player(t_data *data);
@@ -233,6 +240,6 @@ int		exit_prog(t_data *data);
 void	print_arr(char **arr);
 void	print_dlst(t_dlst *lst);
 
-void	solve_maze(char **map, int y, int x);
+void	solve_maze(t_data *data, char **map, int y, int x);
 
 #endif

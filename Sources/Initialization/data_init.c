@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/25 21:35:15 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:35:21 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_data(t_data *data)
 	data->map = NULL;
 	init_tex_img(&data->tex_img);
 	data->mlx.mlx = mlx_init();
+	data->ennemy.mask = NULL;
 	if (!data->mlx.mlx)
 		return (free_data(data), print_error(MALLOC, 0), exit(1));
 }
