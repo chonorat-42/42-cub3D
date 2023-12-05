@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/05 16:26:23 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:44:29 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,8 @@ char best_path(t_data *data, char **map, int *pos, int y, int x, t_ennemy ennemy
 	unsigned long long res = smallest(n, w, e, s, ennemy, mask, y, x);
 	if (res == 18446744073709551)
 	{
-		clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
-		best_path(data, map, pos, y, x, ennemy, data->ennemy.mask);
+		// clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
+		return ('k');
 	}
 	if (res == n)
 		return ('n');
@@ -253,6 +253,8 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 			data->ennemy.pos[1]--;
 			// ennemy.last = WEST;
 		}
+		if (c == 'k')
+			return ;
 		data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
 		data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
 		map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
