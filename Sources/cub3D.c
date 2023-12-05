@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:02:54 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 15:57:56 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:30:10 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 	if (argc == 2 && valid_path(argv[1]))
 	{
 		parsing(&data, argv[1], &argv[1][5]);
-		solve_maze(data.map, data.player.y_pos, data.player.x_pos);
+		solve_maze(data.map, (int)data.player.y_pos, (int)data.player.x_pos);
 		if (!start_mlx(&data))
 			return (free_data(&data), EXIT_FAILURE);
 		free_data(&data);

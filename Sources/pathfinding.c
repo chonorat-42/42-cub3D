@@ -6,13 +6,13 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/04 20:01:41 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:16:16 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-size_t	difference(double a, double b)
+size_t	difference(int a, int b)
 {
 	long long result;
 
@@ -20,19 +20,26 @@ size_t	difference(double a, double b)
 	if (result < 0)
 		result *= -1;
 
-	// printf("a = %lf, b = %lf\n", a, b);
+	printf("a = %d, b = %d\n", a, b);
 	// printf("res diff = %lld\n", result);
 
 	return (result);
 }
 
-unsigned long long smallest(unsigned long long n, unsigned long long w, unsigned long long e, unsigned long long s)
+unsigned long long smallest(unsigned long long n, unsigned long long w, unsigned long long e, unsigned long long s, t_ennemy ennemy)
 {
 	 unsigned long long res;
 
-	 res = n;
-	 if (w < res)
-	 	res = w;
+	if (ennemy.last == NORTH)
+		res = n;
+	if (ennemy.last == SOUTH)
+		res = s;
+	if (ennemy.last == EAST)
+		res = e;
+	if (ennemy.last == WEST)
+		res = w;
+	if (w < res)
+		res = w;
 	if (e < res)
 		res = e;
 	if (s < res)
@@ -40,7 +47,7 @@ unsigned long long smallest(unsigned long long n, unsigned long long w, unsigned
 	return (res);
 }
 
-char best_path(char **map, int *pos, size_t y, size_t x)
+char best_path(char **map, int *pos, int y, int x, t_ennemy ennemy)
 {
 	unsigned long long	n, w, e, s;
 
@@ -60,8 +67,8 @@ char best_path(char **map, int *pos, size_t y, size_t x)
 		w = (long long)pow(difference(pos[0], y), 2) + (long long)pow(difference(pos[1] - 1, x), 2);
 	else
 		w = 18446744073709551;
-	// printf("n = %llu, s = %llu, e = %llu, w = %llu\n", n, s, e, w);
-	unsigned long long res = smallest(n, w, e, s);
+	printf("n = %llu, s = %llu, e = %llu, w = %llu\n", n, s, e, w);
+	unsigned long long res = smallest(n, w, e, s, ennemy);
 
 	// printf("res = %llu\n", res);
 
@@ -75,33 +82,47 @@ char best_path(char **map, int *pos, size_t y, size_t x)
 		return ('w');
 }
 
-void	solve_maze(char **map, double y, double x)
+void	solve_maze(char **map, int y, int x)
 {
-	int pos[2];
-	char	c;
+	t_ennemy ennemy;
 
-	pos[0] = 3;
-	pos[1] = 4;
-	map[pos[0]][pos[1]] = 'X';
+	ennemy.pos[0] = 3;
+	ennemy.pos[1] = 4;
+
+	char	c;
+	map[ennemy.pos[0]][ennemy.pos[1]] = 'X';
 	map[(int)y][(int)x] = 'P';
 
-	printf("player x = %lf, y = %lf\n", x, y);
-	printf("ennemy x = %d, y = %d\n", pos[1], pos[0]);
+	printf("player x = %d, y = %d, int x = %d, int y = %d\n", x, y, x, y);
+	printf("ennemy x = %d, y = %d\n", ennemy.pos[1], ennemy.pos[0]);
 	print_arr(map);
-	while (pos[0] != y && pos[1] != x)
+	while ((ennemy.pos[0] - y) + (ennemy.pos[1] - x))
 	{
-		c = best_path(map, pos, (size_t)y, (size_t)x);
+		printf("diff y = %d, x = %d\n", ennemy.pos[0] - y, ennemy.pos[1] - x);
+		c = best_path(map, ennemy.pos, y, x, ennemy);
 		if (c == 'n')
-			pos[0]--;
+		{
+			ennemy.pos[0]--;
+			ennemy.last = NORTH;
+		}
 		if (c == 's')
-			pos[0]++;
+		{
+			ennemy.pos[0]++;
+			ennemy.last = SOUTH;
+		}
 		if (c == 'e')
-			pos[1]++;
+		{
+			ennemy.pos[1]++;
+			ennemy.last = EAST;
+		}
 		if (c == 'w')
-			pos[1]--;
-		map[pos[0]][pos[1]] = '!';
+		{
+			ennemy.pos[1]--;
+			ennemy.last = WEST;
+		}
+		map[ennemy.pos[0]][ennemy.pos[1]] = '!';
 		print_arr(map);
-		printf("player x = %lf, y = %lf\n", x, y);
-		printf("ennemy x = %d, y = %d\n", pos[1], pos[0]);
+		printf("player x = %d, y = %d\n", (int)x, (int)y);
+		printf("ennemy x = %d, y = %d\n", ennemy.pos[1], ennemy.pos[0]);
 	}
 }

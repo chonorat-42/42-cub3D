@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 16:06:00 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:59:19 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ enum	e_errors
 	UNKCHAR,
 	EMPTYL,
 	SEP,
+};
+
+enum	e_directions
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
 };
 
 enum	e_boolean
@@ -133,6 +141,13 @@ struct	s_move
 	int	r_move;
 	int	sprint;
 };
+
+typedef struct s_ennemy
+{
+	double	d_pos[2];
+	int		pos[2];
+	int		last;
+}		t_ennemy;
 
 struct	s_player
 {
@@ -218,6 +233,6 @@ int		exit_prog(t_data *data);
 void	print_arr(char **arr);
 void	print_dlst(t_dlst *lst);
 
-void	solve_maze(char **map, double y, double x);
+void	solve_maze(char **map, int y, int x);
 
 #endif
