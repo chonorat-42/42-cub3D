@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/05 16:44:29 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:46:58 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char best_path(t_data *data, char **map, int *pos, int y, int x, t_ennemy ennemy
 	unsigned long long res = smallest(n, w, e, s, ennemy, mask, y, x);
 	if (res == 18446744073709551)
 	{
-		// clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
+		clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
 		return ('k');
 	}
 	if (res == n)
@@ -203,7 +203,8 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 {
 	data->ennemy.height = ft_arr_size(map);
 	data->ennemy.len = ft_strlen(map[0]);
-	print_arr(map);
+	map[y][x] = 'P';
+	// print_arr(map);
 	data->ennemy.mask = malloc(sizeof(int *) * ft_arr_size(map));
 	size_t	j = 0;
 	while (j < data->ennemy.height)
@@ -212,9 +213,9 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 		j++;
 	}
 	fill_mask(data->ennemy.mask, map);
-	print_mask(data->ennemy.mask, ft_strlen(map[0]), ft_arr_size(map));
-	data->ennemy.pos[0] = 2;
-	data->ennemy.pos[1] = 3;
+	// print_mask(data->ennemy.mask, ft_strlen(map[0]), ft_arr_size(map));
+	data->ennemy.pos[0] = 1;
+	data->ennemy.pos[1] = 10;
 	data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
 	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
 	// printf("ennemy x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
@@ -261,10 +262,11 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 		data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;
 		if (data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] >= 9)
 			data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] = 0;
-		print_arr(map);
-		print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
+		// print_arr(map);
+		// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 		// printf("player x = %d, y = %d\n", (int)x, (int)y);
 	}
+	map[y][x] = 'P';
 	print_arr(map);
-	print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
+	// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 }
