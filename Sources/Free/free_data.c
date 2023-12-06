@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/05 16:35:56 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:44:51 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,24 @@ static void	free_tex_img(t_tex_img *data, void *mlx)
 		mlx_destroy_image(mlx, data->we_img);
 }
 
+static void	free_path(t_path **path)
+{
+	t_path	*temp;
+
+	temp = *path;
+	while (*path)
+	{
+		temp = *path;
+		*path = (*path)->next;
+		free(temp);
+	}
+}
+
 void	free_data(t_data *data)
 {
 	free_parser(&data->parser);
 	free_ennemy(&data->ennemy);
+	free_path(&data->ennemy.path);
 	if (data->map)
 		ft_free_arr(data->map);
 	if (data->mlx.mlx)

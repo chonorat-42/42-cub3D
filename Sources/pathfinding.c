@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/05 17:46:58 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:06:55 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,60 +41,55 @@ long long get_map_value(int **mask, size_t i, int y, int x)
 	return (value);
 }
 
-unsigned long long smallest(unsigned long long n, unsigned long long w, unsigned long long e, unsigned long long s, t_ennemy ennemy, int **mask, int y, int x)
+unsigned long long smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x)
 {
-	unsigned long long res;
-	unsigned long long tab[2][4];
-	long long value;
+	unsigned long long	res;
+	long long 			value;
+	size_t 				i;
 
-	(void)ennemy;
-	tab[0][0] = n;
-	tab[0][1] = w;
-	tab[0][2] = e;
-	tab[0][3] = s;
 
-	res = n;
-	if (w < res)
-		res = w;
-	if (w < res)
-		res = w;
-	if (e < res)
-		res = e;
-	if (s < res)
-		res = s;
-	size_t i = 0;
-	while (i < 4)
+	i = 1;
+	res = arr[0][0];
+	while (i <= SW)
 	{
-		tab[1][i] = 0;
+		if (arr[0][i] < res)
+			res = arr[0][i];
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (i < 8)
 	{
-		if (tab[0][i] == res)
-			tab[1][i] = 1;
+		arr[1][i] = 0;
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (i < 8)
 	{
-		if (tab[1][i] == 1)
+		if (arr[0][i] == res)
+			arr[1][i] = 1;
+		i++;
+	}
+	i = 0;
+	while (i < 8)
+	{
+		if (arr[1][i] == 1)
 		{
-			res = tab[0][i];
-			value = get_map_value(mask, i, y, x);
+			res = arr[0][i];
+			value = get_map_value(ennemy.mask, i, y, x);
 		}
 		i++;
 	}
-	while (i < 4)
+	while (i < 8)
 	{
-		if (tab[1][i] == 1)
+		if (arr[1][i] == 1)
 		{
-			if (get_map_value(mask, i, y, x) < value)
+			if (get_map_value(ennemy.mask, i, y, x) < value)
 			{
-				value = get_map_value(mask, i, y, x);
-				res = tab[0][i];
+				value = get_map_value(ennemy.mask, i, y, x);
+				res = arr[0][i];
 			}
 		}
+		i++;
 	}
 	return (res);
 }
@@ -138,44 +133,114 @@ void	clean_mask(int **mask, size_t height, size_t len)
 		j++;
 	}
 }
+
+void	print_int_arr(unsigned long long **arr, int line, int max)
+{
+	int i;
+
+	i = 0;
+	while (i < max)
+	{
+		printf("arr[%d][%d] = %lld\n", line, i, arr[line][i]);
+		i++;
+	}
+}
+
+void	free_ull(unsigned long long **arr, int line)
+{
+	int	i;
+
+	i = 0;
+	while (i < line)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 /*if egalite -> go sur case avec la plus petite valeur*/
 
-char best_path(t_data *data, char **map, int *pos, int y, int x, t_ennemy ennemy, int **mask)
+int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 {
 	(void)data;
-	unsigned long long	n, w, e, s;
+	unsigned long long	**arr;
+	size_t				i;
 
-	if (pos[0] && !ft_ischarinset(map[pos[0] - 1][pos[1]], "1?!"))
-		n = (long long)pow(difference(pos[0] - 1, y), 2) + (long long)pow(difference(pos[1], x), 2);
+	arr = malloc(sizeof(unsigned long long*) * 2);
+	if (!arr)
+		return (free_data(data), print_error(MALLOC, 0), exit(1), 1);
+	arr[0] = malloc(sizeof(unsigned long long) * 8);
+	if (!arr[0])
+		return (free_data(data), print_error(MALLOC, 0), free(arr), exit(1), 1);
+	arr[1] = malloc(sizeof(unsigned long long) * 8);
+	if (!arr[1])
+		return (free_data(data), print_error(MALLOC, 0), free(arr), exit(1), 1);
+
+
+	if (ennemy->pos[0] && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1]], "1?!"))
+	{
+		arr[0][NORTH] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1], x), 2);
+		if (ennemy->pos[0] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1] + 1], "1?!"))
+			arr[0][NE] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
+		else
+			arr[0][NE] = 18446744073709551;
+		if (ennemy->pos[0] && ennemy->pos[1] - 1 && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1] - 1], "1?!"))
+			arr[0][NW] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
+		else
+			arr[0][NW] = 18446744073709551;
+	}
 	else
-		n = 18446744073709551;
-	if (map[pos[0] + 1] && !ft_ischarinset(map[pos[0] + 1][pos[1]], "1?!"))
-		s = (long long)pow(difference(pos[0] + 1, y), 2) + (long long)pow(difference(pos[1], x), 2);
+	{
+		arr[0][NORTH] = 18446744073709551;
+		arr[0][NE] = 18446744073709551;
+		arr[0][NW] = 18446744073709551;
+	}
+
+
+	if (data->map[ennemy->pos[0] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1]], "1?!"))
+	{
+		arr[0][SOUTH] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1], x), 2);
+		if (data->map[ennemy->pos[0] + 1] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] + 1], "1?!"))
+			arr[0][SE] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
+		else
+			arr[0][SE] = 18446744073709551;
+		if (data->map[ennemy->pos[0] + 1] && ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] - 1], "1?!") && ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+			arr[0][SW] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
+		else
+			arr[0][SW] = 18446744073709551;
+	}
 	else
-		s = 18446744073709551;
-	if (map[pos[0]][pos[1] + 1] && !ft_ischarinset(map[pos[0]][pos[1] + 1], "1?!"))
-		e = (long long)pow(difference(pos[0], y), 2) + (long long)pow(difference(pos[1] + 1, x), 2);
+	{
+		arr[0][SOUTH] = 18446744073709551;
+		arr[0][SW] = 18446744073709551;
+		arr[0][SE] = 18446744073709551;
+	}
+
+	if (data->map[ennemy->pos[0]][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+		arr[0][EAST] = (long long)pow(difference(ennemy->pos[0], y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
 	else
-		e = 18446744073709551;
-	if (pos[1] && !ft_ischarinset(map[pos[0]][pos[1] - 1], "1?!"))
-		w = (long long)pow(difference(pos[0], y), 2) + (long long)pow(difference(pos[1] - 1, x), 2);
+		arr[0][EAST] = 18446744073709551;
+
+
+	if (ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
+		arr[0][WEST] = (long long)pow(difference(ennemy->pos[0], y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
 	else
-		w = 18446744073709551;
+		arr[0][WEST] = 18446744073709551;
+
+	print_int_arr(arr, 0, 8);
 	// printf("n = %llu, s = %llu, e = %llu, w = %llu\n", n, s, e, w);
-	unsigned long long res = smallest(n, w, e, s, ennemy, mask, y, x);
+	unsigned long long res = smallest(arr, *ennemy, y, x);
+	printf("res = %lld\n", res);
 	if (res == 18446744073709551)
 	{
 		clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
-		return ('k');
+		return (free_ull(arr, 2), 'k');
 	}
-	if (res == n)
-		return ('n');
-	if (res == s)
-		return ('s');
-	if (res == e)
-		return ('e');
-	else
-		return ('w');
+	i = 0;
+	while (i < 8 && arr[0][i] != res)
+		i++;
+	return (free_ull(arr, 2), i);
+
 }
 
 void	fill_mask(int **mask, char **map)
@@ -199,74 +264,121 @@ void	fill_mask(int **mask, char **map)
 	}
 }
 
-void	solve_maze(t_data *data, char **map, int y, int x)
+void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 {
-	data->ennemy.height = ft_arr_size(map);
-	data->ennemy.len = ft_strlen(map[0]);
-	map[y][x] = 'P';
-	// print_arr(map);
-	data->ennemy.mask = malloc(sizeof(int *) * ft_arr_size(map));
-	size_t	j = 0;
-	while (j < data->ennemy.height)
+	size_t	j;
+
+	j = 0;
+	ennemy->height = ft_arr_size(map);
+	ennemy->len = ft_strlen(map[0]);
+	ennemy->mask = malloc(sizeof(int *) * ft_arr_size(map));
+	ennemy->path = NULL;
+	while (j < ennemy->height)
 	{
-		data->ennemy.mask[j] = malloc(sizeof(int) * data->ennemy.len);
+		ennemy->mask[j] = malloc(sizeof(int) * ennemy->len);
 		j++;
 	}
-	fill_mask(data->ennemy.mask, map);
-	// print_mask(data->ennemy.mask, ft_strlen(map[0]), ft_arr_size(map));
-	data->ennemy.pos[0] = 1;
-	data->ennemy.pos[1] = 10;
-	data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
-	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
+	fill_mask(ennemy->mask, map);
+	ennemy->pos[0] = 1;
+	ennemy->pos[1] = 10;
+	ennemy->d_pos[0] = ennemy->pos[0] + 0.5;
+	ennemy->d_pos[1] = ennemy->pos[1] + 0.5;
 	// printf("ennemy x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
-	// return ;
-
-	char	c;
-	map[data->ennemy.pos[0]][data->ennemy.pos[1]] = 'X';
-	map[(int)y][(int)x] = 'P';
-
+	map[ennemy->pos[0]][ennemy->pos[1]] = 'X';
+	// map[(int)y][(int)x] = 'P';
 	// printf("player x = %d, y = %d, int x = %d, int y = %d\n", x, y, x, y);
 	// printf("ennemy x = %d, y = %d\n", ennemy.pos[1], ennemy.pos[0]);
 	data->player.l_pos[0] = (int)data->player.y_pos;
 	data->player.l_pos[1] = (int)data->player.x_pos;
-	// return ;
+}
+
+void	update_ennemy(t_data *data)
+{
+	data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
+	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
+	printf("x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
+	data->map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
+	data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;
+	if (data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] >= 9)
+		data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] = 0;
+}
+
+void	add_path(t_data *data, t_path **path, int y, int x)
+{
+	t_path	*temp;
+	t_path	*new;
+
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (print_error(MALLOC, 0), free_data(data), exit(1));
+	new->next = NULL;
+	new->coor[0] = y + 0.5;
+	new->coor[1] = x + 0.5;
+	if (!*path)
+		*path = new;
+	else
+	{
+		temp = *path;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+	}
+}
+
+void	print_coor(t_path *path)
+{
+	t_path *temp;
+	size_t	i;
+
+	i = 0;
+	temp = path;
+	while (temp)
+	{
+		printf("path %zu, y = %d, x = %d\n", i, (int)temp->coor[0], (int)temp->coor[1]);
+		i++;
+		temp = temp->next;
+	}
+}
+
+void	solve_maze(t_data *data, char **map, int y, int x)
+{
+	char	c;
+
+	init_ennemy(data, &data->ennemy, map);
+	map[y][x] = 'P';
+	print_arr(map);
 	while ((difference(data->ennemy.pos[0], y)) + (difference(data->ennemy.pos[1], x)))
 	{
-		// printf("diff y = %d, x = %d\n", data->ennemy.pos[0] - y, data->ennemy.pos[1] - x);
-		c = best_path(data, map, data->ennemy.pos, y, x, data->ennemy, data->ennemy.mask);
-		if (c == 'n')
-		{
-			data->ennemy.pos[0]--;
-			// ennemy.last = NORTH;
-		}
-		if (c == 's')
-		{
-			data->ennemy.pos[0]++;
-			// ennemy.last = SOUTH;
-		}
-		if (c == 'e')
-		{
-			data->ennemy.pos[1]++;
-			// ennemy.last = EAST;
-		}
-		if (c == 'w')
-		{
-			data->ennemy.pos[1]--;
-			// ennemy.last = WEST;
-		}
+		c = best_path(data, y, x, &data->ennemy);
+		printf("c = %d\n", c);
+		if (c == NORTH)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]--, data->ennemy.pos[1]);
+		if (c == SOUTH)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]++, data->ennemy.pos[1]);
+		if (c == EAST)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0], data->ennemy.pos[1]++);
+		if (c == WEST)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0], data->ennemy.pos[1]--);
+		if (c == NE)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]--, data->ennemy.pos[1]++);
+		if (c == NW)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]--, data->ennemy.pos[1]--);
+		if (c == SE)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]++, data->ennemy.pos[1]++);
+		if (c == SW)
+			add_path(data, &data->ennemy.path, data->ennemy.pos[0]++, data->ennemy.pos[1]--);
 		if (c == 'k')
+		{
+			clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
 			return ;
-		data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
-		data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
-		map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
-		data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;
-		if (data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] >= 9)
-			data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] = 0;
-		// print_arr(map);
+		}
+		update_ennemy(data);
+		print_arr(map);
 		// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 		// printf("player x = %d, y = %d\n", (int)x, (int)y);
 	}
 	map[y][x] = 'P';
 	print_arr(map);
-	// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
+	print_coor(data->ennemy.path);
+	// // print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 }

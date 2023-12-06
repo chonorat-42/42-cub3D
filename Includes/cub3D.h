@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/05 16:18:21 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:45:59 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ enum	e_directions
 	SOUTH,
 	EAST,
 	WEST,
+	NE,
+	NW,
+	SE,
+	SW,
 };
 
 enum	e_boolean
@@ -142,15 +146,23 @@ struct	s_move
 	int	sprint;
 };
 
+typedef struct s_path
+{
+	double			coor[2];
+	struct s_path	*next;
+}		t_path;
+
 typedef struct s_ennemy
 {
-	double	d_pos[2];
-	int		pos[2];
-	int		last;
-	int		**mask;
-	size_t	len;
-	size_t	height;
-	char	c;
+	double			d_pos[2];
+	int				pos[2];
+	int				last;
+	int				**mask;
+	struct s_path	*path;
+	size_t			len;
+	size_t			height;
+	char			c;
+
 }		t_ennemy;
 
 struct	s_player
