@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/04 16:27:06 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2023/12/06 17:28:13 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ FILES = cub3D\
 		Print/print_cub\
 		Print/print_minimap\
 		Print/print_player\
-		Print/raycasting\
+		Raycasting/raycasting\
+		Raycasting/print_column\
+		Raycasting/get_fog\
 		Move/move_player\
 		Move/get_move\
 		Move/rotate_cam\
@@ -89,7 +91,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Raycasting
 	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -O2 -c $(CFLAGS) $< -o $@

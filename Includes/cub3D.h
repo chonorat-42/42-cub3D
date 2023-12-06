@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 16:27:08 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/06 17:27:28 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,28 +157,37 @@ struct	s_move
 	int	sprint;
 };
 
+struct s_print_rc
+{
+	int	h_line;
+	int	start;
+	int	end;
+	int	color;
+};
+
 struct	s_raycast
 {
-	double			x_cam;
-	double			xpos_ray;
-	double			ypos_ray;
-	double			xdir_ray;
-	double			ydir_ray;
-	int				x_map;
-	int				y_map;
-	double			delta_dist_x;
-	double			delta_dist_y;
-	int				x_step;
-	int				y_step;
-	double			side_dist_x;
-	double			side_dist_y;
-	double			pwall_dist;
-	int				height;
-	int				width;
-	int				wall_side;
-	int				wall_hit;
-	struct s_img	wall;
-	double			wall_hit_point;
+	double				x_cam;
+	double				xpos_ray;
+	double				ypos_ray;
+	double				xdir_ray;
+	double				ydir_ray;
+	int					x_map;
+	int					y_map;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	int					x_step;
+	int					y_step;
+	double				side_dist_x;
+	double				side_dist_y;
+	double				pwall_dist;
+	int					height;
+	int					width;
+	int					wall_side;
+	int					wall_hit;
+	struct s_img		wall;
+	double				wall_hit_point;
+	struct s_print_rc	print;
 };
 
 struct	s_player
@@ -263,8 +272,12 @@ void 	free_flood(t_flood **flood);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
-void	raycasting(t_data *data, struct s_raycast *data_rc);
 int		wall_hit(t_data *data, int pos_x, int pos_y);
+
+//RAYCASTING
+void	raycasting(t_data *data, struct s_raycast *data_rc);
+int		get_fog(struct s_raycast *data_rc, int color, double fog_intensity);
+void	print_column(t_data *data, struct s_raycast *data_rc, int x);
 
 //MOVE
 void	get_move(t_data *data);
