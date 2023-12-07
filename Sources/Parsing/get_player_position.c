@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:04:45 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/01 12:09:44 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:15:30 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	player_position_found(t_data *data, int *found,
 {
 	if (!*found)
 	{
+		get_player_dir(data, i, j);
 		data->player.x_pos = (double)i + 0.5;
 		data->player.y_pos = (double)j + 0.5;
 		(*found)++;

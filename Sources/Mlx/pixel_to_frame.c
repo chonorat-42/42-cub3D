@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cub.c                                        :+:      :+:    :+:   */
+/*   pixel_to_frame.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 14:47:22 by chonorat         ###   ########lyon.fr   */
+/*   Created: 2023/12/01 14:48:24 by chonorat          #+#    #+#             */
+/*   Updated: 2023/12/01 15:11:41 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	print_cub(t_data *data)
+void	pixel_to_frame(t_data *data, int x, int y, int color)
 {
-	struct s_raycast	data_rc;
+	char	*dst;
 
-	init_raycast(&data_rc);
-	get_move(data);
-	raycasting(data, &data_rc);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
-		data->mlx.frame.img, 0, 0);
-	print_minimap(data);
-	return (1);
+	dst = data->mlx.frame.addr + (y * data->mlx.frame.line_length + x * (data->mlx.frame.bpp / 8));
+	*(unsigned int *)dst = color;
 }

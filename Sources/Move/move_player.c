@@ -5,54 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 22:48:06 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/28 12:06:08 by chonorat         ###   ########lyon.fr   */
+/*   Created: 2023/12/01 13:38:22 by chonorat          #+#    #+#             */
+/*   Updated: 2023/12/01 16:05:56 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	wall_hit(t_data *data, int pos_x, int pos_y)
+void	move_forward(t_data *data)
 {
-	if (data->map[pos_y][pos_x] && data->map[pos_y][pos_x] == '1')
-		return (TRUE);
-	return (FALSE);
-}
-
-static void	move_lr(t_data *data)
-{
-	if (data->player.move.l_move)
+	if (data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos + (data->player.x_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.y_dir * S_PLAYER_SPEED) * 2))
 	{
-		if (data->player.move.sprint && !wall_hit(data, data->player.x_pos - 0.01, data->player.y_pos))
-			data->player.x_pos -= 0.01;
-		else if (!data->player.move.sprint && !wall_hit(data, data->player.x_pos - 0.005, data->player.y_pos))
-			data->player.x_pos -= 0.005;
+		data->player.x_pos += data->player.x_dir * S_PLAYER_SPEED;
+		data->player.y_pos += data->player.y_dir * S_PLAYER_SPEED;
 	}
-	if (data->player.move.r_move)
+	else if (!data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos + (data->player.x_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.y_dir * PLAYER_SPEED) * 2))
 	{
-		if (data->player.move.sprint && !wall_hit(data, data->player.x_pos + 0.01, data->player.y_pos))
-			data->player.x_pos += 0.01;
-		else if (!data->player.move.sprint && !wall_hit(data, data->player.x_pos + 0.005, data->player.y_pos))
-			data->player.x_pos += 0.005;
+		data->player.x_pos += data->player.x_dir * PLAYER_SPEED;
+		data->player.y_pos += data->player.y_dir * PLAYER_SPEED;
 	}
 }
 
-void	move_player(t_data *data)
+void	move_backward(t_data *data)
 {
-	move_lr(data);
-	if (data->player.move.f_move)
+	if (data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos - (data->player.x_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.y_dir * S_PLAYER_SPEED) * 2))
 	{
-		if (data->player.move.sprint && !wall_hit(data, data->player.x_pos, data->player.y_pos - 0.01))
-			data->player.y_pos -= 0.01;
-		else if (!data->player.move.sprint && !wall_hit(data, data->player.x_pos, data->player.y_pos - 0.005))
-			data->player.y_pos -= 0.005;
+		data->player.x_pos -= data->player.x_dir * S_PLAYER_SPEED;
+		data->player.y_pos -= data->player.y_dir * S_PLAYER_SPEED;
 	}
-	if (data->player.move.b_move)
+	else if (!data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos - (data->player.x_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.y_dir * PLAYER_SPEED) * 2))
 	{
-		if (data->player.move.sprint && !wall_hit(data, data->player.x_pos,
-			data->player.y_pos + 0.01))
-			data->player.y_pos += 0.01;
-		else if (!data->player.move.sprint && !wall_hit(data, data->player.x_pos, data->player.y_pos + 0.005))
-			data->player.y_pos += 0.005;
+		data->player.x_pos -= data->player.x_dir * PLAYER_SPEED;
+		data->player.y_pos -= data->player.y_dir * PLAYER_SPEED;
+	}
+}
+
+void	move_left(t_data *data)
+{
+	if (data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos + (data->player.y_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.x_dir * S_PLAYER_SPEED) * 2))
+	{
+		data->player.x_pos += data->player.y_dir * S_PLAYER_SPEED;
+		data->player.y_pos -= data->player.x_dir * S_PLAYER_SPEED;
+	}
+	else if (!data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos + (data->player.y_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos - (data->player.x_dir * PLAYER_SPEED) * 2))
+	{
+		data->player.x_pos += data->player.y_dir * PLAYER_SPEED;
+		data->player.y_pos -= data->player.x_dir * PLAYER_SPEED;
+	}
+}
+
+void	move_right(t_data *data)
+{
+	if (data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos - (data->player.y_dir * S_PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.x_dir * S_PLAYER_SPEED) * 2))
+	{
+		data->player.x_pos -= data->player.y_dir * S_PLAYER_SPEED;
+		data->player.y_pos += data->player.x_dir * S_PLAYER_SPEED;
+	}
+	else if (!data->player.move.sprint && !wall_hit(data,
+		data->player.x_pos - (data->player.y_dir * PLAYER_SPEED) * 2,
+		data->player.y_pos + (data->player.x_dir * PLAYER_SPEED) * 2))
+	{
+		data->player.x_pos -= data->player.y_dir * PLAYER_SPEED;
+		data->player.y_pos += data->player.x_dir * PLAYER_SPEED;
 	}
 }
