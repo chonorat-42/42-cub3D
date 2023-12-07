@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 13:21:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 16:25:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ typedef struct s_ennemy
 	int				pos[2];
 	int				last;
 	int				**mask;
+	char			**dup_map;
 	struct s_path	*path;
 	size_t			len;
 	size_t			height;

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/07 15:06:35 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 16:30:43 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,14 +176,14 @@ int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 		return (free_data(data), print_error(MALLOC, 0), free(arr), exit(1), 1);
 
 
-	if (ennemy->pos[0] && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1]], "1?!"))
+	if (ennemy->pos[0] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] - 1][ennemy->pos[1]], "1?!"))
 	{
 		arr[0][NORTH] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1], x), 2);
-		if (ennemy->pos[0] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+		if (ennemy->pos[0] && data->ennemy.dup_map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] - 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
 			arr[0][NE] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
 		else
 			arr[0][NE] = 18446744073709551;
-		if (ennemy->pos[0] && ennemy->pos[1] - 1 && !ft_ischarinset(data->map[ennemy->pos[0] - 1][ennemy->pos[1] - 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
+		if (ennemy->pos[0] && ennemy->pos[1] - 1 && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] - 1][ennemy->pos[1] - 1], "1?!") && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
 			arr[0][NW] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
 		else
 			arr[0][NW] = 18446744073709551;
@@ -196,14 +196,14 @@ int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 	}
 
 
-	if (data->map[ennemy->pos[0] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1]], "1?!"))
+	if (data->ennemy.dup_map[ennemy->pos[0] + 1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] + 1][ennemy->pos[1]], "1?!"))
 	{
 		arr[0][SOUTH] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1], x), 2);
-		if (data->map[ennemy->pos[0] + 1] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+		if (data->ennemy.dup_map[ennemy->pos[0] + 1] && data->ennemy.dup_map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] + 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
 			arr[0][SE] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
 		else
 			arr[0][SE] = 18446744073709551;
-		if (data->map[ennemy->pos[0] + 1] && ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] - 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
+		if (data->ennemy.dup_map[ennemy->pos[0] + 1] && ennemy->pos[1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0] + 1][ennemy->pos[1] - 1], "1?!") && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
 			arr[0][SW] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
 		else
 			arr[0][SW] = 18446744073709551;
@@ -215,13 +215,13 @@ int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 		arr[0][SE] = 18446744073709551;
 	}
 
-	if (data->map[ennemy->pos[0]][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+	if (data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] + 1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
 		arr[0][EAST] = (long long)pow(difference(ennemy->pos[0], y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
 	else
 		arr[0][EAST] = 18446744073709551;
 
 
-	if (ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
+	if (ennemy->pos[1] && !ft_ischarinset(data->ennemy.dup_map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
 		arr[0][WEST] = (long long)pow(difference(ennemy->pos[0], y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
 	else
 		arr[0][WEST] = 18446744073709551;
@@ -296,7 +296,7 @@ void	update_ennemy(t_data *data)
 	//data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
 	//data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
 	printf("x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
-	data->map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
+	data->ennemy.dup_map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
 	data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;
 	if (data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] >= 9)
 		data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] = 0;
@@ -344,9 +344,15 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 {
 	char	c;
 
-	init_ennemy(data, &data->ennemy, map);
-	map[y][x] = 'P';
-	print_arr(map);
+	if (data->ennemy.dup_map)
+	{
+		ft_free_arr(data->ennemy.dup_map);
+		data->ennemy.dup_map = ft_arr_copy(map);
+	}
+	data->ennemy.dup_map = ft_arr_copy(map);
+	init_ennemy(data, &data->ennemy, data->ennemy.dup_map);
+	data->ennemy.dup_map[y][x] = 'P';
+	print_arr(data->ennemy.dup_map);
 	while ((difference(data->ennemy.pos[0], y)) + (difference(data->ennemy.pos[1], x)))
 	{
 		c = best_path(data, y, x, &data->ennemy);
@@ -373,12 +379,12 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 			return ;
 		}
 		update_ennemy(data);
-		print_arr(map);
+		print_arr(data->ennemy.dup_map);
 		// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 		// printf("player x = %d, y = %d\n", (int)x, (int)y);
 	}
-	map[y][x] = 'P';
-	print_arr(map);
+	data->ennemy.dup_map[y][x] = 'P';
+	print_arr(data->ennemy.dup_map);
 	print_coor(data->ennemy.path);
 	// // print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 }

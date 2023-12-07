@@ -6,19 +6,50 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 15:12:01 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 16:29:58 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// static void	free_path(t_path **path)
+// {
+// 	t_path	*temp;
+// 	t_path	*next;
+
+// 	if (*path)
+// 	{
+// 		temp = *path;
+// 		if (temp->next)
+// 			next = temp->next;
+// 		while (temp)
+// 		{
+// 			free(temp);
+// 			temp = NULL;
+// 			if (next)
+// 				temp = next;
+// 		}
+// 		*path = NULL;
+// 	}
+// }
+
 static void	move_ennemy(t_data *data)
 {
+	if (!data->ennemy.path)
+	{
+		printf("NO_PATH\n");
+		return ;
+	}
 	if ((int)data->ennemy.path->coor[0] == (int)data->ennemy.d_pos[0]
 		&& (int)data->ennemy.path->coor[1] == (int)data->ennemy.d_pos[1])
 	{
 		if (data->ennemy.path->next)
 			data->ennemy.path = data->ennemy.path->next;
+		// else
+		// {
+		// 	//free_path(&data->ennemy.path->head);
+		// 	//solve_maze(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
+		// }
 	}
 	if (data->ennemy.d_pos[0] < data->ennemy.path->coor[0])
 		data->ennemy.d_pos[0] += ENNEMY_SPEED;
@@ -28,6 +59,8 @@ static void	move_ennemy(t_data *data)
 		data->ennemy.d_pos[1] += ENNEMY_SPEED;
 	if (data->ennemy.d_pos[1] > data->ennemy.path->coor[1])
 		data->ennemy.d_pos[1] -= ENNEMY_SPEED;
+	data->ennemy.pos[0] = (int)data->ennemy.d_pos[0];
+	data->ennemy.pos[1] = (int)data->ennemy.d_pos[1];
 }
 
 int	print_cub(t_data *data)
@@ -35,7 +68,8 @@ int	print_cub(t_data *data)
 	struct s_raycast	data_rc;
 
 	if ((int)data->ennemy.target[0] != (int)data->player.y_pos
-		|| (int)data->ennemy.target[1] != (int)data->player.x_pos)
+		|| (int)data->ennemy.target[1] != (int)data->player.x_pos
+		|| !data->ennemy.path)
 	{
 		solve_maze(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
 	}
