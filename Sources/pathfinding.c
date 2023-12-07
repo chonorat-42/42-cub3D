@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/06 19:06:55 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:22:16 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,6 +323,7 @@ void	add_path(t_data *data, t_path **path, int y, int x)
 			temp = temp->next;
 		temp->next = new;
 	}
+	new->head = *path;
 }
 
 void	print_coor(t_path *path)
