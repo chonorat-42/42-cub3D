@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/07 00:54:08 by chonorat         ###   ########.fr        #
+#    Updated: 2023/12/07 17:15:56 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ FILES = cub3D\
 		Mlx/pixel_to_frame\
 		Initialization/parser_init\
 		Initialization/data_init\
+		Initialization/initstart_ennemy\
 		Parsing/parsing\
 		Parsing/get_file_content\
 		Print/print_cub\

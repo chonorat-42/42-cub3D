@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 16:37:28 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 17:19:01 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ int	start_mlx(t_data *data)
 	data->mlx.frame.img = mlx_new_image(data->mlx.mlx, data->screen_res[0], data->screen_res[1]);
 	data->mlx.frame.addr = mlx_get_data_addr(data->mlx.frame.img, &data->mlx.frame.bpp, &data->mlx.frame.line_length, &data->mlx.frame.endian);
 	data->minimap_ratio = get_ratio(data, ft_strlen(data->map[0]), ft_arr_size(data->map)) / 8;
-	data->ennemy.pos[0] = 1;
-	data->ennemy.pos[1] = 10;
-	data->ennemy.dup_map = NULL;
-	data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
-	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
-	solve_maze(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
+	initstart_ennemy(data);
 	mlx_loop_hook(data->mlx.mlx, print_cub, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);
