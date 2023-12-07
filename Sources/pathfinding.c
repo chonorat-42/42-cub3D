@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/07 12:33:01 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:42:14 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,11 @@ int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 	if (data->map[ennemy->pos[0] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1]], "1?!"))
 	{
 		arr[0][SOUTH] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1], x), 2);
-		if (data->map[ennemy->pos[0] + 1] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
+		if (data->map[ennemy->pos[0] + 1] && data->map[0][ennemy->pos[1] + 1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] + 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
 			arr[0][SE] = (long long)pow(difference(ennemy->pos[0] + 1, y), 2) + (long long)pow(difference(ennemy->pos[1] + 1, x), 2);
 		else
 			arr[0][SE] = 18446744073709551;
-		if (data->map[ennemy->pos[0] + 1] && ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] - 1], "1?!") && ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] + 1], "1?!"))
+		if (data->map[ennemy->pos[0] + 1] && ennemy->pos[1] && !ft_ischarinset(data->map[ennemy->pos[0] + 1][ennemy->pos[1] - 1], "1?!") && !ft_ischarinset(data->map[ennemy->pos[0]][ennemy->pos[1] - 1], "1?!"))
 			arr[0][SW] = (long long)pow(difference(ennemy->pos[0] - 1, y), 2) + (long long)pow(difference(ennemy->pos[1] - 1, x), 2);
 		else
 			arr[0][SW] = 18446744073709551;
@@ -269,6 +269,8 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 	size_t	j;
 
 	j = 0;
+	ennemy->target[0] = data->player.y_pos;
+	ennemy->target[1] = data->player.x_pos;
 	ennemy->height = ft_arr_size(map);
 	ennemy->len = ft_strlen(map[0]);
 	ennemy->mask = malloc(sizeof(int *) * ft_arr_size(map));
@@ -279,8 +281,8 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 		j++;
 	}
 	fill_mask(ennemy->mask, map);
-	ennemy->pos[0] = 3;
-	ennemy->pos[1] = 2;
+	ennemy->pos[0] = 1;
+	ennemy->pos[1] = 10;
 	ennemy->d_pos[0] = ennemy->pos[0] + 0.5;
 	ennemy->d_pos[1] = ennemy->pos[1] + 0.5;
 	// printf("ennemy x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
