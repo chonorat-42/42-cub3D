@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 12:41:35 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:21:06 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
+# define ENNEMY_SPEED 0.0375
 # define CAM_SPEED 0.05
 # define MOUSE_SPEED 0.005
 
@@ -188,7 +189,8 @@ typedef struct s_ennemy
 	size_t			height;
 	char			c;
 
-}		t_ennemy;
+}			t_ennemy;
+
 struct s_print_rc
 {
 	int	h_line;
@@ -306,7 +308,6 @@ void 	free_flood(t_flood **flood);
 int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
-void	print_ennemy(t_data *data, double radius, int color);
 int		wall_hit(t_data *data, int pos_x, int pos_y);
 
 //RAYCASTING

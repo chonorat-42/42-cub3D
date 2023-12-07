@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/07 12:42:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:22:44 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,8 +281,6 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 		j++;
 	}
 	fill_mask(ennemy->mask, map);
-	ennemy->pos[0] = 1;
-	ennemy->pos[1] = 10;
 	ennemy->d_pos[0] = ennemy->pos[0] + 0.5;
 	ennemy->d_pos[1] = ennemy->pos[1] + 0.5;
 	// printf("ennemy x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);

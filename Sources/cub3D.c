@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:02:54 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/05 15:47:26 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:47:36 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[])
 	if (argc == 2 && valid_path(argv[1]))
 	{
 		parsing(&data, argv[1], &argv[1][5]);
-		solve_maze(&data, data.map, (int)data.player.y_pos, (int)data.player.x_pos);
 		if (!start_mlx(&data))
 			return (free_data(&data), EXIT_FAILURE);
 		free_data(&data);
