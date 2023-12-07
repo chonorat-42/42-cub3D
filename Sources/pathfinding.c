@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/07 13:22:44 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 15:06:35 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ void	free_ull(unsigned long long **arr, int line)
 
 int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 {
-	(void)data;
 	unsigned long long	**arr;
 	size_t				i;
 
@@ -294,8 +293,8 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 
 void	update_ennemy(t_data *data)
 {
-	data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
-	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
+	//data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
+	//data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
 	printf("x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
 	data->map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
 	data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 13:17:46 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 15:12:01 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	print_cub(t_data *data)
 {
 	struct s_raycast	data_rc;
 
-	//if (data->)
 	if ((int)data->ennemy.target[0] != (int)data->player.y_pos
 		|| (int)data->ennemy.target[1] != (int)data->player.x_pos)
 	{
