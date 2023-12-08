@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 16:29:58 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 12:53:42 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	print_cub(t_data *data)
 		|| (int)data->ennemy.target[1] != (int)data->player.x_pos
 		|| !data->ennemy.path)
 	{
-		solve_maze(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
+		pathfinding(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
 	}
 	move_ennemy(data);
 	init_raycast(&data_rc);

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/08 12:49:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:52:51 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,7 +307,7 @@ int		add_to_flood(t_flood **flood, size_t j, size_t i);
 void 	free_flood(t_flood **flood);
 
 //PATHFINDING
-
+void				pathfinding(t_data *data, char **map, int y, int x);
 size_t				difference(int a, int b);
 void				clean_mask(int **mask, size_t height, size_t len);
 void				free_ull(unsigned long long **arr, int line);
@@ -349,7 +349,5 @@ int		exit_prog(t_data *data);
 //PRINTS
 void	print_arr(char **arr);
 void	print_dlst(t_dlst *lst);
-
-void	solve_maze(t_data *data, char **map, int y, int x);
 
 #endif

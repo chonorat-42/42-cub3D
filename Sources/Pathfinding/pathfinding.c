@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/08 12:50:26 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:53:00 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	print_coor(t_path *path)
 	}
 }
 
-void	solve_maze(t_data *data, char **map, int y, int x)
+void	pathfinding(t_data *data, char **map, int y, int x)
 {
 	int	c;
 
