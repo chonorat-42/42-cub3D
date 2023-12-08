@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 16:25:40 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 12:49:14 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@
 # define SCREEN_RES_X 1920
 # define SCREEN_RES_Y 1080
 
+#define MAX 1000000
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "libft.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -77,10 +79,10 @@ enum	e_errors
 
 enum	e_directions
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
+	N,
+	S,
+	E,
+	W,
 	NE,
 	NW,
 	SE,
@@ -304,6 +306,18 @@ void	first_position(t_data *data, t_flood **flood, char **map);
 int		add_to_flood(t_flood **flood, size_t j, size_t i);
 void 	free_flood(t_flood **flood);
 
+//PATHFINDING
+
+size_t				difference(int a, int b);
+void				clean_mask(int **mask, size_t height, size_t len);
+void				free_ull(unsigned long long **arr, int line);
+void				fill_mask(int **mask, char **map);
+void				init_ennemy(t_data *data, t_ennemy *ennemy, char **map);
+int					update_path(t_data *data, t_path *path, int c, int *pos);
+unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x);
+void				evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
+void				evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
+void 				evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
 //PRINT
 int		print_cub(t_data *data);

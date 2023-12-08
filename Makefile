@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/07 00:54:08 by chonorat         ###   ########.fr        #
+#    Updated: 2023/12/08 12:26:29 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,14 @@ FILES = cub3D\
 		Free/free_utils\
 		Exit/exit_prog\
 		Prints/prints\
-		pathfinding
+		Pathfinding/pathfinding\
+		Pathfinding/ennemy_update\
+		Pathfinding/pathfinding_utils\
+		Pathfinding/evaluate_options\
+		Pathfinding/evaluate_north\
+		Pathfinding/evaluate_south\
+		Pathfinding/compare_options
+
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
 $(NAME): $(OBJS) | $(LIBFT) $(MLX)
@@ -92,7 +99,7 @@ endif
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
-	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Raycasting
+	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Raycasting Objects/Pathfinding
 	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -O2 -c $(CFLAGS) $< -o $@
