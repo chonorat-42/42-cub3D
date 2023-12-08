@@ -277,6 +277,7 @@ int		key_release(int keycode, t_data *data);
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
 void	init_raycast(struct s_raycast *data_rc);
+void	initstart_ennemy(t_data *data);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);

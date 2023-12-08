@@ -44,6 +44,7 @@ FILES = cub3D\
 		Mlx/pixel_to_frame\
 		Initialization/parser_init\
 		Initialization/data_init\
+		Initialization/initstart_ennemy\
 		Parsing/parsing\
 		Parsing/get_file_content\
 		Print/print_cub\
