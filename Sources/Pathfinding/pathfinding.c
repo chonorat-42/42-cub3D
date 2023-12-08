@@ -6,32 +6,32 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/08 12:53:00 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:10:34 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_mask(int **mask, size_t len, size_t height)
-{
-	size_t	j;
-	size_t	i;
+// void	print_mask(int **mask, size_t len, size_t height)
+// {
+// 	size_t	j;
+// 	size_t	i;
 
-	j = 0;
-	i = 0;
-	while (j < height)
-	{
-		i = 0;
-		while (i < len)
-		{
-			printf("%d", mask[j][i]);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-	printf("\n");
-}
+// 	j = 0;
+// 	i = 0;
+// 	while (j < height)
+// 	{
+// 		i = 0;
+// 		while (i < len)
+// 		{
+// 			printf("%d", mask[j][i]);
+// 			i++;
+// 		}
+// 		printf("\n");
+// 		j++;
+// 	}
+// 	printf("\n");
+// }
 
 void	print_int_arr(unsigned long long **arr, int line, int max)
 {
@@ -65,9 +65,7 @@ int	best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 	evaluate_options(data, arr, y, x);
 	res = smallest(arr, *ennemy, y, x);
 	if (res == MAX)
-		return (clean_mask(data->ennemy.mask,
-				data->ennemy.height, data->ennemy.len),
-			free_ull(arr, 2), 'k');
+		return (free_ull(arr, 2), 'k');
 	i = 0;
 	while (i < 8 && arr[0][i] != res)
 		i++;
@@ -94,11 +92,11 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 {
 	int	c;
 
-	if (data->ennemy.dup_map)
-	{
-		ft_free_arr(data->ennemy.dup_map);
-		data->ennemy.dup_map = ft_arr_copy(map);
-	}
+	// if (data->ennemy.dup_map)
+	// {
+	// 	ft_free_arr(data->ennemy.dup_map);
+	// 	data->ennemy.dup_map = ft_arr_copy(map);
+	// }
 	data->ennemy.dup_map = ft_arr_copy(map);
 	if (!data->ennemy.dup_map)
 		return (print_error(MALLOC, 0), free_data(data), exit(1));
@@ -111,6 +109,8 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 			return ;
 		data->ennemy.dup_map[data->ennemy.pos[0]]
 		[data->ennemy.pos[1]] = '!';
+
+		print_coor(data->ennemy.path);
 	}
 	data->ennemy.dup_map[y][x] = 'P';
 }

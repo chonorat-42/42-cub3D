@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:36:31 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/08 12:50:33 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:23:24 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 {
 	size_t	j;
 
+	ennemy->pos[0] = 1;
+	ennemy->pos[1] = 10;
+	printf("ennemy y = %d, ennemy x = %d\n", ennemy->pos[0], ennemy->pos[1]);
 	j = 0;
 	ennemy->target[0] = data->player.y_pos;
 	ennemy->target[1] = data->player.x_pos;
 	ennemy->height = ft_arr_size(map);
 	ennemy->len = ft_strlen(map[0]);
-	ennemy->mask = malloc(sizeof(int *) * ft_arr_size(map));
 	ennemy->path = NULL;
-	while (j < ennemy->height)
-	{
-		ennemy->mask[j] = malloc(sizeof(int) * ennemy->len);
-		j++;
-	}
-	fill_mask(ennemy->mask, map);
 	map[data->ennemy.pos[0]][data->ennemy.pos[1]] = 'X';
 	data->player.l_pos[0] = (int)data->player.y_pos;
 	data->player.l_pos[1] = (int)data->player.x_pos;
@@ -45,6 +41,9 @@ void	add_path(t_data *data, t_path **path, int y, int x)
 	new->next = NULL;
 	new->coor[0] = y + 0.5;
 	new->coor[1] = x + 0.5;
+
+	printf("new_coor x = %f, y = %f\n", new->coor[1], new->coor[0]);
+
 	if (!*path)
 		*path = new;
 	else
@@ -76,6 +75,5 @@ int	update_path(t_data *data, t_path *path, int c, int *pos)
 	if (c == SW)
 		return (add_path(data, &path, pos[0]++, pos[1]--), 0);
 	else
-		return (clean_mask(data->ennemy.mask,
-				data->ennemy.height, data->ennemy.len), 1);
+		return (1);
 }

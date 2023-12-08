@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/08 12:52:51 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:55:00 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,6 @@ typedef struct s_ennemy
 	double			target[2];
 	int				pos[2];
 	int				last;
-	int				**mask;
 	char			**dup_map;
 	struct s_path	*path;
 	size_t			len;

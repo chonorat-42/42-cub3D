@@ -6,26 +6,26 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/06 18:44:51 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:56:03 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	free_ennemy(t_ennemy *ennemy)
-{
-	size_t	j;
+// static void	free_ennemy(t_ennemy *ennemy)
+// {
+// 	size_t	j;
 
-	if (!ennemy->mask)
-		return ;
-	j = 0;
-	while (j < ennemy->height)
-	{
-		free(ennemy->mask[j]);
-		j++;
-	}
-	free(ennemy->mask);
-}
+// 	if (!ennemy->mask)
+// 		return ;
+// 	j = 0;
+// 	while (j < ennemy->height)
+// 	{
+// 		free(ennemy->mask[j]);
+// 		j++;
+// 	}
+// 	free(ennemy->mask);
+// }
 
 static void	free_tex_img(t_tex_img *data, void *mlx)
 {
@@ -55,7 +55,7 @@ static void	free_path(t_path **path)
 void	free_data(t_data *data)
 {
 	free_parser(&data->parser);
-	free_ennemy(&data->ennemy);
+	// free_ennemy(&data->ennemy);
 	free_path(&data->ennemy.path);
 	if (data->map)
 		ft_free_arr(data->map);
