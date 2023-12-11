@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 16:48:18 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/11 18:16:03 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	print_coor(t_path *path)
 
 int	last_is_close(t_path *path, int y, int x)
 {
-	t_path *temp;
+	t_path	*temp;
 
 	temp = path;
 	while (temp->next)
@@ -120,7 +120,6 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 			return ;
 		data->ennemy.dup_map[data->ennemy.pos[0]]
 		[data->ennemy.pos[1]] = '!';
-
 		print_coor(data->ennemy.path);
 	}
 	if (last_is_close(data->ennemy.path, y, x))

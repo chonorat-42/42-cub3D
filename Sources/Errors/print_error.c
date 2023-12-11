@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/04 15:17:58 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:48:32 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	more_parsing_errors(int error)
 		return (ft_dprintf(2, "MAP : Found an empty line\n%s", END));
 	if (error == SEP)
 		return (ft_dprintf(2, "MAP : The map is separated\n%s", END));
+	if (error == DPX)
+		return (ft_dprintf(2, "MAP : Several ennemies found\n%s", END));
 	return (0);
 }
 

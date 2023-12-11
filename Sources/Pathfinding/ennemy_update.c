@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ennemy_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:36:31 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 15:49:33 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/11 18:16:20 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	add_path(t_data *data, t_path **path, int y, int x)
 	new->next = NULL;
 	new->coor[0] = y + 0.5;
 	new->coor[1] = x + 0.5;
-
 	printf("new_coor x = %f, y = %f\n", new->coor[1], new->coor[0]);
-
 	if (!*path)
 		*path = new;
 	else

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/04 15:32:02 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:39:21 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 		exit(1);
 	map_parser(data, &data->parser);
 	get_player_position(data);
+	get_ennemy_position(data);
 	free_parser(&data->parser);
 }

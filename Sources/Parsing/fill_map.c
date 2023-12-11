@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:57:06 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/28 15:01:11 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:38:32 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	fill_string(char **map, char *s, size_t j, size_t length)
 	{
 		if (s[i] == '1' || s[i] == '0')
 			map[j][i] = s[i];
-		else if (ft_ischarinset(s[i], "NWSE"))
+		else if (ft_ischarinset(s[i], "NWSEX"))
 			map[j][i] = '0';
 		else
 			map[j][i] = '?';

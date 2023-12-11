@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/11 16:20:43 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/11 17:49:14 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ enum	e_errors
 	UNKCHAR,
 	EMPTYL,
 	SEP,
+	DPX,
 };
 
 enum	e_directions
@@ -181,6 +182,7 @@ typedef struct s_path
 
 typedef struct s_ennemy
 {
+	int				pres;
 	double			d_pos[2];
 	double			target[2];
 	int				pos[2];
@@ -322,6 +324,7 @@ void	iterative_flood(t_data *data, char **map);
 void	first_position(t_data *data, t_flood **flood, char **map);
 int		add_to_flood(t_flood **flood, size_t j, size_t i);
 void 	free_flood(t_flood **flood);
+void	get_ennemy_position(t_data *data);
 
 //PATHFINDING
 void				pathfinding(t_data *data, char **map, int y, int x);
