@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/07 16:36:46 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/07 22:45:35 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,10 +226,10 @@ int best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 	else
 		arr[0][WEST] = 18446744073709551;
 
-	print_int_arr(arr, 0, 8);
+	//print_int_arr(arr, 0, 8);
 	// printf("n = %llu, s = %llu, e = %llu, w = %llu\n", n, s, e, w);
 	unsigned long long res = smallest(arr, *ennemy, y, x);
-	printf("res = %lld\n", res);
+	//printf("res = %lld\n", res);
 	if (res == 18446744073709551)
 	{
 		clean_mask(data->ennemy.mask, data->ennemy.height, data->ennemy.len);
@@ -293,7 +293,7 @@ void	update_ennemy(t_data *data)
 {
 	//data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
 	//data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
-	printf("x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
+	//printf("x = %d, y = %d\n", data->ennemy.pos[1], data->ennemy.pos[0]);
 	data->ennemy.dup_map[data->ennemy.pos[0]][data->ennemy.pos[1]] = '!';
 	data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]]++;
 	if (data->ennemy.mask[data->ennemy.pos[0]][data->ennemy.pos[1]] >= 9)
@@ -332,7 +332,7 @@ void	print_coor(t_path *path)
 	temp = path;
 	while (temp)
 	{
-		printf("path %zu, y = %d, x = %d\n", i, (int)temp->coor[0], (int)temp->coor[1]);
+		//printf("path %zu, y = %d, x = %d\n", i, (int)temp->coor[0], (int)temp->coor[1]);
 		i++;
 		temp = temp->next;
 	}
@@ -350,11 +350,11 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 	data->ennemy.dup_map = ft_arr_copy(map);
 	init_ennemy(data, &data->ennemy, data->ennemy.dup_map);
 	data->ennemy.dup_map[y][x] = 'P';
-	print_arr(data->ennemy.dup_map);
+	//print_arr(data->ennemy.dup_map);
 	while ((difference(data->ennemy.pos[0], y)) + (difference(data->ennemy.pos[1], x)))
 	{
 		c = best_path(data, y, x, &data->ennemy);
-		printf("c = %d\n", c);
+		//printf("c = %d\n", c);
 		if (c == NORTH)
 			add_path(data, &data->ennemy.path, data->ennemy.pos[0]--, data->ennemy.pos[1]);
 		if (c == SOUTH)
@@ -377,12 +377,12 @@ void	solve_maze(t_data *data, char **map, int y, int x)
 			return ;
 		}
 		update_ennemy(data);
-		print_arr(data->ennemy.dup_map);
+		//print_arr(data->ennemy.dup_map);
 		// print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 		// printf("player x = %d, y = %d\n", (int)x, (int)y);
 	}
 	data->ennemy.dup_map[y][x] = 'P';
-	print_arr(data->ennemy.dup_map);
-	print_coor(data->ennemy.path);
+	//print_arr(data->ennemy.dup_map);
+	//print_coor(data->ennemy.path);
 	// // print_mask(data->ennemy.mask, data->ennemy.len, data->ennemy.height);
 }

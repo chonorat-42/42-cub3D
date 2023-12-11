@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 17:16:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 22:20:06 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,20 @@ struct s_print_rc
 	int	color;
 };
 
+struct	s_sprite
+{
+	double			distance;
+	double			sprite_x;
+	double			sprite_y;
+	double			inv_det;
+	double			x_transform;
+	double			y_transform;
+	int				screen_x;
+	int				sprite_h;
+	int				sprite_w;
+	struct s_img	sprite;
+};
+
 struct	s_raycast
 {
 	double				x_cam;
@@ -223,6 +237,7 @@ struct	s_raycast
 	struct s_img		wall;
 	double				wall_hit_point;
 	struct s_print_rc	print;
+	struct s_sprite		ennemy;
 };
 
 struct	s_player
@@ -255,6 +270,8 @@ typedef struct s_data
 	int					mouse_pos[2];
 	int					reset_mouse;
 	int					mouse_enabled;
+	double				*zbuffer;
+	struct s_img		ghost;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
@@ -311,10 +328,11 @@ int		print_cub(t_data *data);
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 int		wall_hit(t_data *data, int pos_x, int pos_y);
+void	print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
 void	raycasting(t_data *data, struct s_raycast *data_rc);
-int		get_fog(struct s_raycast *data_rc, int color, double fog_intensity);
+int		get_fog(int color, double fog_intensity, double distance);
 void	print_column(t_data *data, struct s_raycast *data_rc, int x);
 
 //MOVE

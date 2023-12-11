@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 17:19:01 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/08 22:14:18 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	get_screen_res(t_data *data)
 
 int	start_mlx(t_data *data)
 {
+	int	sprite;
+
 	get_screen_res(data);
 	data->mlx.window = mlx_new_window(data->mlx.mlx, data->screen_res[0],
 			data->screen_res[1], "cub3D");
@@ -52,6 +54,10 @@ int	start_mlx(t_data *data)
 	data->minimap_ratio = get_ratio(data, ft_strlen(data->map[0]), ft_arr_size(data->map)) / 8;
 	initstart_ennemy(data);
 	mlx_loop_hook(data->mlx.mlx, print_cub, data);
+	data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx, "Textures/ghost.xpm", &sprite, &sprite);
+	if (!data->ghost.img)
+		printf("KO texture\n");
+	data->zbuffer = NULL;
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);
 	mlx_hook(data->mlx.window, ON_DESTROY, 0L, exit_prog, data);
