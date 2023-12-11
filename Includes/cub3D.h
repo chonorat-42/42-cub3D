@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/08 22:20:06 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:20:43 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@
 # define SCREEN_RES_X 1920
 # define SCREEN_RES_Y 1080
 
+#define MAX 1000000
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "libft.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -77,10 +79,10 @@ enum	e_errors
 
 enum	e_directions
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
+	N,
+	S,
+	E,
+	W,
 	NE,
 	NW,
 	SE,
@@ -183,7 +185,6 @@ typedef struct s_ennemy
 	double			target[2];
 	int				pos[2];
 	int				last;
-	int				**mask;
 	char			**dup_map;
 	struct s_path	*path;
 	size_t			len;
@@ -322,13 +323,26 @@ void	first_position(t_data *data, t_flood **flood, char **map);
 int		add_to_flood(t_flood **flood, size_t j, size_t i);
 void 	free_flood(t_flood **flood);
 
+//PATHFINDING
+void				pathfinding(t_data *data, char **map, int y, int x);
+size_t				difference(int a, int b);
+double				double_difference(double a, double b);
+void				clean_mask(int **mask, size_t height, size_t len);
+void				free_ull(unsigned long long **arr, int line);
+void				fill_mask(int **mask, char **map);
+void				init_ennemy(t_data *data, t_ennemy *ennemy, char **map);
+int					update_path(t_data *data, t_path **path, int c, int *pos);
+unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x);
+void				evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
+void				evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
+void 				evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
 //PRINT
-int		print_cub(t_data *data);
-void	print_minimap(t_data *data);
-void	print_player(t_data *data, double radius, int color);
-int		wall_hit(t_data *data, int pos_x, int pos_y);
-void	print_sprite(t_data *data, struct s_raycast *data_rc);
+int					print_cub(t_data *data);
+void				print_minimap(t_data *data);
+void				print_player(t_data *data, double radius, int color);
+int					wall_hit(t_data *data, int pos_x, int pos_y);
+void				print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
 void	raycasting(t_data *data, struct s_raycast *data_rc);
@@ -347,6 +361,7 @@ void	rotate_cam(t_data *data);
 void	free_data(t_data *data);
 void	free_parser(t_parser *parser);
 void	free_maplst(t_dlst *lst);
+void	free_path(t_path **path);
 
 //EXIT
 int		exit_prog(t_data *data);
@@ -354,7 +369,5 @@ int		exit_prog(t_data *data);
 //PRINTS
 void	print_arr(char **arr);
 void	print_dlst(t_dlst *lst);
-
-void	solve_maze(t_data *data, char **map, int y, int x);
 
 #endif
