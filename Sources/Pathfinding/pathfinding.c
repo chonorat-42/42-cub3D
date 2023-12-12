@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 18:16:03 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:59:38 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,7 @@
 // 		j++;
 // 	}
 // 	printf("\n");
-// }
-
-void	print_int_arr(unsigned long long **arr, int line, int max)
-{
-	int	i;
-
-	i = 0;
-	while (i < max)
-	{
-		printf("arr[%d][%d] = %lld\n", line, i, arr[line][i]);
-		i++;
-	}
-}
+// }}
 
 int	best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 {
@@ -70,22 +58,6 @@ int	best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 	while (i < 8 && arr[0][i] != res)
 		i++;
 	return (free_ull(arr, 2), i);
-}
-
-void	print_coor(t_path *path)
-{
-	t_path	*temp;
-	size_t	i;
-
-	i = 0;
-	temp = path;
-	while (temp)
-	{
-		printf("path %zu, y = %d, x = %d\n",
-			i, (int)temp->coor[0], (int)temp->coor[1]);
-		i++;
-		temp = temp->next;
-	}
 }
 
 int	last_is_close(t_path *path, int y, int x)
@@ -120,7 +92,6 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 			return ;
 		data->ennemy.dup_map[data->ennemy.pos[0]]
 		[data->ennemy.pos[1]] = '!';
-		print_coor(data->ennemy.path);
 	}
 	if (last_is_close(data->ennemy.path, y, x))
 		update_path(data, &data->ennemy.path, c, data->ennemy.pos);

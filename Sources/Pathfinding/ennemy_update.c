@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ennemy_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:36:31 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 18:16:20 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:57:42 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 {
 	size_t	j;
 
-	printf("ennemy y = %d, ennemy x = %d\n", ennemy->pos[0], ennemy->pos[1]);
 	j = 0;
 	ennemy->target[0] = data->player.y_pos;
 	ennemy->target[1] = data->player.x_pos;
@@ -38,8 +37,7 @@ void	add_path(t_data *data, t_path **path, int y, int x)
 		return (print_error(MALLOC, 0), free_data(data), exit(1));
 	new->next = NULL;
 	new->coor[0] = y + 0.5;
-	new->coor[1] = x + 0.5;
-	printf("new_coor x = %f, y = %f\n", new->coor[1], new->coor[0]);
+	new->coor[1] = x + 0.5;\
 	if (!*path)
 		*path = new;
 	else

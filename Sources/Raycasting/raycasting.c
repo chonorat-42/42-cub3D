@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 12:32:21 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:04:08 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,26 +85,28 @@ static void	get_wall(t_data *data, struct s_raycast *data_rc)
 					+ (1 - (double)data_rc->y_step) * 0.5) / data_rc->ydir_ray);
 }
 
-void	raycasting(t_data *data, struct s_raycast *data_rc)
+void	raycasting(t_data *data)
 {
-	int	x;
+	int					x;
+	struct s_raycast	data_rc;
 
 	x = 0;
+	init_raycast(&data_rc);
 	data->zbuffer = malloc((data->screen_res[0] + 1) * sizeof(double));
 	ft_bzero(data->zbuffer, data->screen_res[0] + 1);
-	data_rc->height = data->screen_res[1];
-	data_rc->width = data->screen_res[0];
-	while (x < data_rc->width)
+	data_rc.height = data->screen_res[1];
+	data_rc.width = data->screen_res[0];
+	while (x < data_rc.width)
 	{
-		get_value(data, data_rc, x);
-		get_initial_dist(data_rc);
-		get_wall(data, data_rc);
-		print_column(data, data_rc, x);
-		data->zbuffer[x] = data_rc->pwall_dist;
+		get_value(data, &data_rc, x);
+		get_initial_dist(&data_rc);
+		get_wall(data, &data_rc);
+		print_column(data, &data_rc, x);
+		data->zbuffer[x] = data_rc.pwall_dist;
 		x++;
 	}
 	if (data->ennemy.pres)
-		print_sprite(data, data_rc);
+		print_sprite(data, &data_rc);
 	if (data->zbuffer)
 	{
 		free(data->zbuffer);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 14:21:55 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:06:18 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ESC 65307
 # define MAJ 65505
 # define TAB 65289
+# define F1 65470
 
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
@@ -42,7 +43,8 @@
 # define SCREEN_RES_X 1920
 # define SCREEN_RES_Y 1080
 
-#define MAX 1000000
+# define MAX 1000000
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -283,6 +285,7 @@ typedef struct s_data
 	int					reset_mouse;
 	int					mouse_enabled;
 	double				*zbuffer;
+	int					pause;
 	struct s_img		ghost;
 	struct s_player		player;
 	struct s_parser		parser;
@@ -351,14 +354,14 @@ void				evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
 void 				evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
 //PRINT
-int					print_cub(t_data *data);
+int					execution(t_data *data);
 void				print_minimap(t_data *data);
 void				print_player(t_data *data, double radius, int color);
 int					wall_hit(t_data *data, int pos_x, int pos_y);
 void				print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
-void	raycasting(t_data *data, struct s_raycast *data_rc);
+void	raycasting(t_data *data);
 int		get_fog(int color, double fog_intensity, double distance);
 void	print_column(t_data *data, struct s_raycast *data_rc, int x);
 

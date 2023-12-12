@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/08 12:55:28 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:01:50 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_data(t_data *data)
 	data->reset_mouse = 0;
 	data->mouse_enabled = 0;
 	data->map = NULL;
+	data->pause = 0;
 	init_player(data);
 	init_tex_img(&data->tex_img);
 	data->mlx.mlx = mlx_init();

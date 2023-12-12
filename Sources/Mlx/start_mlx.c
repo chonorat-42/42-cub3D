@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/11 15:50:55 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 19:06:37 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	start_mlx(t_data *data)
 	data->mlx.frame.addr = mlx_get_data_addr(data->mlx.frame.img, &data->mlx.frame.bpp, &data->mlx.frame.line_length, &data->mlx.frame.endian);
 	data->minimap_ratio = get_ratio(data, ft_strlen(data->map[0]), ft_arr_size(data->map)) / 8;
 	initstart_ennemy(data);
-	mlx_loop_hook(data->mlx.mlx, print_cub, data);
+	mlx_loop_hook(data->mlx.mlx, execution, data);
 	data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx, "Textures/ghost.xpm", &sprite, &sprite);
 	if (!data->ghost.img)
 		printf("KO texture\n");
