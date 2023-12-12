@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:26 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 12:30:44 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ int	print_cub(t_data *data)
 {
 	struct s_raycast	data_rc;
 
-	if (difference(data->ennemy.d_pos[0], data->player.y_pos) <= 0.25 && difference(data->ennemy.d_pos[1], data->player.x_pos) <= 0.25)
-		return (printf("mort\n"), free_data(data), exit(0), 0);
-	if (data->ennemy.target[0] != data->player.y_pos
-		|| data->ennemy.target[1] != data->player.x_pos
-		|| !data->ennemy.path)
+	if (data->ennemy.pres)
 	{
-		pathfinding(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
+		if (difference(data->ennemy.d_pos[0], data->player.y_pos) <= 0.25 && difference(data->ennemy.d_pos[1], data->player.x_pos) <= 0.25)
+			return (printf("mort\n"), free_data(data), exit(0), 0);
+		if (data->ennemy.target[0] != data->player.y_pos
+			|| data->ennemy.target[1] != data->player.x_pos
+			|| !data->ennemy.path)
+		{
+			pathfinding(data, data->map, (int)data->player.y_pos, (int)data->player.x_pos);
+		}
+		move_ennemy(data);
 	}
-	move_ennemy(data);
 	init_raycast(&data_rc);
 	get_move(data);
 	raycasting(data, &data_rc);

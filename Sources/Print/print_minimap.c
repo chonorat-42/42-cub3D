@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 15:08:58 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 12:32:56 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void	print_minimap(t_data *data)
 		index[0]++;
 	}
 	print_player(data, 0.25 * data->minimap_ratio, (int)0xff0000);
-	print_ennemy(data, 0.25 * data->minimap_ratio, (int)0xffd700);
+	if (data->ennemy.pres)
+		print_ennemy(data, 0.25 * data->minimap_ratio, (int)0xffd700);
 }

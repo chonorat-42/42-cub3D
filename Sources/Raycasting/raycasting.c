@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/09 11:10:27 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:32:21 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	raycasting(t_data *data, struct s_raycast *data_rc)
 		data->zbuffer[x] = data_rc->pwall_dist;
 		x++;
 	}
-	print_sprite(data, data_rc);
+	if (data->ennemy.pres)
+		print_sprite(data, data_rc);
 	if (data->zbuffer)
 	{
 		free(data->zbuffer);
