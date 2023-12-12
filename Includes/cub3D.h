@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/11 17:49:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:21:55 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,14 @@ struct	s_move
 	int	sprint;
 };
 
+typedef struct s_exit
+{
+	double 			x;
+	double 			y;
+	size_t			nbr;
+	struct s_exit	*next;
+}		t_exit;
+
 typedef struct s_path
 {
 	double			coor[2];
@@ -270,6 +278,7 @@ typedef struct s_data
 	char				**map;
 	int					minimap_ratio;
 	struct s_ennemy		ennemy;
+	struct s_exit		*exit;
 	int					mouse_pos[2];
 	int					reset_mouse;
 	int					mouse_enabled;
@@ -325,6 +334,7 @@ void	first_position(t_data *data, t_flood **flood, char **map);
 int		add_to_flood(t_flood **flood, size_t j, size_t i);
 void 	free_flood(t_flood **flood);
 void	get_ennemy_position(t_data *data);
+void	get_exit_position(t_data *data);
 
 //PATHFINDING
 void				pathfinding(t_data *data, char **map, int y, int x);

@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 12:32:56 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:35:07 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,43 @@ static void	print_ennemy(t_data *data, double radius, int color)
 	}
 }
 
+static void	print_exit(t_data *data, double radius, int color, t_exit *temp)
+{
+	size_t	pixel[2];
+	double	exit_x;
+	double	exit_y;
+
+	if (radius < 1.5)
+		radius = 1.5;
+	exit_x = (temp->x * data->minimap_ratio) + 10;
+	exit_y = (temp->y * data->minimap_ratio) + 10;
+	pixel[0] = exit_x - radius;
+	while (pixel[0] <= exit_x + radius)
+	{
+		pixel[1] = exit_y - radius;
+		while (pixel[1] <= exit_y + radius)
+		{
+			if (pow(pixel[0] - exit_x, 2)
+				+ pow(pixel[1] - exit_y, 2) <= pow(radius, 2))
+				pixel_to_frame(data, pixel[0], pixel[1], color);
+			pixel[1]++;
+		}
+		pixel[0]++;
+	}
+}
+
+void	print_exit_loop(t_data *data, t_exit *exit)
+{
+	t_exit	*temp;
+
+	temp = exit;
+	while (temp)
+	{
+		print_exit(data, 0.25 * data->minimap_ratio, (int)0xffa0ff, temp);
+		temp = temp->next;
+	}
+}
+
 void	print_minimap(t_data *data)
 {
 	size_t	index[2];
@@ -98,4 +135,6 @@ void	print_minimap(t_data *data)
 	print_player(data, 0.25 * data->minimap_ratio, (int)0xff0000);
 	if (data->ennemy.pres)
 		print_ennemy(data, 0.25 * data->minimap_ratio, (int)0xffd700);
+	if (data->exit)
+		print_exit_loop(data, data->exit);
 }

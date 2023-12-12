@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:39:45 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 18:15:32 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:19:12 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,50 @@ void	get_ennemy_position(t_data *data)
 {
 	if (!ennemy_present(data->parser.map, data))
 		return ;
+}
+
+static int	add_exit(t_exit **lst, size_t j, size_t i)
+{
+	t_exit	*new;
+	t_exit	*temp;
+
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (print_error(MALLOC, 0), 1);
+	new->next = NULL;
+	new->y = j + 0.5;
+	new->x = i + 0.5;
+	if (!*lst)
+		*lst = new;
+	else
+	{
+		temp = *lst;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+	}
+	return (0);
+}
+
+void	get_exit_position(t_data *data)
+{
+	size_t	j;
+	size_t	i;
+
+	data->exit = NULL;
+	j = 0;
+	while (data->parser.map[j])
+	{
+		i = 0;
+		while (data->parser.map[j][i])
+		{
+			if (data->parser.map[j][i] == 'V')
+			{
+				if (add_exit(&data->exit, j, i))
+					return (free_data(data), exit(1));
+			}
+			i++;
+		}
+		j++;
+	}
 }

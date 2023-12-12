@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:57:47 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 17:38:06 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:37:51 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_unknown_char(char **map)
 	j = 0;
 	while (map[j])
 	{
-		if (!ft_isstronlyset(map[j], "01NSWEX "))
+		if (!ft_isstronlyset(map[j], "01NSWEXV "))
 			return (print_error(PARSING, UNKCHAR), 1);
 		j++;
 	}
