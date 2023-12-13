@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 13:37:20 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 15:03:31 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,25 @@ static void	set_pause(t_data *data)
 		mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
 }
 
-int	mouse_hook(int mousekey, t_data *data)
+int	mouse_hook(int mousekey, int x, int y, t_data *data)
 {
-	(void)data;
 	printf("mousekey[%d]\n", mousekey);
+	(void)x;
+	(void)y;
+	if (data->pause_menu.in_pause && mousekey == L_MOUSE)
+	{
+		if (data->pause_menu.on_resume)
+		{
+			data->pause_menu.in_options = 0;
+			data->pause_menu.in_pause = 0;
+			data->mouse_enabled = 1;
+			mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
+		}
+		if (data->pause_menu.on_options)
+			data->pause_menu.in_options = 0;
+		if (data->pause_menu.on_exit)
+			exit_prog(data);
+	}
 	return (1);
 }
 

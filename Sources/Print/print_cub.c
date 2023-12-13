@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 14:19:35 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 14:43:52 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	game_execution(t_data *data)
 
 static void	mouse_on(t_data *data)
 {
-	printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
+	//printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
 	if (data->pause_menu.in_options)
 		printf("WIP\n");
 	else

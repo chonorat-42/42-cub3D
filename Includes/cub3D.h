@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 14:19:13 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 14:52:31 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define MAJ 65505
 # define TAB 65289
 # define F1 65470
+
+# define L_MOUSE 1
 
 # define FONT "-*-*-*-*-*-*-24-230-*-*-*-*-iso8859-*"
 
@@ -286,16 +288,16 @@ struct s_pause
 
 typedef struct s_data
 {
-	struct s_mlx_data	mlx;
 	int					screen_res[2];
 	char				**map;
 	int					minimap_ratio;
-	struct s_ennemy		ennemy;
-	struct s_exit		*exit;
 	int					mouse_pos[2];
 	int					reset_mouse;
 	int					mouse_enabled;
 	double				*zbuffer;
+	struct s_mlx_data	mlx;
+	struct s_ennemy		ennemy;
+	struct s_exit		*exit;
 	struct s_img		ghost;
 	struct s_player		player;
 	struct s_parser		parser;
@@ -314,7 +316,7 @@ void	pixel_to_frame(t_data *data, int x, int y, int color);
 //HOOK
 int		key_press(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
-int		mouse_hook(int mousekey, t_data *data);
+int		mouse_hook(int mousekey, int x, int y, t_data *data);
 
 //INITIALIZATION
 void	init_data(t_data *data);

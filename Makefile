@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/11 17:59:46 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/13 14:26:53 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes
+CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
 MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -ggdb3
 RM = @rm -rf
 CC = @cc
