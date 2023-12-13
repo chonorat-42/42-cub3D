@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 14:52:31 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 16:41:06 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@
 
 # define L_MOUSE 1
 
+//FONT
 # define FONT "-*-*-*-*-*-*-24-230-*-*-*-*-iso8859-*"
 
+//SPEED
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
 # define ENNEMY_SPEED 0.0375
 # define CAM_SPEED 0.05
 # define MOUSE_SPEED 0.005
 
+//RESOLUTION
 # define SCREEN_RES_X 1920
 # define SCREEN_RES_Y 1080
 
@@ -82,6 +85,22 @@ enum	e_errors
 	EMPTYL,
 	SEP,
 	DPX,
+};
+
+enum	e_fog
+{
+	LOW,
+	MEDIUM,
+	HIGH,
+	VERY_HIGH,
+};
+
+enum	e_difficulty
+{
+	EASY,
+	NORMAL,
+	HARD,
+	IMPOSSIBLE,
 };
 
 enum	e_directions
@@ -280,10 +299,13 @@ typedef struct s_flood
 struct s_pause
 {
 	int	in_pause;
-	int	in_options;
 	int	on_resume;
 	int	on_options;
 	int	on_exit;
+	int	in_options;
+	int	on_difficulty;
+	int	on_fog;
+	int	on_back;
 };
 
 typedef struct s_data
@@ -294,6 +316,9 @@ typedef struct s_data
 	int					mouse_pos[2];
 	int					reset_mouse;
 	int					mouse_enabled;
+	int					difficulty;
+	int					fog_setting;
+	double				fog_density;
 	double				*zbuffer;
 	struct s_mlx_data	mlx;
 	struct s_ennemy		ennemy;

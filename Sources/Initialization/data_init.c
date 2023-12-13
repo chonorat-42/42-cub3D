@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/13 14:42:08 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:10:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	init_pause(t_data *data)
 	data->pause_menu.on_resume = 0;
 	data->pause_menu.on_options = 0;
 	data->pause_menu.on_exit = 0;
+	data->pause_menu.on_back = 0;
+	data->pause_menu.on_difficulty = 0;
+	data->pause_menu.on_fog = 0;
 }
 
 void	init_data(t_data *data)
@@ -77,13 +80,15 @@ void	init_data(t_data *data)
 	data->reset_mouse = 0;
 	data->mouse_enabled = 1;
 	data->map = NULL;
+	data->difficulty = NORMAL;
+	data->fog_setting = HIGH;
+	data->fog_density = 1.5;
 	data->pause_menu.in_pause = 0;
 	data->pause_menu.in_options = 0;
 	init_pause(data);
 	init_player(data);
 	init_tex_img(&data->tex_img);
 	data->mlx.mlx = mlx_init();
-	// data->ennemy.mask = NULL;
 	if (!data->mlx.mlx)
 		return (free_data(data), print_error(MALLOC, 0), exit(1));
 }

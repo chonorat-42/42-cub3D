@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 15:03:31 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:02:45 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,45 @@ static void	set_pause(t_data *data)
 	data->mouse_enabled %= 2;
 	data->pause_menu.in_pause++;
 	data->pause_menu.in_pause %= 2;
+	data->pause_menu.in_options = 0;
 	if (data->pause_menu.in_pause)
 		mlx_mouse_show(data->mlx.mlx, data->mlx.window);
 	else if (!data->pause_menu.in_pause)
 		mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
+}
+
+static void	change_difficulty(t_data *data)
+{
+	if (data->difficulty == IMPOSSIBLE)
+		data->difficulty = EASY;
+	else
+		data->difficulty++;
+}
+
+static void	change_fog(t_data *data)
+{
+	if (data->fog_setting == VERY_HIGH)
+		data->fog_setting = LOW;
+	else
+		data->fog_setting++;
+	if (data->fog_setting == LOW)
+		data->fog_density = 0.5;
+	else if (data->fog_setting == MEDIUM)
+		data->fog_density = 1.0;
+	else if (data->fog_setting == HIGH)
+		data->fog_density = 1.5;
+	else if (data->fog_setting == VERY_HIGH)
+		data->fog_density = 2.0;
+}
+
+void	options_hook(t_data *data)
+{
+	if (data->pause_menu.on_back)
+		data->pause_menu.in_options = 0;
+	if (data->pause_menu.on_difficulty)
+		change_difficulty(data);
+	if (data->pause_menu.on_fog)
+		change_fog(data);
 }
 
 int	mouse_hook(int mousekey, int x, int y, t_data *data)
@@ -29,7 +64,8 @@ int	mouse_hook(int mousekey, int x, int y, t_data *data)
 	printf("mousekey[%d]\n", mousekey);
 	(void)x;
 	(void)y;
-	if (data->pause_menu.in_pause && mousekey == L_MOUSE)
+	if (data->pause_menu.in_pause && mousekey == L_MOUSE
+		&& !data->pause_menu.in_options)
 	{
 		if (data->pause_menu.on_resume)
 		{
@@ -39,10 +75,12 @@ int	mouse_hook(int mousekey, int x, int y, t_data *data)
 			mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
 		}
 		if (data->pause_menu.on_options)
-			data->pause_menu.in_options = 0;
+			data->pause_menu.in_options = 1;
 		if (data->pause_menu.on_exit)
 			exit_prog(data);
 	}
+	if (data->pause_menu.in_options)
+		options_hook(data);
 	return (1);
 }
 

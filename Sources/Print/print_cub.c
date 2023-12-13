@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 14:43:52 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:04:44 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,43 +63,81 @@ static void	game_execution(t_data *data)
 		data->mlx.frame.img, 0, 0);
 }
 
-static void	mouse_on(t_data *data)
+static void	mouse_on_pause(t_data *data)
 {
-	//printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
-	if (data->pause_menu.in_options)
-		printf("WIP\n");
-	else
+	if (data->mouse_pos[0] >= 925 && data->mouse_pos[0] <= 1015
+		&& data->mouse_pos[1] >= 460 && data->mouse_pos[1] <= 490)
 	{
-		if (data->mouse_pos[0] >= 925 && data->mouse_pos[0] <= 1015
-			&& data->mouse_pos[1] >= 460 && data->mouse_pos[1] <= 490)
-		{
-			mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
-				(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, ">");
-			data->pause_menu.on_resume = 1;
-		}
-		else if (data->mouse_pos[0] >= 920 && data->mouse_pos[0] <= 1020
-			&& data->mouse_pos[1] >= 520 && data->mouse_pos[1] <= 550)
-			{
-			mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
-				(data->screen_res[1] >> 1), (int)0xFFFFFF, ">");
-			data->pause_menu.on_options = 1;
-			}
-		else if (data->mouse_pos[0] >= 940 && data->mouse_pos[0] <= 995
-			&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 600)
-			{
-			mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
-				(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
-				data->pause_menu.on_exit = 1;
-			}
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
+			(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, ">");
+		data->pause_menu.on_resume = 1;
 	}
+	else if (data->mouse_pos[0] >= 920 && data->mouse_pos[0] <= 1020
+		&& data->mouse_pos[1] >= 520 && data->mouse_pos[1] <= 550)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
+			(data->screen_res[1] >> 1), (int)0xFFFFFF, ">");
+		data->pause_menu.on_options = 1;
+	}
+	else if (data->mouse_pos[0] >= 940 && data->mouse_pos[0] <= 995
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 600)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 60,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
+			data->pause_menu.on_exit = 1;
+	}
+}
+
+
+static void	mouse_on_options(t_data *data)
+{
+	printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
+	if (data->mouse_pos[0] >= 940 && data->mouse_pos[0] <= 995
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 600)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 50,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
+			data->pause_menu.on_back = 1;
+	}
+	else if (data->mouse_pos[0] >= 850 && data->mouse_pos[0] <= 1150
+		&& data->mouse_pos[1] >= 520 && data->mouse_pos[1] <= 550)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 130,
+			(data->screen_res[1] >> 1), (int)0xFFFFFF, ">");
+			data->pause_menu.on_fog = 1;
+	}
+	else if (data->mouse_pos[0] >= 850 && data->mouse_pos[0] <= 1150
+		&& data->mouse_pos[1] >= 470 && data->mouse_pos[1] <= 500)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 130,
+			(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, ">");
+			data->pause_menu.on_difficulty = 1;
+	}
+}
+
+static void	show_difficulty(t_data *data)
+{
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 100,
+		(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, "Difficulty :");
+	if (data->difficulty == EASY)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 60,
+		(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, "EASY");
+	else if (data->difficulty == NORMAL)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 60,
+		(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, "NORMAL");
+	else if (data->difficulty == HARD)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 60,
+		(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, "HARD");
+	else if (data->difficulty == IMPOSSIBLE)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 60,
+		(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, "IMPOSSIBLE");
 }
 
 static void	show_pause_text(t_data *data)
 {
-	mlx_set_font(data->mlx.mlx, data->mlx.window, FONT);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
 		data->mlx.frame.img, 0, 0);
-	mouse_on(data);
+	mouse_on_pause(data);
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 25,
 		(data->screen_res[1] >> 1) - 300, (int)0xFFFFFF, "PAUSE");
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 27,
@@ -110,12 +148,49 @@ static void	show_pause_text(t_data *data)
 		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Exit");
 }
 
+static void	show_fog(t_data *data)
+{
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 100,
+		(data->screen_res[1] >> 1), (int)0xFFFFFF, "Fog density :");
+	if (data->fog_setting == LOW)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		(data->screen_res[1] >> 1), (int)0xFFFFFF, "LOW");
+	else if (data->fog_setting == MEDIUM)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		(data->screen_res[1] >> 1), (int)0xFFFFFF, "MEDIUM");
+	else if (data->fog_setting == HIGH)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		(data->screen_res[1] >> 1), (int)0xFFFFFF, "HIGH");
+	else if (data->fog_setting == VERY_HIGH)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		(data->screen_res[1] >> 1), (int)0xFFFFFF, "VERY HIGH");
+}
+
+static void	show_options_text(t_data *data)
+{
+	raycasting(data);
+	print_minimap(data);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
+		data->mlx.frame.img, 0, 0);
+	mouse_on_options(data);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 35,
+		(data->screen_res[1] >> 1) - 300, (int)0xFFFFFF, "OPTIONS");
+	show_fog(data);
+	show_difficulty(data);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 17,
+		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Back");
+}
+
 static void	pause_menu(t_data *data)
 {
 	init_pause(data);
+	mlx_set_font(data->mlx.mlx, data->mlx.window, FONT);
 	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
 			&data->mouse_pos[0], &data->mouse_pos[1]);
-	show_pause_text(data);
+	if (data->pause_menu.in_options)
+		show_options_text(data);
+	else
+		show_pause_text(data);
 }
 
 int	execution(t_data *data)

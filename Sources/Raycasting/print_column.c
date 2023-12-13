@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:35:56 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/08 22:15:20 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:20:48 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	print_texture(t_data *data, struct s_raycast *data_rc, int x, int y)
 						+ (data_rc->print.h_line / 2)) * 256)
 				/ data_rc->print.h_line);
 		color = get_pixel_color(data_rc, tex_x, tex_y);
-		color = get_fog(color, 1.8, data_rc->pwall_dist);
+		color = get_fog(color, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, y, color);
 		y++;
 	}
@@ -129,7 +129,7 @@ void	print_sprite(t_data *data, struct s_raycast *data_rc)
 				color = get_color_sprite(data, tex_x, tex_y);
 				if (color != (int)0x0)
 				{
-					color = get_fog(color, 1.0, data->zbuffer[index]);
+					color = get_fog(color, data->fog_density, data->zbuffer[index]);
 					pixel_to_frame(data, index, y, color);
 				}
 				y++;
@@ -159,9 +159,9 @@ void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	y = data_rc->print.end;
 	while (y < data_rc->height)
 	{
-		data_rc->print.color = get_fog((int)0x1a1a1a, 1.8, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)0x1a1a1a, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, y, data_rc->print.color);
-		data_rc->print.color = get_fog((int)0x0, 1.8, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)0x0, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, data_rc->height - y++ - 1,
 			data_rc->print.color);
 	}
