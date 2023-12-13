@@ -6,11 +6,30 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 19:07:41 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 13:37:20 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	set_pause(t_data *data)
+{
+	data->mouse_enabled++;
+	data->mouse_enabled %= 2;
+	data->pause_menu.in_pause++;
+	data->pause_menu.in_pause %= 2;
+	if (data->pause_menu.in_pause)
+		mlx_mouse_show(data->mlx.mlx, data->mlx.window);
+	else if (!data->pause_menu.in_pause)
+		mlx_mouse_hide(data->mlx.mlx, data->mlx.window);
+}
+
+int	mouse_hook(int mousekey, t_data *data)
+{
+	(void)data;
+	printf("mousekey[%d]\n", mousekey);
+	return (1);
+}
 
 int	key_press(int keycode, t_data *data)
 {
@@ -32,15 +51,7 @@ int	key_press(int keycode, t_data *data)
 	else if (keycode == ESC)
 		exit_prog(data);
 	else if (keycode == F1)
-	{
-		data->pause++;
-		data->pause %= 2;
-	}
-	else if (keycode == TAB)
-	{
-		data->mouse_enabled++;
-		data->mouse_enabled %= 2;
-	}
+		set_pause(data);
 	return (1);
 }
 

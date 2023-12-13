@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 19:06:18 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 14:19:13 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define MAJ 65505
 # define TAB 65289
 # define F1 65470
+
+# define FONT "-*-*-*-*-*-*-24-230-*-*-*-*-iso8859-*"
 
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
@@ -273,6 +275,15 @@ typedef struct s_flood
 	struct s_flood *next;
 }		t_flood;
 
+struct s_pause
+{
+	int	in_pause;
+	int	in_options;
+	int	on_resume;
+	int	on_options;
+	int	on_exit;
+};
+
 typedef struct s_data
 {
 	struct s_mlx_data	mlx;
@@ -285,12 +296,12 @@ typedef struct s_data
 	int					reset_mouse;
 	int					mouse_enabled;
 	double				*zbuffer;
-	int					pause;
 	struct s_img		ghost;
 	struct s_player		player;
 	struct s_parser		parser;
 	struct s_tex_img	tex_img;
 	struct s_trgb		colors;
+	struct s_pause		pause_menu;
 }		t_data;
 
 //ERROR
@@ -303,12 +314,14 @@ void	pixel_to_frame(t_data *data, int x, int y, int color);
 //HOOK
 int		key_press(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
+int		mouse_hook(int mousekey, t_data *data);
 
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
 void	init_raycast(struct s_raycast *data_rc);
 void	initstart_ennemy(t_data *data);
+void	init_pause(t_data *data);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);

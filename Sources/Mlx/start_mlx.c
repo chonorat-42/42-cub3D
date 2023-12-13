@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 19:06:37 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 13:21:18 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	start_mlx(t_data *data)
 	if (!data->ghost.img)
 		printf("KO texture\n");
 	data->zbuffer = NULL;
+	mlx_mouse_hook(data->mlx.window, mouse_hook, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);
 	mlx_hook(data->mlx.window, ON_DESTROY, 0L, exit_prog, data);
