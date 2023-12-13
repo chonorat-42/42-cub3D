@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/13 17:45:31 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 23:52:12 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_pause(t_data *data)
 	data->pause_menu.on_difficulty = 0;
 	data->pause_menu.on_minimap = 0;
 	data->pause_menu.on_fog = 0;
+	data->pause_menu.on_retry = 0;
 }
 
 void	init_data(t_data *data)
@@ -85,6 +86,8 @@ void	init_data(t_data *data)
 	data->difficulty = HARD;
 	data->fog_setting = HIGH;
 	data->fog_density = 1.5;
+	data->in_death = 0;
+	data->in_escape = 0;
 	data->pause_menu.in_pause = 0;
 	data->pause_menu.in_options = 0;
 	init_pause(data);

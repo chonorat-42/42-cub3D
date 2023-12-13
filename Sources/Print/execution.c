@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cub.c                                        :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 18:08:42 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 00:39:49 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,105 @@ static void	move_ennemy(t_data *data)
 	free_path(&data->ennemy.path);
 }
 
+static void	print_background(t_data *data)
+{
+	int	index[2];
+
+	index[0] = 0;
+	while (index[0] < data->screen_res[0])
+	{
+		index[1] = 0;
+		while (index[1] < data->screen_res[1])
+			pixel_to_frame(data, index[0], index[1]++, (int)0x0);
+		index[0]++;
+	}
+}
+
+static void	mouse_on_death(t_data *data)
+{
+	if (data->mouse_pos[0] >= 870 && data->mouse_pos[0] <= 930
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
+	{
+		data->pause_menu.on_retry = 1;
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 120,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, ">");
+	}
+	else if (data->mouse_pos[0] >= 980 && data->mouse_pos[0] <= 1090
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
+	{
+		data->pause_menu.on_exit = 1;
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 145,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "<");
+	}
+}
+
+static void	mouse_on_escape(t_data *data)
+{
+	if (data->mouse_pos[0] >= 870 && data->mouse_pos[0] <= 955
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
+	{
+		data->pause_menu.on_retry = 1;
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 120,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, ">");
+	}
+	else if (data->mouse_pos[0] >= 980 && data->mouse_pos[0] <= 1090
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
+	{
+		data->pause_menu.on_exit = 1;
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 145,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "<");
+	}
+}
+
+static void	escape_screen(t_data *data)
+{
+	print_background(data);
+	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
+			&data->mouse_pos[0], &data->mouse_pos[1]);
+	printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
+	mlx_mouse_show(data->mlx.mlx, data->mlx.window);
+	mlx_set_font(data->mlx.mlx, data->mlx.window, HEAD_FONT);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
+		data->mlx.frame.img, 0, 0);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 175,
+			(data->screen_res[1] >> 1) - 50, (int)0xff00, "YOU ESCAPED");
+	mlx_set_font(data->mlx.mlx, data->mlx.window, STD_FONT);
+	mouse_on_escape(data);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 90,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "Restart");
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 20,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "Quit game");
+}
+
+static void	death_screen(t_data *data)
+{
+	print_background(data);
+	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
+			&data->mouse_pos[0], &data->mouse_pos[1]);
+	printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
+	mlx_mouse_show(data->mlx.mlx, data->mlx.window);
+	mlx_set_font(data->mlx.mlx, data->mlx.window, HEAD_FONT);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
+		data->mlx.frame.img, 0, 0);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 200,
+			(data->screen_res[1] >> 1) - 50, (int)0x8b0000, "YOU ARE DEAD");
+	mlx_set_font(data->mlx.mlx, data->mlx.window, STD_FONT);
+	mouse_on_death(data);
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 90,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "Retry");
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 20,
+			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "Quit game");
+}
+
 static void	game_execution(t_data *data)
 {
 	free_path(&data->ennemy.path);
 	if (data->parser.map[(int)data->player.y_pos][(int)data->player.x_pos] == 'V')
-		return (printf("Win\n"), free_data(data), exit(0));
+		return (data->in_escape = 1, escape_screen(data));
 	if (data->ennemy.pres)
 	{
 		if (difference(data->ennemy.d_pos[0], data->player.y_pos) <= 0.05 && difference(data->ennemy.d_pos[1], data->player.x_pos) <= 0.05)
-			return (printf("mort\n"), free_data(data), exit(0));
+			return (data->in_death = 1, death_screen(data));
 		if (data->ennemy.target[0] != data->player.y_pos
 			|| data->ennemy.target[1] != data->player.x_pos
 			|| !data->ennemy.path)
@@ -206,7 +296,7 @@ static void	show_options_text(t_data *data)
 static void	pause_menu(t_data *data)
 {
 	init_pause(data);
-	mlx_set_font(data->mlx.mlx, data->mlx.window, FONT);
+	mlx_set_font(data->mlx.mlx, data->mlx.window, STD_FONT);
 	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
 			&data->mouse_pos[0], &data->mouse_pos[1]);
 	if (data->pause_menu.in_options)
@@ -217,9 +307,13 @@ static void	pause_menu(t_data *data)
 
 int	execution(t_data *data)
 {
-	if (data->pause_menu.in_pause)
+	if (data->pause_menu.in_pause && !data->in_death && !data->in_escape)
 		pause_menu(data);
-	else
+	else if (!data->in_death && !data->in_escape)
 		game_execution(data);
+	else if (data->in_death)
+		death_screen(data);
+	else if (data->in_escape)
+		escape_screen(data);
 	return (1);
 }

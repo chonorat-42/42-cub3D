@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:36:31 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/12 18:57:42 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 20:26:13 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map)
 {
-	size_t	j;
-
-	j = 0;
 	ennemy->target[0] = data->player.y_pos;
 	ennemy->target[1] = data->player.x_pos;
 	ennemy->height = ft_arr_size(map);

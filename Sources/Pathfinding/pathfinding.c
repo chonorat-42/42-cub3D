@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/12 18:59:38 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 20:25:48 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 {
 	int	c;
 
+	c = 0;
 	if (data->ennemy.dup_map)
 		ft_free_arr(data->ennemy.dup_map);
 	if (data->ennemy.path)

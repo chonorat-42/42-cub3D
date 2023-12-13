@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 14:42:13 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 00:16:46 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	start_mlx(t_data *data)
 	int	sprite;
 
 	get_screen_res(data);
+	data->screen_res[0] = SCREEN_RES_X;
+	data->screen_res[1] = SCREEN_RES_Y;
 	data->mlx.window = mlx_new_window(data->mlx.mlx, data->screen_res[0],
 			data->screen_res[1], "cub3D");
 	if (!data->mlx.window)
@@ -53,6 +55,11 @@ int	start_mlx(t_data *data)
 	data->mlx.frame.addr = mlx_get_data_addr(data->mlx.frame.img, &data->mlx.frame.bpp, &data->mlx.frame.line_length, &data->mlx.frame.endian);
 	data->minimap_ratio = get_ratio(data, ft_strlen(data->map[0]), ft_arr_size(data->map)) / 8;
 	initstart_ennemy(data);
+	data->saved_data.x_pos = data->player.x_pos;
+	data->saved_data.y_pos = data->player.y_pos;
+	data->saved_data.angle = data->player.angle;
+	data->saved_data.ennemy_pos[0] = data->ennemy.pos[0];
+	data->saved_data.ennemy_pos[1] = data->ennemy.pos[1];
 	mlx_loop_hook(data->mlx.mlx, execution, data);
 	data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx, "Textures/ghost.xpm", &sprite, &sprite);
 	if (!data->ghost.img)

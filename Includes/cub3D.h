@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 18:07:19 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 00:16:29 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define L_MOUSE 1
 
 //FONT
-# define FONT "-*-*-*-*-*-*-24-230-*-*-*-*-iso8859-*"
+# define STD_FONT "-*-*-*-*-*-*-24-230-*-*-*-*-iso8859-*"
+# define HEAD_FONT "-*-*-*-*-*-*-56-230-*-*-*-*-iso8859-*"
 
 //SPEED
 # define S_PLAYER_SPEED 0.05
@@ -307,18 +308,29 @@ struct s_pause
 	int	on_minimap;
 	int	on_fog;
 	int	on_back;
+	int	on_retry;
+};
+
+struct s_save_data
+{
+	double			x_pos;
+	double			y_pos;
+	double			angle;
+	int				ennemy_pos[2];
 };
 
 typedef struct s_data
 {
-	int					screen_res[2];
 	char				**map;
+	int					screen_res[2];
 	int					minimap_ratio;
 	int					mouse_pos[2];
 	int					reset_mouse;
 	int					mouse_enabled;
 	int					difficulty;
 	int					minimap_toggle;
+	int					in_escape;
+	int					in_death;
 	int					fog_setting;
 	double				fog_density;
 	double				*zbuffer;
@@ -331,6 +343,7 @@ typedef struct s_data
 	struct s_tex_img	tex_img;
 	struct s_trgb		colors;
 	struct s_pause		pause_menu;
+	struct s_save_data	saved_data;
 }		t_data;
 
 //ERROR
