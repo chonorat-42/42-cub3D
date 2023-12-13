@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:27:05 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:47:02 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	change_difficulty(t_data *data)
 	if (data->difficulty == EASY)
 		data->ennemy.speed = 0.0125;
 	else if (data->difficulty == NORMAL)
-		data->ennemy.speed = 0.0250;
+		data->ennemy.speed = 0.025;
 	else if (data->difficulty == HARD)
 		data->ennemy.speed = 0.0375;
 	else if (data->difficulty == IMPOSSIBLE)
@@ -65,6 +65,11 @@ void	options_hook(t_data *data)
 		change_difficulty(data);
 	if (data->pause_menu.on_fog)
 		change_fog(data);
+	if (data->pause_menu.on_minimap)
+	{
+		data->minimap_toggle++;
+		data->minimap_toggle %= 2;
+	}
 }
 
 int	mouse_hook(int mousekey, int x, int y, t_data *data)

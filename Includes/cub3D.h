@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:23:28 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:45:08 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,7 @@ struct s_pause
 	int	on_exit;
 	int	in_options;
 	int	on_difficulty;
+	int	on_minimap;
 	int	on_fog;
 	int	on_back;
 };
@@ -317,6 +318,7 @@ typedef struct s_data
 	int					reset_mouse;
 	int					mouse_enabled;
 	int					difficulty;
+	int					minimap_toggle;
 	int					fog_setting;
 	double				fog_density;
 	double				*zbuffer;

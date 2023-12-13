@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:26:17 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:51:04 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static void	game_execution(t_data *data)
 	}
 	get_move(data);
 	raycasting(data);
-	print_minimap(data);
+	if (data->minimap_toggle)
+		print_minimap(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
 		data->mlx.frame.img, 0, 0);
 }
@@ -113,6 +114,13 @@ static void	mouse_on_options(t_data *data)
 			(data->screen_res[1] >> 1) - 55, (int)0xFFFFFF, ">");
 			data->pause_menu.on_difficulty = 1;
 	}
+	else if (data->mouse_pos[0] >= 850 && data->mouse_pos[0] <= 1085
+		&& data->mouse_pos[1] >= 405 && data->mouse_pos[1] <= 435)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 130,
+			(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, ">");
+			data->pause_menu.on_minimap = 1;
+	}
 }
 
 static void	show_difficulty(t_data *data)
@@ -166,10 +174,23 @@ static void	show_fog(t_data *data)
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "VERY HIGH");
 }
 
+static void	show_minimap(t_data *data)
+{
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 100,
+		(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, "Minimap :");
+	if (data->minimap_toggle)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 20,
+		(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, "ENABLED");
+	else if (!data->minimap_toggle)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 20,
+		(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, "DISABLED");
+}
+
 static void	show_options_text(t_data *data)
 {
 	raycasting(data);
-	print_minimap(data);
+	if (data->minimap_toggle)
+		print_minimap(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.window,
 		data->mlx.frame.img, 0, 0);
 	mouse_on_options(data);
@@ -177,6 +198,7 @@ static void	show_options_text(t_data *data)
 		(data->screen_res[1] >> 1) - 300, (int)0xFFFFFF, "OPTIONS");
 	show_fog(data);
 	show_difficulty(data);
+	show_minimap(data);
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 17,
 		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Back");
 }
