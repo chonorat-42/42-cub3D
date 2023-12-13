@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:02:45 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:27:05 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static void	change_difficulty(t_data *data)
 		data->difficulty = EASY;
 	else
 		data->difficulty++;
+	if (data->difficulty == EASY)
+		data->ennemy.speed = 0.0125;
+	else if (data->difficulty == NORMAL)
+		data->ennemy.speed = 0.0250;
+	else if (data->difficulty == HARD)
+		data->ennemy.speed = 0.0375;
+	else if (data->difficulty == IMPOSSIBLE)
+		data->ennemy.speed = 0.05;
 }
 
 static void	change_fog(t_data *data)

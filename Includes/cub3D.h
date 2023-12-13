@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 16:41:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:23:28 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 //SPEED
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
-# define ENNEMY_SPEED 0.0375
 # define CAM_SPEED 0.05
 # define MOUSE_SPEED 0.005
 
@@ -216,6 +215,7 @@ typedef struct s_path
 typedef struct s_ennemy
 {
 	int				pres;
+	double			speed;
 	double			d_pos[2];
 	double			target[2];
 	int				pos[2];

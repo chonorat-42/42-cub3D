@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initstart_ennemy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:03:35 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/11 17:56:30 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:23:13 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	initstart_ennemy(t_data *data)
 	data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
 	data->ennemy.target[0] = data->player.y_pos;
 	data->ennemy.target[1] = data->player.x_pos;
+	data->ennemy.speed = 0.0375;
 }

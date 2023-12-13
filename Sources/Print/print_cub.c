@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:04:44 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 17:26:17 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static void	move_ennemy(t_data *data)
 		}
 	}
 	if (data->ennemy.d_pos[0] < data->ennemy.path->coor[0])
-		data->ennemy.d_pos[0] += ENNEMY_SPEED;
+		data->ennemy.d_pos[0] += data->ennemy.speed;
 	if (data->ennemy.d_pos[0] > data->ennemy.path->coor[0])
-		data->ennemy.d_pos[0] -= ENNEMY_SPEED;
+		data->ennemy.d_pos[0] -= data->ennemy.speed;
 	if (data->ennemy.d_pos[1] < data->ennemy.path->coor[1])
-		data->ennemy.d_pos[1] += ENNEMY_SPEED;
+		data->ennemy.d_pos[1] += data->ennemy.speed;
 	if (data->ennemy.d_pos[1] > data->ennemy.path->coor[1])
-		data->ennemy.d_pos[1] -= ENNEMY_SPEED;
+		data->ennemy.d_pos[1] -= data->ennemy.speed;
 	data->ennemy.pos[0] = (int)data->ennemy.d_pos[0];
 	data->ennemy.pos[1] = (int)data->ennemy.d_pos[1];
 	free_path(&data->ennemy.path);
