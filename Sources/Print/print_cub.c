@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 17:51:04 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 18:08:42 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,16 +161,16 @@ static void	show_fog(t_data *data)
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 100,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "Fog density :");
 	if (data->fog_setting == LOW)
-		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 70,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "LOW");
 	else if (data->fog_setting == MEDIUM)
-		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 70,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "MEDIUM");
 	else if (data->fog_setting == HIGH)
-		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 70,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "HIGH");
 	else if (data->fog_setting == VERY_HIGH)
-		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 80,
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 70,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "VERY HIGH");
 }
 
