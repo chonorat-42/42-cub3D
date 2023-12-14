@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 14:25:40 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:33:16 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,7 @@ static void	show_pause_text(t_data *data)
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 33,
 		(data->screen_res[1] >> 1), (int)0xFFFFFF, "Options");
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 17,
-		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Exit");
+		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Quit");
 }
 
 static void	show_fog(t_data *data)
