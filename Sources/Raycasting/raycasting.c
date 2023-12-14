@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 16:03:13 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:47:29 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	raycasting(t_data *data)
 		x++;
 	}
 	if (data->ennemy.pres)
-		print_sprite(data, &data_rc);
+		get_sprite(data, &data_rc);
 	if (data->zbuffer)
 	{
 		free(data->zbuffer);

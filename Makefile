@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/14 13:34:16 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/14 17:47:54 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FILES = cub3D\
 		Print/print_player\
 		Raycasting/raycasting\
 		Raycasting/print_column\
+		Raycasting/print_sprite\
 		Raycasting/get_fog\
 		Move/move_player\
 		Move/get_move\
