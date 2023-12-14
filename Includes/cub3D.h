@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 15:47:02 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:23:38 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,8 +203,8 @@ struct	s_move
 
 typedef struct s_exit
 {
-	double 			x;
-	double 			y;
+	double			x;
+	double			y;
 	size_t			nbr;
 	struct s_exit	*next;
 }		t_exit;
@@ -297,7 +297,7 @@ typedef struct s_flood
 {
 	size_t			y;
 	size_t			x;
-	struct s_flood *next;
+	struct s_flood	*next;
 }		t_flood;
 
 struct s_pause
@@ -396,30 +396,30 @@ int		is_map_separated(t_data *data, char **map);
 void	iterative_flood(t_data *data, char **map);
 void	first_position(t_data *data, t_flood **flood, char **map);
 int		add_to_flood(t_flood **flood, size_t j, size_t i);
-void 	free_flood(t_flood **flood);
+void	free_flood(t_flood **flood);
 void	get_ennemy_position(t_data *data);
 void	get_exit_position(t_data *data);
 
 //PATHFINDING
-void				pathfinding(t_data *data, char **map, int y, int x);
-size_t				difference(int a, int b);
-double				double_difference(double a, double b);
-void				clean_mask(int **mask, size_t height, size_t len);
-void				free_ull(unsigned long long **arr, int line);
-void				fill_mask(int **mask, char **map);
-void				init_ennemy(t_data *data, t_ennemy *ennemy, char **map);
-int					update_path(t_data *data, t_path **path, int c, int *pos);
-unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x);
-void				evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
-void				evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
-void 				evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
+void	pathfinding(t_data *data, char **map, int y, int x);
+size_t	difference(int a, int b);
+double	double_difference(double a, double b);
+void	clean_mask(int **mask, size_t height, size_t len);
+void	free_ull(unsigned long long **arr, int line);
+void	fill_mask(int **mask, char **map);
+void	init_ennemy(t_data *data, t_ennemy *ennemy, char **map);
+int		update_path(t_data *data, t_path **path, int c, int *pos);
+size_t	smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x);
+void	evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
+void	evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
+void	evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
 //PRINT
-int					execution(t_data *data);
-void				print_minimap(t_data *data);
-void				print_player(t_data *data, double radius, int color);
-int					wall_hit(t_data *data, int pos_x, int pos_y);
-void				print_sprite(t_data *data, struct s_raycast *data_rc);
+int		execution(t_data *data);
+void	print_minimap(t_data *data);
+void	print_player(t_data *data, double radius, int color);
+int		wall_hit(t_data *data, int pos_x, int pos_y);
+void	print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
 void	raycasting(t_data *data);
