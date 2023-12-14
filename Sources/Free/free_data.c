@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 12:13:58 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 12:31:46 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	free_data(t_data *data)
 	free_exit(&data->exit);
 	if (data->map)
 		ft_free_arr(data->map);
+	if (data->mlx.frame.img)
+		mlx_destroy_image(data->mlx.mlx, data->mlx.frame.img);
+	if (data->ghost.img)
+		mlx_destroy_image(data->mlx.mlx, data->ghost.img);
 	if (data->mlx.mlx)
 	{
 		free_tex_img(&data->tex_img, data->mlx.mlx);
