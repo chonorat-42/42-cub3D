@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_column.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:35:56 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 13:43:57 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:45:30 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 static void	get_wall_side(t_data *data, struct s_raycast *data_rc)
 {
-	if (data_rc->wall_side == 0 && data_rc->xdir_ray > 0)
+	if (!data_rc->wall_side && data_rc->xdir_ray > 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.ea_img;
-	else if (data_rc->wall_side == 0 && data_rc->xdir_ray < 0)
+	else if (!data_rc->wall_side && data_rc->xdir_ray > 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.ea_exit_img;
+	else if (!data_rc->wall_side && data_rc->xdir_ray < 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.we_img;
-	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0)
+	else if (!data_rc->wall_side && data_rc->xdir_ray < 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.we_exit_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.so_img;
-	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0)
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.so_exit_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.no_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.no_exit_img;
 }
 
 static void	get_wall_hit_point(struct s_raycast *data_rc)
