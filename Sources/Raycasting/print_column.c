@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_column.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:35:56 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 16:20:48 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 13:43:57 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	y = data_rc->print.end;
 	while (y < data_rc->height)
 	{
-		data_rc->print.color = get_fog((int)0x1a1a1a, data->fog_density, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)data->colors.floor, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, y, data_rc->print.color);
-		data_rc->print.color = get_fog((int)0x0, data->fog_density, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)data->colors.ceiling, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, data_rc->height - y++ - 1,
 			data_rc->print.color);
 	}

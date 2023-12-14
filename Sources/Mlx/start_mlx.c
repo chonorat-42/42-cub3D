@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 12:33:08 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 13:25:42 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static void	get_screen_res(t_data *data)
 
 int	start_mlx(t_data *data)
 {
-	int	sprite;
-
 	get_screen_res(data);
 	data->screen_res[0] = SCREEN_RES_X;
 	data->screen_res[1] = SCREEN_RES_Y;
@@ -61,9 +59,6 @@ int	start_mlx(t_data *data)
 	data->saved_data.ennemy_pos[0] = data->ennemy.pos[0];
 	data->saved_data.ennemy_pos[1] = data->ennemy.pos[1];
 	mlx_loop_hook(data->mlx.mlx, execution, data);
-	data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx, "Textures/ghost.xpm", &sprite, &sprite);
-	if (!data->ghost.img)
-		printf("KO texture\n");
 	data->zbuffer = NULL;
 	mlx_mouse_hook(data->mlx.window, mouse_hook, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
