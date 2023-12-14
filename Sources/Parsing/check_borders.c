@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:01:43 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/04 15:01:14 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:43:30 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ static int	border_is_one(char **map, char *str, size_t j)
 
 	if (j == 0 || !map[j + 1])
 	{
-		if (!ft_isstronlyset(map[j], "?1"))
+		if (!ft_isstronlyset(map[j], "?1V"))
 			return (0);
 		return (1);
 	}
 	k = 0;
 	while (str[k] && ft_ischarinset(str[k], "?"))
 		k++;
-	if (str[k] != '1')
+	if (!ft_ischarinset(str[k], "1V"))
 		return (1);
 	l = ft_strlen(str) - 1;
 	while (l && ft_ischarinset(str[l], "?"))
 		l--;
-	if (str[l] != '1')
+	if (!ft_ischarinset(str[l], "1V"))
 		return (0);
 	return (1);
 }
@@ -40,12 +40,12 @@ static int	check_up_down(char **map, size_t i, size_t j)
 {
 	if (j != 0)
 	{
-		if (!ft_ischarinset(map[j - 1][i], "?1"))
+		if (!ft_ischarinset(map[j - 1][i], "?1V"))
 			return (1);
 	}
 	if (map[j + 1])
 	{
-		if (!ft_ischarinset(map[j + 1][i], "?1"))
+		if (!ft_ischarinset(map[j + 1][i], "?1V"))
 			return (1);
 	}
 	return (0);
@@ -55,10 +55,10 @@ static int	check_right_left(char **map, size_t i, size_t j)
 {
 	if (i != 0)
 	{
-		if (!ft_ischarinset(map[j][i - 1], "?1"))
+		if (!ft_ischarinset(map[j][i - 1], "?1V"))
 			return (1);
 	}
-	if (!ft_ischarinset(map[j][i + 1], "?1") && map[j][i + 1] != '\0')
+	if (!ft_ischarinset(map[j][i + 1], "?1V") && map[j][i + 1] != '\0')
 	{
 		return (1);
 	}
