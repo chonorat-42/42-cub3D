@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 12:33:04 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 14:44:55 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,43 @@ static void	set_pause(t_data *data)
 static void	change_difficulty(t_data *data)
 {
 	if (data->difficulty == IMPOSSIBLE)
+	{
 		data->difficulty = EASY;
-	else
-		data->difficulty++;
-	if (data->difficulty == EASY)
 		data->ennemy.speed = 0.0125;
-	else if (data->difficulty == NORMAL)
-		data->ennemy.speed = 0.025;
-	else if (data->difficulty == HARD)
-		data->ennemy.speed = 0.0375;
-	else if (data->difficulty == IMPOSSIBLE)
-		data->ennemy.speed = 0.05;
+	}
+	else
+	{
+		data->difficulty++;
+		data->ennemy.speed += 0.0125;
+	}
 }
 
 static void	change_fog(t_data *data)
 {
 	if (data->fog_setting == VERY_HIGH)
+	{
 		data->fog_setting = LOW;
-	else
-		data->fog_setting++;
-	if (data->fog_setting == LOW)
 		data->fog_density = 0.5;
-	else if (data->fog_setting == MEDIUM)
-		data->fog_density = 1.0;
-	else if (data->fog_setting == HIGH)
-		data->fog_density = 1.5;
-	else if (data->fog_setting == VERY_HIGH)
-		data->fog_density = 2.0;
+	}
+	else
+	{
+		data->fog_setting++;
+		data->fog_density += 0.5;
+	}
+}
+
+static void	change_mouse(t_data *data)
+{
+	if (data->mouse_settings == 5)
+	{
+		data->mouse_settings = 1;
+		data->mouse_sensibility = 0.001;
+	}
+	else
+	{
+		data->mouse_settings++;
+		data->mouse_sensibility += 0.001;
+	}
 }
 
 void	options_hook(t_data *data)
@@ -70,6 +80,8 @@ void	options_hook(t_data *data)
 		data->minimap_toggle++;
 		data->minimap_toggle %= 2;
 	}
+	if (data->pause_menu.on_mouse_sens)
+		change_mouse(data);
 }
 
 static void	end_menu(t_data *data)
@@ -89,7 +101,10 @@ static void	end_menu(t_data *data)
 		data->player.y_plane = sin(data->player.angle + M_PI_2);
 		data->ennemy.pos[0] = data->saved_data.ennemy_pos[0];
 		data->ennemy.pos[1] = data->saved_data.ennemy_pos[1];
-		initstart_ennemy(data);
+		data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
+		data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
+		data->ennemy.target[0] = data->player.y_pos;
+		data->ennemy.target[1] = data->player.x_pos;
 		data->pause_menu.in_pause = 0;
 		data->pause_menu.in_options = 0;
 		init_pause(data);

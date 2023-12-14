@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:36:37 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 12:57:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 14:08:13 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	mouse_rotate_cam(t_data *data)
 		mouse_x = data->mouse_pos[0];
 		mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
 			&data->mouse_pos[0], &data->mouse_pos[1]);
-		mouse_move = (data->mouse_pos[0] - mouse_x) * MOUSE_SPEED;
+		mouse_move = (data->mouse_pos[0] - mouse_x) * data->mouse_sensibility;
 		data->player.angle += mouse_move;
 		data->player.x_dir = cos(data->player.angle);
 		data->player.y_dir = sin(data->player.angle);

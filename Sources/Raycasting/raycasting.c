@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 19:04:08 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:03:13 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	get_initial_dist(struct s_raycast *data_rc)
 
 static void	get_wall(t_data *data, struct s_raycast *data_rc)
 {
-	while (!data_rc->wall_hit)
+	while (data_rc->wall_hit == 0)
 	{
 		if (data_rc->side_dist_x < data_rc->side_dist_y)
 		{
@@ -76,6 +76,8 @@ static void	get_wall(t_data *data, struct s_raycast *data_rc)
 		}
 		if (data->map[data_rc->y_map][data_rc->x_map] == '1')
 			data_rc->wall_hit = 1;
+		else if (data->map[data_rc->y_map][data_rc->x_map] == 'V')
+			data_rc->wall_hit = 2;
 	}
 	if (data_rc->wall_side == 0)
 		data_rc->pwall_dist = fabs(((double)data_rc->x_map - data_rc->xpos_ray

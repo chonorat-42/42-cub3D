@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:48:06 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/07 16:41:04 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:04:54 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	wall_hit(t_data *data, int pos_x, int pos_y)
 {
-	if (data->map[pos_y][pos_x] && data->map[pos_y][pos_x] != '0')
+	if (data->map[pos_y][pos_x]
+		&& !ft_ischarinset(data->map[pos_y][pos_x], "0V"))
 		return (TRUE);
 	return (FALSE);
 }
