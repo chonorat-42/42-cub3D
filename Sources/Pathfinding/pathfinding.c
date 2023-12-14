@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/13 20:25:48 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:46:55 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,25 @@ int	last_is_close(t_path *path, int y, int x)
 	return (0);
 }
 
+void	add_exits(char **dup, char **original)
+{
+	size_t	j;
+	size_t	i;
+
+	j = 0;
+	while (original[j])
+	{
+		i = 0;
+		while (original[j][i])
+		{
+			if (original[j][i] == 'V')
+				dup[j][i] = 'V';
+			i++;
+		}
+		j++;
+	}
+}
+
 void	pathfinding(t_data *data, char **map, int y, int x)
 {
 	int	c;
@@ -82,6 +101,8 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 	if (data->ennemy.path)
 		free_path(&data->ennemy.path);
 	data->ennemy.dup_map = ft_arr_copy(map);
+	print_arr(data->parser.map);
+	add_exits(data->ennemy.dup_map, data->parser.map);
 	if (!data->ennemy.dup_map)
 		return (print_error(MALLOC, 0), free_data(data), exit(1));
 	init_ennemy(data, &data->ennemy, data->ennemy.dup_map);
