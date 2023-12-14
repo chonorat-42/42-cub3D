@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/12 14:49:26 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:13:58 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	free_path(t_path **path)
 {
 	t_path	*temp;
 
-	if (!*path)
+	if (!(*path))
 		return ;
+	*path = (*path)->head;
 	while (*path)
 	{
 		temp = *path;

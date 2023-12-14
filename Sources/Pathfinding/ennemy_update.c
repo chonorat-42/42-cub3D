@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:36:31 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/13 20:26:13 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:12:53 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	add_path(t_data *data, t_path **path, int y, int x)
 		return (print_error(MALLOC, 0), free_data(data), exit(1));
 	new->next = NULL;
 	new->coor[0] = y + 0.5;
-	new->coor[1] = x + 0.5;\
+	new->coor[1] = x + 0.5;
 	if (!*path)
 		*path = new;
 	else
