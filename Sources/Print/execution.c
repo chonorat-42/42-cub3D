@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 01:12:24 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:00:38 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,10 +185,10 @@ static void	mouse_on_options(t_data *data)
 {
 	printf("mY[%d], mX[%d]\n", data->mouse_pos[0], data->mouse_pos[1]);
 	if (data->mouse_pos[0] >= 940 && data->mouse_pos[0] <= 995
-		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 600)
+		&& data->mouse_pos[1] >= 620 && data->mouse_pos[1] <= 650)
 	{
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 50,
-			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
+			(data->screen_res[1] >> 1) + 110, (int)0xFFFFFF, ">");
 			data->pause_menu.on_back = 1;
 	}
 	else if (data->mouse_pos[0] >= 850 && data->mouse_pos[0] <= 1150
@@ -211,6 +211,13 @@ static void	mouse_on_options(t_data *data)
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 130,
 			(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, ">");
 			data->pause_menu.on_minimap = 1;
+	}
+	else if (data->mouse_pos[0] >= 850 && data->mouse_pos[0] <= 1115
+		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 600)
+	{
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 130,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
+			data->pause_menu.on_mouse_sens = 1;
 	}
 }
 
@@ -277,6 +284,27 @@ static void	show_minimap(t_data *data)
 		(data->screen_res[1] >> 1) - 110, (int)0xFFFFFF, "DISABLED");
 }
 
+static void	show_mouse_sens(t_data *data)
+{
+	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 100,
+		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Mouse sensibility :");
+	if (data->mouse_settings == 1)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 140,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "1");
+	else if (data->mouse_settings == 2)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 140,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "2");
+	else if (data->mouse_settings == 3)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 140,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "3");
+	else if (data->mouse_settings == 4)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 140,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "4");
+	else if (data->mouse_settings == 5)
+		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 140,
+			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "5");
+}
+
 static void	show_options_text(t_data *data)
 {
 	raycasting(data);
@@ -290,8 +318,9 @@ static void	show_options_text(t_data *data)
 	show_fog(data);
 	show_difficulty(data);
 	show_minimap(data);
+	show_mouse_sens(data);
 	mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 17,
-		(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, "Back");
+		(data->screen_res[1] >> 1) + 110, (int)0xFFFFFF, "Back");
 }
 
 static void	pause_menu(t_data *data)

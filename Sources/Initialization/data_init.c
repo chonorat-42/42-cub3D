@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 01:02:09 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:47:39 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	init_pause(t_data *data)
 	data->pause_menu.on_minimap = 0;
 	data->pause_menu.on_fog = 0;
 	data->pause_menu.on_retry = 0;
+	data->pause_menu.on_mouse_sens = 0;
 }
 
 void	init_data(t_data *data)
@@ -90,6 +91,8 @@ void	init_data(t_data *data)
 	data->pause_menu.in_options = 0;
 	data->pause_menu.in_escape = 0;
 	data->pause_menu.in_death = 0;
+	data->mouse_sensibility = 0.003;
+	data->mouse_settings = 3;
 	init_pause(data);
 	init_player(data);
 	init_tex_img(&data->tex_img);

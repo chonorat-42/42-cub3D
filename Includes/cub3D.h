@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 01:01:21 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:07:56 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
 # define CAM_SPEED 0.05
-# define MOUSE_SPEED 0.005
 
 //RESOLUTION
 # define SCREEN_RES_X 1920
@@ -307,6 +306,7 @@ struct s_pause
 	int	on_difficulty;
 	int	on_minimap;
 	int	on_fog;
+	int	on_mouse_sens;
 	int	on_back;
 	int	on_retry;
 	int	in_escape;
@@ -334,6 +334,8 @@ typedef struct s_data
 	int					fog_setting;
 	double				fog_density;
 	double				*zbuffer;
+	double				mouse_sensibility;
+	int					mouse_settings;
 	struct s_mlx_data	mlx;
 	struct s_ennemy		ennemy;
 	struct s_exit		*exit;
