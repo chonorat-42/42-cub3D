@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 17:26:53 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:28:56 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,23 +356,23 @@ typedef struct s_data
 }		t_data;
 
 //ERROR
-void				print_error(int type, int error);
+void	print_error(int type, int error);
 
 //MLX
-int					start_mlx(t_data *data);
-void				pixel_to_frame(t_data *data, int x, int y, int color);
+int		start_mlx(t_data *data);
+void	pixel_to_frame(t_data *data, int x, int y, int color);
 
 //HOOK
-int					key_press(int keycode, t_data *data);
-int					key_release(int keycode, t_data *data);
-int					mouse_hook(int mousekey, int x, int y, t_data *data);
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
+int		mouse_hook(int mousekey, int x, int y, t_data *data);
 
 //INITIALIZATION
-void				init_data(t_data *data);
-void				initialize_parser(t_parser *parser);
-void				init_raycast(struct s_raycast *data_rc);
-void				initstart_ennemy(t_data *data);
-void				init_pause(t_data *data);
+void	init_data(t_data *data);
+void	initialize_parser(t_parser *parser);
+void	init_raycast(struct s_raycast *data_rc);
+void	initstart_ennemy(t_data *data);
+void	init_pause(t_data *data);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);
@@ -425,30 +425,29 @@ int		wall_hit(t_data *data, int pos_x, int pos_y);
 void	print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
-void				raycasting(t_data *data);
-int					get_fog(int color, double fog_intensity, double distance);
-void				print_column(t_data *data, struct s_raycast *data_rc,
-						int x);
+void	raycasting(t_data *data);
+int		get_fog(int color, double fog_intensity, double distance);
+void	print_column(t_data *data, struct s_raycast *data_rc, int x);
 
 //MOVE
-void				get_move(t_data *data);
-void				move_forward(t_data *data);
-void				move_backward(t_data *data);
-void				move_left(t_data *data);
-void				move_right(t_data *data);
-void				rotate_cam(t_data *data);
+void	get_move(t_data *data);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	rotate_cam(t_data *data);
 
 //FREE
-void				free_data(t_data *data);
-void				free_parser(t_parser *parser);
-void				free_maplst(t_dlst *lst);
-void				free_path(t_path **path);
+void	free_data(t_data *data);
+void	free_parser(t_parser *parser);
+void	free_maplst(t_dlst *lst);
+void	free_path(t_path **path);
 
 //EXIT
-int					exit_prog(t_data *data);
+int		exit_prog(t_data *data);
 
 //PRINTS
-void				print_arr(char **arr);
-void				print_dlst(t_dlst *lst);
+void	print_arr(char **arr);
+void	print_dlst(t_dlst *lst);
 
 #endif
