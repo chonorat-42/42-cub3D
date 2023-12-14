@@ -1,13 +1,13 @@
 NO ./Textures/NO.xpm
 
-F 220,100,0
+F 80,40,40
 
 SO ./Textures/SO.xpm
 WE ./Textures/WE.xpm
 EA ./Textures/EA.xpm
 
 
-C 255,30,0
+C 0,0,0
 
 
 

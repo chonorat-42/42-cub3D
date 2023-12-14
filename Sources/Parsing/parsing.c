@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/12 12:58:55 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:26:03 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	is_extension_correct(char *str)
 
 void	parsing(t_data *data, char *file_path, char *file_name)
 {
+	int sprite;
+
 	if (!is_extension_correct(file_name))
 		return (exit(1));
 	initialize_parser(&data->parser);
@@ -45,6 +47,12 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 	map_parser(data, &data->parser);
 	get_player_position(data);
 	get_ennemy_position(data);
+	if (data->ennemy.pres)
+	{
+		data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx, "Textures/ghost.xpm", &sprite, &sprite);
+		if (!data->ghost.img)
+			return (print_error(MALLOC, 0), free_data(data), exit(1));
+	}
 	get_exit_position(data);
 	// free_parser(&data->parser);
 }

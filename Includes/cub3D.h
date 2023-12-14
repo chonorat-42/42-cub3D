@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 14:07:56 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 15:47:02 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,10 @@ typedef struct s_tex_img
 	void	*so_img;
 	void	*ea_img;
 	void	*we_img;
+	void	*no_exit_img;
+	void	*so_exit_img;
+	void	*ea_exit_img;
+	void	*we_exit_img;
 }		t_tex_img;
 
 typedef struct s_parser

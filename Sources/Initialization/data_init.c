@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 13:47:39 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 16:02:20 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static void	init_tex_img(t_tex_img *tex_img)
 	tex_img->so_img = NULL;
 	tex_img->ea_img = NULL;
 	tex_img->we_img = NULL;
+	tex_img->no_exit_img = NULL;
+	tex_img->so_exit_img = NULL;
+	tex_img->ea_exit_img = NULL;
+	tex_img->we_exit_img = NULL;
 }
 
 static void	init_player(t_data *data)
@@ -76,6 +80,7 @@ void	init_data(t_data *data)
 {
 	data->mlx.mlx = NULL;
 	data->mlx.window = NULL;
+	data->ghost.img = NULL;
 	data->screen_res[0] = 0;
 	data->screen_res[1] = 0;
 	data->mouse_pos[0] = 0;

@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:35:56 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/13 16:20:48 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 15:45:30 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 static void	get_wall_side(t_data *data, struct s_raycast *data_rc)
 {
-	if (data_rc->wall_side == 0 && data_rc->xdir_ray > 0)
+	if (!data_rc->wall_side && data_rc->xdir_ray > 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.ea_img;
-	else if (data_rc->wall_side == 0 && data_rc->xdir_ray < 0)
+	else if (!data_rc->wall_side && data_rc->xdir_ray > 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.ea_exit_img;
+	else if (!data_rc->wall_side && data_rc->xdir_ray < 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.we_img;
-	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0)
+	else if (!data_rc->wall_side && data_rc->xdir_ray < 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.we_exit_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.so_img;
-	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0)
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray > 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.so_exit_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0 && data_rc->wall_hit == 1)
 		data_rc->wall.img = data->tex_img.no_img;
+	else if (data_rc->wall_side == 1 && data_rc->ydir_ray < 0 && data_rc->wall_hit == 2)
+		data_rc->wall.img = data->tex_img.no_exit_img;
 }
 
 static void	get_wall_hit_point(struct s_raycast *data_rc)
@@ -159,9 +167,9 @@ void	print_column(t_data *data, struct s_raycast *data_rc, int x)
 	y = data_rc->print.end;
 	while (y < data_rc->height)
 	{
-		data_rc->print.color = get_fog((int)0x1a1a1a, data->fog_density, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)data->colors.floor, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, y, data_rc->print.color);
-		data_rc->print.color = get_fog((int)0x0, data->fog_density, data_rc->pwall_dist);
+		data_rc->print.color = get_fog((int)data->colors.ceiling, data->fog_density, data_rc->pwall_dist);
 		pixel_to_frame(data, x, data_rc->height - y++ - 1,
 			data_rc->print.color);
 	}
