@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 17:19:38 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:21:21 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ typedef struct s_exit
 	double			x;
 	double			y;
 	size_t			nbr;
-	structs_exit	*next;
+	struct s_exit	*next;
 }		t_exit;
 
 typedef struct s_path
