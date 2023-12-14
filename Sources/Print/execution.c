@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 14:00:38 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 14:25:40 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	mouse_on_death(t_data *data)
 	if (data->mouse_pos[0] >= 870 && data->mouse_pos[0] <= 930
 		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
 	{
+		data->pause_menu.on_exit = 0;
 		data->pause_menu.on_retry = 1;
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 120,
 			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, ">");
@@ -67,6 +68,7 @@ static void	mouse_on_death(t_data *data)
 	else if (data->mouse_pos[0] >= 980 && data->mouse_pos[0] <= 1090
 		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
 	{
+		data->pause_menu.on_retry = 0;
 		data->pause_menu.on_exit = 1;
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 145,
 			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "<");
@@ -78,6 +80,7 @@ static void	mouse_on_escape(t_data *data)
 	if (data->mouse_pos[0] >= 870 && data->mouse_pos[0] <= 955
 		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
 	{
+		data->pause_menu.on_exit = 0;
 		data->pause_menu.on_retry = 1;
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) - 120,
 			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, ">");
@@ -85,6 +88,7 @@ static void	mouse_on_escape(t_data *data)
 	else if (data->mouse_pos[0] >= 980 && data->mouse_pos[0] <= 1090
 		&& data->mouse_pos[1] >= 570 && data->mouse_pos[1] <= 595)
 	{
+		data->pause_menu.on_retry = 0;
 		data->pause_menu.on_exit = 1;
 		mlx_string_put(data->mlx.mlx, data->mlx.window, (data->screen_res[0] >> 1) + 145,
 			(data->screen_res[1] >> 1) + 50, (int)0xFFFFFF, "<");
