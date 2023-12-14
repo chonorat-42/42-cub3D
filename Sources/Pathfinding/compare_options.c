@@ -6,13 +6,13 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:48:25 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 18:17:11 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:24:19 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	update_arr(unsigned long long **arr, unsigned long long *res)
+static void	update_arr(unsigned long long **arr, size_t *res)
 {
 	size_t	i;
 
@@ -39,11 +39,12 @@ static void	update_arr(unsigned long long **arr, unsigned long long *res)
 	}
 }
 
-unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy,
+size_t	smallest(unsigned long long **arr, t_ennemy ennemy,
 	int y, int x)
 {
-	unsigned long long	res;
-	size_t				i;
+	size_t	res;
+	size_t	i;
+
 	(void)ennemy;
 	(void)y;
 	(void)x;

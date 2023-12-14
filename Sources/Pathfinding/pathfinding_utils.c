@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:40:42 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/11 16:16:12 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:16:43 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	double_difference(double a, double b)
 {
-	double result;
+	double	result;
 
 	result = a - b;
 	if (result < 0)

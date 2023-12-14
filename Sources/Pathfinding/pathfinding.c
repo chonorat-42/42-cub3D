@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:53:34 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 15:56:25 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:16:13 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// void	print_mask(int **mask, size_t len, size_t height)
-// {
-// 	size_t	j;
-// 	size_t	i;
-
-// 	j = 0;
-// 	i = 0;
-// 	while (j < height)
-// 	{
-// 		i = 0;
-// 		while (i < len)
-// 		{
-// 			printf("%d", mask[j][i]);
-// 			i++;
-// 		}
-// 		printf("\n");
-// 		j++;
-// 	}
-// 	printf("\n");
-// }}
 
 int	best_path(t_data *data, int y, int x, t_ennemy *ennemy)
 {
@@ -101,7 +80,6 @@ void	pathfinding(t_data *data, char **map, int y, int x)
 	if (data->ennemy.path)
 		free_path(&data->ennemy.path);
 	data->ennemy.dup_map = ft_arr_copy(map);
-	//print_arr(data->parser.map);
 	add_exits(data->ennemy.dup_map, data->parser.map);
 	if (!data->ennemy.dup_map)
 		return (print_error(MALLOC, 0), free_data(data), exit(1));
