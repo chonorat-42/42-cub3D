@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 14:07:28 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 14:44:55 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ static void	end_menu(t_data *data)
 		data->player.y_plane = sin(data->player.angle + M_PI_2);
 		data->ennemy.pos[0] = data->saved_data.ennemy_pos[0];
 		data->ennemy.pos[1] = data->saved_data.ennemy_pos[1];
-		initstart_ennemy(data);
+		data->ennemy.d_pos[0] = data->ennemy.pos[0] + 0.5;
+		data->ennemy.d_pos[1] = data->ennemy.pos[1] + 0.5;
+		data->ennemy.target[0] = data->player.y_pos;
+		data->ennemy.target[1] = data->player.x_pos;
 		data->pause_menu.in_pause = 0;
 		data->pause_menu.in_options = 0;
 		init_pause(data);
