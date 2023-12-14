@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 01:02:09 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:24:04 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	init_data(t_data *data)
 {
 	data->mlx.mlx = NULL;
 	data->mlx.window = NULL;
+	data->ghost.img = NULL;
 	data->screen_res[0] = 0;
 	data->screen_res[1] = 0;
 	data->mouse_pos[0] = 0;
