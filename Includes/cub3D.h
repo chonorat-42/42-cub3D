@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 15:47:02 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/14 17:19:38 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,10 +203,10 @@ struct	s_move
 
 typedef struct s_exit
 {
-	double 			x;
-	double 			y;
+	double			x;
+	double			y;
 	size_t			nbr;
-	struct s_exit	*next;
+	structs_exit	*next;
 }		t_exit;
 
 typedef struct s_path
@@ -297,7 +297,7 @@ typedef struct s_flood
 {
 	size_t			y;
 	size_t			x;
-	struct s_flood *next;
+	struct s_flood	*next;
 }		t_flood;
 
 struct s_pause
@@ -353,52 +353,52 @@ typedef struct s_data
 }		t_data;
 
 //ERROR
-void	print_error(int type, int error);
+void				print_error(int type, int error);
 
 //MLX
-int		start_mlx(t_data *data);
-void	pixel_to_frame(t_data *data, int x, int y, int color);
+int					start_mlx(t_data *data);
+void				pixel_to_frame(t_data *data, int x, int y, int color);
 
 //HOOK
-int		key_press(int keycode, t_data *data);
-int		key_release(int keycode, t_data *data);
-int		mouse_hook(int mousekey, int x, int y, t_data *data);
+int					key_press(int keycode, t_data *data);
+int					key_release(int keycode, t_data *data);
+int					mouse_hook(int mousekey, int x, int y, t_data *data);
 
 //INITIALIZATION
-void	init_data(t_data *data);
-void	initialize_parser(t_parser *parser);
-void	init_raycast(struct s_raycast *data_rc);
-void	initstart_ennemy(t_data *data);
-void	init_pause(t_data *data);
+void				init_data(t_data *data);
+void				initialize_parser(t_parser *parser);
+void				init_raycast(struct s_raycast *data_rc);
+void				initstart_ennemy(t_data *data);
+void				init_pause(t_data *data);
 
 //PARSING
-void	parsing(t_data *data, char *file_path, char *file_name);
-void	get_file_content(t_parser *parser, char *file_path);
-int		check_parsing_flags(t_textures textures, t_colors colors);
-void	line_found(t_parser *parser, size_t *line_count);
-void	parse_id(t_parser *parser, char *id, size_t	*i);
-void	get_textures(t_parser *parser);
-int		open_textures(t_data *data, t_parser *parser);
-void	get_colors(t_parser *parser, char *id, size_t *i);
-void	get_trgb(t_data *data, t_parser *parser);
-void	get_map(t_parser *parser);
-void	map_parser(t_data *data, t_parser *parser);
-size_t	maplst_size(t_dlst *lst);
-int		initialize_dlst_content(t_dlst *new, char *str);
-int		add_to_maplst(t_dlst **lst, char *str);
-size_t	maplst_size(t_dlst *lst);
-void	delete_middle_node(t_dlst **temp);
-void	get_player_dir(t_data *data, long long i, long long j);
-void	fill_map(t_data *data, t_parser *parser);
-int		check_borders(char **map);
-void	get_player_position(t_data *data);
-int		is_map_separated(t_data *data, char **map);
-void	iterative_flood(t_data *data, char **map);
-void	first_position(t_data *data, t_flood **flood, char **map);
-int		add_to_flood(t_flood **flood, size_t j, size_t i);
-void 	free_flood(t_flood **flood);
-void	get_ennemy_position(t_data *data);
-void	get_exit_position(t_data *data);
+void				parsing(t_data *data, char *file_path, char *file_name);
+void				get_file_content(t_parser *parser, char *file_path);
+int					check_parsing_flags(t_textures textures, t_colors colors);
+void				line_found(t_parser *parser, size_t *line_count);
+void				parse_id(t_parser *parser, char *id, size_t	*i);
+void				get_textures(t_parser *parser);
+int					open_textures(t_data *data, t_parser *parser);
+void				get_colors(t_parser *parser, char *id, size_t *i);
+void				get_trgb(t_data *data, t_parser *parser);
+void				get_map(t_parser *parser);
+void				map_parser(t_data *data, t_parser *parser);
+size_t				maplst_size(t_dlst *lst);
+int					initialize_dlst_content(t_dlst *new, char *str);
+int					add_to_maplst(t_dlst **lst, char *str);
+size_t				maplst_size(t_dlst *lst);
+void				delete_middle_node(t_dlst **temp);
+void				get_player_dir(t_data *data, long long i, long long j);
+void				fill_map(t_data *data, t_parser *parser);
+int					check_borders(char **map);
+void				get_player_position(t_data *data);
+int					is_map_separated(t_data *data, char **map);
+void				iterative_flood(t_data *data, char **map);
+void				first_position(t_data *data, t_flood **flood, char **map);
+int					add_to_flood(t_flood **flood, size_t j, size_t i);
+void				free_flood(t_flood **flood);
+void				get_ennemy_position(t_data *data);
+void				get_exit_position(t_data *data);
 
 //PATHFINDING
 void				pathfinding(t_data *data, char **map, int y, int x);
@@ -409,10 +409,14 @@ void				free_ull(unsigned long long **arr, int line);
 void				fill_mask(int **mask, char **map);
 void				init_ennemy(t_data *data, t_ennemy *ennemy, char **map);
 int					update_path(t_data *data, t_path **path, int c, int *pos);
-unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy, int y, int x);
-void				evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
-void				evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
-void 				evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
+unsigned long long	smallest(unsigned long long **arr, t_ennemy ennemy,
+						int y, int x);
+void				evaluate_options(t_data *data, unsigned long long **arr,
+						int y, int x);
+void				evaluate_north(t_data *data, unsigned long long **arr,
+						int y, int x);
+void				evaluate_south(t_data *data, unsigned long long **arr,
+						int y, int x);
 
 //PRINT
 int					execution(t_data *data);
@@ -422,29 +426,30 @@ int					wall_hit(t_data *data, int pos_x, int pos_y);
 void				print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
-void	raycasting(t_data *data);
-int		get_fog(int color, double fog_intensity, double distance);
-void	print_column(t_data *data, struct s_raycast *data_rc, int x);
+void				raycasting(t_data *data);
+int					get_fog(int color, double fog_intensity, double distance);
+void				print_column(t_data *data, struct s_raycast *data_rc,
+						int x);
 
 //MOVE
-void	get_move(t_data *data);
-void	move_forward(t_data *data);
-void	move_backward(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
-void	rotate_cam(t_data *data);
+void				get_move(t_data *data);
+void				move_forward(t_data *data);
+void				move_backward(t_data *data);
+void				move_left(t_data *data);
+void				move_right(t_data *data);
+void				rotate_cam(t_data *data);
 
 //FREE
-void	free_data(t_data *data);
-void	free_parser(t_parser *parser);
-void	free_maplst(t_dlst *lst);
-void	free_path(t_path **path);
+void				free_data(t_data *data);
+void				free_parser(t_parser *parser);
+void				free_maplst(t_dlst *lst);
+void				free_path(t_path **path);
 
 //EXIT
-int		exit_prog(t_data *data);
+int					exit_prog(t_data *data);
 
 //PRINTS
-void	print_arr(char **arr);
-void	print_dlst(t_dlst *lst);
+void				print_arr(char **arr);
+void				print_dlst(t_dlst *lst);
 
 #endif
