@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:59:22 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 00:45:09 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 01:03:04 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static void	end_menu(t_data *data)
 		exit_prog(data);
 	if (data->pause_menu.on_retry)
 	{
-		data->in_escape = 0;
-		data->in_death = 0;
+		data->pause_menu.in_escape = 0;
+		data->pause_menu.in_death = 0;
 		data->player.x_pos = data->saved_data.x_pos;
 		data->player.y_pos = data->saved_data.y_pos;
 		data->player.angle = data->saved_data.angle;
@@ -119,7 +119,7 @@ int	mouse_hook(int mousekey, int x, int y, t_data *data)
 	}
 	if (data->pause_menu.in_options)
 		options_hook(data);
-	if (data->in_death || data->in_escape)
+	if (data->pause_menu.in_death || data->pause_menu.in_escape)
 		end_menu(data);
 	return (1);
 }

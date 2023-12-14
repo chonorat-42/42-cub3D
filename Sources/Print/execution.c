@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:03:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 00:39:49 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/14 01:12:24 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	mouse_on_escape(t_data *data)
 
 static void	escape_screen(t_data *data)
 {
+	init_pause(data);
 	print_background(data);
 	mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
 			&data->mouse_pos[0], &data->mouse_pos[1]);
@@ -135,11 +136,11 @@ static void	game_execution(t_data *data)
 {
 	free_path(&data->ennemy.path);
 	if (data->parser.map[(int)data->player.y_pos][(int)data->player.x_pos] == 'V')
-		return (data->in_escape = 1, escape_screen(data));
+		return (data->pause_menu.in_escape = 1, escape_screen(data));
 	if (data->ennemy.pres)
 	{
 		if (difference(data->ennemy.d_pos[0], data->player.y_pos) <= 0.05 && difference(data->ennemy.d_pos[1], data->player.x_pos) <= 0.05)
-			return (data->in_death = 1, death_screen(data));
+			return (data->pause_menu.in_death = 1, death_screen(data));
 		if (data->ennemy.target[0] != data->player.y_pos
 			|| data->ennemy.target[1] != data->player.x_pos
 			|| !data->ennemy.path)
@@ -307,13 +308,14 @@ static void	pause_menu(t_data *data)
 
 int	execution(t_data *data)
 {
-	if (data->pause_menu.in_pause && !data->in_death && !data->in_escape)
+	if (data->pause_menu.in_pause && !data->pause_menu.in_death
+		&& !data->pause_menu.in_escape)
 		pause_menu(data);
-	else if (!data->in_death && !data->in_escape)
-		game_execution(data);
-	else if (data->in_death)
+	else if (data->pause_menu.in_death)
 		death_screen(data);
-	else if (data->in_escape)
+	else if (data->pause_menu.in_escape)
 		escape_screen(data);
+	else
+		game_execution(data);
 	return (1);
 }
