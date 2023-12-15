@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:01:43 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 16:43:30 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:28:38 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	border_is_one(char **map, char *str, size_t j)
 	while (str[k] && ft_ischarinset(str[k], "?"))
 		k++;
 	if (!ft_ischarinset(str[k], "1V"))
-		return (1);
+		return (0);
 	l = ft_strlen(str) - 1;
 	while (l && ft_ischarinset(str[l], "?"))
 		l--;

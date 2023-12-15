@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 17:28:56 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:08:27 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ enum	e_errors
 	EMPTYL,
 	SEP,
 	DPX,
+	TEXDIM,
 };
 
 enum	e_fog
@@ -205,8 +206,6 @@ typedef struct s_exit
 {
 	double			x;
 	double			y;
-	double			x;
-	double			y;
 	size_t			nbr;
 	struct s_exit	*next;
 }		t_exit;
@@ -300,7 +299,6 @@ typedef struct s_flood
 	size_t			y;
 	size_t			x;
 	struct s_flood	*next;
-	struct s_flood	*next;
 }		t_flood;
 
 struct s_pause
@@ -381,7 +379,7 @@ int		check_parsing_flags(t_textures textures, t_colors colors);
 void	line_found(t_parser *parser, size_t *line_count);
 void	parse_id(t_parser *parser, char *id, size_t	*i);
 void	get_textures(t_parser *parser);
-int		open_textures(t_data *data, t_parser *parser);
+void	open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_trgb(t_data *data, t_parser *parser);
 void	get_map(t_parser *parser);

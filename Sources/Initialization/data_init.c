@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 17:18:29 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/15 12:29:15 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	init_tex_img(t_data *data, t_tex_img *tex_img)
 	tex_img->ea_exit_img = NULL;
 	tex_img->we_exit_img = NULL;
 	data->ghost.img = NULL;
+	data->mlx.frame.img = NULL;
 }
 
 static void	init_player(t_data *data)
@@ -76,6 +77,10 @@ void	init_pause(t_data *data)
 	data->pause_menu.on_retry = 0;
 	data->pause_menu.on_mouse_sens = 0;
 }
+void	init_exit(t_data *data)
+{
+	data->exit = NULL;
+}
 
 void	init_data(t_data *data)
 {
@@ -98,10 +103,11 @@ void	init_data(t_data *data)
 	data->pause_menu.in_death = 0;
 	data->mouse_sensibility = 0.003;
 	data->mouse_settings = 3;
+	data->zbuffer = NULL;
 	init_pause(data);
 	init_player(data);
 	init_tex_img(data, &data->tex_img);
-	data->mlx.mlx = mlx_init();
-	if (!data->mlx.mlx)
-		return (free_data(data), print_error(MALLOC, 0), exit(1));
+	initstart_ennemy(data);
+	init_exit(data);
+	data->mlx.mlx = NULL;
 }
