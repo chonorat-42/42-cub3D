@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 15:51:05 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/17 16:18:00 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	start_mlx(t_data *data)
 	data->saved_data.ennemy_pos[0] = data->ennemy.pos[0];
 	data->saved_data.ennemy_pos[1] = data->ennemy.pos[1];
 	mlx_loop_hook(data->mlx.mlx, execution, data);
-	data->zbuffer = NULL;
 	mlx_mouse_hook(data->mlx.window, mouse_hook, data);
 	mlx_hook(data->mlx.window, KEY_PRESS, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.window, KEY_RELEASE, 1L << 1, key_release, data);

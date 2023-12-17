@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 18:04:06 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/17 16:18:57 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,7 +376,7 @@ int		mouse_hook(int mousekey, int x, int y, t_data *data);
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
-void	init_raycast(struct s_raycast *data_rc);
+void	init_raycast(t_data *data, struct s_raycast *data_rc);
 void	initstart_ennemy(t_data *data);
 void	init_pause(t_data *data);
 
@@ -423,8 +423,20 @@ void	evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
 void	evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
 void	evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
-//PRINT
+//EXECUTION
 int		execution(t_data *data);
+void	pause_menu(t_data *data);
+void	options_hook(t_data *data);
+void	set_pause(t_data *data);
+void	show_options_text(t_data *data);
+void	show_difficulty(t_data *data);
+void	show_fog(t_data *data);
+void	show_minimap(t_data *data);
+void	show_mouse_sens(t_data *data);
+void	death_screen(t_data *data);
+void	escape_screen(t_data *data);
+
+//PRINT
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 int		wall_hit(t_data *data, int pos_x, int pos_y);
@@ -442,6 +454,7 @@ void	move_backward(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	rotate_cam(t_data *data);
+void	move_ennemy(t_data *data);
 
 //FREE
 void	free_data(t_data *data);

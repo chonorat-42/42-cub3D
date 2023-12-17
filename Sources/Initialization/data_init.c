@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 17:18:29 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:18:18 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	init_player(t_data *data)
 	data->player.move.sprint = 0;
 }
 
-void	init_raycast(struct s_raycast *data_rc)
+void	init_raycast(t_data *data, struct s_raycast *data_rc)
 {
 	data_rc->delta_dist_x = 0;
 	data_rc->delta_dist_y = 0;
@@ -62,6 +62,7 @@ void	init_raycast(struct s_raycast *data_rc)
 	data_rc->wall_hit = 0;
 	data_rc->wall_hit_point = 0;
 	data_rc->wall.img = NULL;
+	data->zbuffer = NULL;
 }
 
 void	init_pause(t_data *data)
