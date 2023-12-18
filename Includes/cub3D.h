@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/17 16:18:57 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:23:26 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
 # define CAM_SPEED 0.05
-
-//RESOLUTION
-# define SCREEN_RES_X 1920
-# define SCREEN_RES_Y 1080
 
 # define MAX 1000000
 

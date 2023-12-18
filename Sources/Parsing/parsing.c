@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/14 16:36:48 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:31:02 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ int	is_extension_correct(char *str)
 	return (1);
 }
 
+static void	save_data(t_data *data)
+{
+	data->saved_data.x_pos = data->player.x_pos;
+	data->saved_data.y_pos = data->player.y_pos;
+	data->saved_data.angle = data->player.angle;
+	if (data->ennemy.pres)
+	{
+		data->saved_data.ennemy_pos[0] = data->ennemy.pos[0];
+		data->saved_data.ennemy_pos[1] = data->ennemy.pos[1];
+	}
+}
+
 void	parsing(t_data *data, char *file_path, char *file_name)
 {
 	int	sprite;
@@ -53,6 +65,8 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 				"Textures/ghost.xpm", &sprite, &sprite);
 		if (!data->ghost.img)
 			return (print_error(MALLOC, 0), free_data(data), exit(1));
+		initstart_ennemy(data);
 	}
 	get_exit_position(data);
+	save_data(data);
 }
