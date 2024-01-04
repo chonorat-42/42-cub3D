@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:07:11 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/15 16:08:39 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:58:15 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	parsing(t_data *data, char *file_path, char *file_name)
 	data->mlx.mlx = mlx_init();
 	if (!data->mlx.mlx)
 		return (free_data(data), print_error(MALLOC, 0), exit(1));
-	open_textures(data, &data->parser);
+	open_north_and_south_textures(data, &data->parser);
+	open_east_and_west_textures(data, &data->parser);
 	map_parser(data, &data->parser);
 	get_player_position(data);
 	get_ennemy_position(data);

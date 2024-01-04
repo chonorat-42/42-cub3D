@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause_menu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 15:23:46 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/17 16:04:21 by chonorat         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:02:35 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	mouse_on_pause(t_data *data)
 		mlx_string_put(data->mlx.mlx, data->mlx.window,
 			(data->screen_res[0] >> 1) - 60,
 			(data->screen_res[1] >> 1) + 55, (int)0xFFFFFF, ">");
-			data->pause_menu.on_exit = 1;
+		data->pause_menu.on_exit = 1;
 	}
 }
 
