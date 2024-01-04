@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:12:13 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 13:27:59 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:38:54 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	initialize_dlst_content(t_dlst *new, char *str)
 		return (1);
 	new->content = ft_strdup(trim);
 	if (!new->content)
-		return (free(new), free(trim), 1);
+		return (free(trim), 1);
 	free(trim);
 	return (0);
 }
