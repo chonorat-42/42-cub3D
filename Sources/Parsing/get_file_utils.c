@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:25:30 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/15 16:15:43 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:20:29 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	open_textures(t_data *data, t_parser *parser)
 			parser->textures.no_path, &width, &height);
 	if (data->tex_img.no_img == NULL)
 		return (free_data(data), print_error(PARSING, TEXOP), exit(1));
-
-	printf("width = %d, height = %d\n", width, height);
-
 	if (width != 256 || height != 256)
 		return (free_data(data), print_error(PARSING, TEXDIM), exit(1));
 	data->tex_img.so_img = mlx_xpm_file_to_image(data->mlx.mlx,
