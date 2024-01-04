@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:10:11 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/15 13:37:18 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:42:32 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ static void	get_screen_res(t_data *data)
 	data->screen_res[1] = 1080;
 }
 
-static void	temp_img_loader(t_data *data)
-{
-	int	size;
-
-	data->tex_img.no_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-			"Textures/NO_EXIT.xpm", &size, &size);
-	data->tex_img.so_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-			"Textures/SO_EXIT.xpm", &size, &size);
-	data->tex_img.we_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-			"Textures/WE_EXIT.xpm", &size, &size);
-	data->tex_img.ea_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-			"Textures/EA_EXIT.xpm", &size, &size);
-}
-
 int	start_mlx(t_data *data)
 {
 	get_screen_res(data);
@@ -53,7 +39,6 @@ int	start_mlx(t_data *data)
 	data->mlx.frame.addr = mlx_get_data_addr(data->mlx.frame.img, &data->mlx.frame.bpp, &data->mlx.frame.line_length, &data->mlx.frame.endian);
 	data->minimap_ratio = get_ratio(data, ft_strlen(data->map[0]), ft_arr_size(data->map)) / 8;
 	initstart_ennemy(data);
-	// temp_img_loader(data);
 	data->saved_data.x_pos = data->player.x_pos;
 	data->saved_data.y_pos = data->player.y_pos;
 	data->saved_data.angle = data->player.angle;
