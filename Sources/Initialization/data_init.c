@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:04:48 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/17 16:18:18 by chonorat         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:03:35 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,6 @@ void	init_raycast(t_data *data, struct s_raycast *data_rc)
 	data->zbuffer = NULL;
 }
 
-void	init_pause(t_data *data)
-{
-	data->pause_menu.on_resume = 0;
-	data->pause_menu.on_options = 0;
-	data->pause_menu.on_exit = 0;
-	data->pause_menu.on_back = 0;
-	data->pause_menu.on_difficulty = 0;
-	data->pause_menu.on_minimap = 0;
-	data->pause_menu.on_fog = 0;
-	data->pause_menu.on_retry = 0;
-	data->pause_menu.on_mouse_sens = 0;
-}
-void	init_exit(t_data *data)
-{
-	data->exit = NULL;
-}
-
 void	init_data(t_data *data)
 {
 	data->mlx.mlx = NULL;
@@ -94,21 +77,16 @@ void	init_data(t_data *data)
 	data->reset_mouse = 0;
 	data->mouse_enabled = 1;
 	data->map = NULL;
-	data->minimap_toggle = 1;
-	data->difficulty = HARD;
-	data->fog_setting = HIGH;
-	data->fog_density = 1.5;
 	data->pause_menu.in_pause = 0;
 	data->pause_menu.in_options = 0;
 	data->pause_menu.in_escape = 0;
 	data->pause_menu.in_death = 0;
-	data->mouse_sensibility = 0.003;
-	data->mouse_settings = 3;
 	data->zbuffer = NULL;
 	init_pause(data);
+	init_options(data);
 	init_player(data);
 	init_tex_img(data, &data->tex_img);
 	initstart_ennemy(data);
-	init_exit(data);
+	data->exit = NULL;
 	data->mlx.mlx = NULL;
 }

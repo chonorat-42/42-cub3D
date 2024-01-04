@@ -6,7 +6,7 @@
 #    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/17 16:09:47 by chonorat         ###   ########.fr        #
+#    Updated: 2024/01/04 13:04:35 by chonorat         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ _BOLD = \033[1m
 OS = $(shell uname)
 
 NAME = cub3D
-CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
-MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -ggdb3
+CFLAGS = -Wall -Wextra -Werror -IIncludes
+MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L ./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz
 RM = @rm -rf
 CC = @cc
 DIR = @mkdir -p
@@ -46,6 +46,7 @@ FILES = cub3D\
 		Mlx/options_hook\
 		Initialization/parser_init\
 		Initialization/data_init\
+		Initialization/init_menu\
 		Initialization/initstart_ennemy\
 		Execution/execution\
 		Execution/pause_menu\

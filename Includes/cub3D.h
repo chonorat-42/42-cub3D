@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/18 12:23:26 by chonorat         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:03:52 by chonorat         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,6 +376,7 @@ void	initialize_parser(t_parser *parser);
 void	init_raycast(t_data *data, struct s_raycast *data_rc);
 void	initstart_ennemy(t_data *data);
 void	init_pause(t_data *data);
+void	init_options(t_data *data);
 
 //PARSING
 void	parsing(t_data *data, char *file_path, char *file_name);
