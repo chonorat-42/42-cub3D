@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:39:45 by pgouasmi          #+#    #+#             */
-/*   Updated: 2024/01/04 12:49:20 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:50:22 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ennemy_present(char **map, t_data *data)
 	if (!data->ennemy.pres)
 		return (0);
 	if (data->ennemy.pres > 1)
-		return (print_error(PARSING, DPX), free_data(data), 0);
+		return (print_error(PARSING, DPX), free_data(data), exit(1), 0);
 	return (1);
 }
 

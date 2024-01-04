@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2024/01/04 13:04:35 by chonorat         ###   ########lyon.fr    #
+#    Updated: 2024/01/04 15:16:15 by pgouasmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ ifeq ($(OS),Linux)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) -O2 $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 else
 	$(PRINT) "$(OS)" > .OS
@@ -113,7 +113,7 @@ ifeq ($(OS),Linux)
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Raycasting Objects/Pathfinding
 	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
-	$(CC) -O2 -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 else
 	$(PRINT) "$(OS)" > .OS
 endif

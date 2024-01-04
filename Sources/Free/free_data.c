@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:41:41 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 12:31:46 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2024/01/04 15:06:19 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ static void	free_tex_img(t_tex_img *data, void *mlx)
 		mlx_destroy_image(mlx, data->ea_img);
 	if (data->we_img)
 		mlx_destroy_image(mlx, data->we_img);
+	if (data->ea_exit_img)
+		mlx_destroy_image(mlx, data->ea_exit_img);
+	if (data->we_exit_img)
+		mlx_destroy_image(mlx, data->we_exit_img);
+	if (data->no_exit_img)
+		mlx_destroy_image(mlx, data->no_exit_img);
+	if (data->so_exit_img)
+		mlx_destroy_image(mlx, data->so_exit_img);
 }
 
 void	free_exit(t_exit **exit)

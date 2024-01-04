@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:27:03 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 13:05:10 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:46:37 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	get_each_color(t_parser *parser, int *color, size_t *i, int index)
 	j = *i;
 	while (ft_isalnum(parser->line[*i]))
 		(*i)++;
-	if (index < 2 && parser->line[*i] != ',')
+	if ((index < 2 && parser->line[*i] != ',') || (*i - j) > 3)
 		return (free_parser(parser), print_error(PARSING, COLORS), 1);
 	current_color = ft_substr(parser->line, j, *i - j);
 	if (!current_color)

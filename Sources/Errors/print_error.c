@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:05:18 by chonorat          #+#    #+#             */
-/*   Updated: 2024/01/04 12:48:30 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:55:49 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ static int	parsing_errors(int error)
 	if (error == TEXTURES)
 		return (ft_dprintf(2, "TEXTURES : Wrong syntax\n%s", END));
 	if (error == TEXOP)
-	{
-		ft_dprintf(2, "TEXTURES : ");
-		return (ft_dprintf(2, "A texture could not be opened\n%s", END));
-	}
+		return (ft_dprintf(2, "TEXTURES : A texture could not \
+be opened\n%s", END));
 	if (error == COLORS)
 		return (ft_dprintf(2, "COLORS : Wrong syntax\n%s", END));
 	if (error == NOMAP)
@@ -58,7 +56,8 @@ static int	parsing_errors(int error)
 	if (error == DPP)
 		return (ft_dprintf(2, "MAP : Several players found\n%s", END));
 	if (error == BORD)
-		return (ft_dprintf(2, "MAP : Map is not enclosed by `1'\n%s", END));
+		return (ft_dprintf(2, "MAP : Map is not enclosed by `1' \
+nor `V'\n%s", END));
 	more_parsing_errors(error);
 	return (0);
 }
