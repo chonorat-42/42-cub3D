@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/18 12:23:26 by chonorat         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:00:58 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -384,7 +384,8 @@ int		check_parsing_flags(t_textures textures, t_colors colors);
 void	line_found(t_parser *parser, size_t *line_count);
 void	parse_id(t_parser *parser, char *id, size_t	*i);
 void	get_textures(t_parser *parser);
-void	open_textures(t_data *data, t_parser *parser);
+void	open_north_and_south_textures(t_data *data, t_parser *parser);
+void	open_east_and_west_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_trgb(t_data *data, t_parser *parser);
 void	get_map(t_parser *parser);

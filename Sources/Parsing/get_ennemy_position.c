@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:39:45 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/15 16:07:25 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:49:20 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static int	ennemy_present(char **map, t_data *data)
 
 void	get_ennemy_position(t_data *data)
 {
-	int height;
-	int width;
+	int	height;
+	int	width;
 
 	if (!ennemy_present(data->parser.map, data))
 		return ;
@@ -79,25 +79,25 @@ static int	add_exit(t_exit **lst, size_t j, size_t i)
 	return (0);
 }
 
-static void load_exit_images(t_data *data)
+static void	load_exit_images(t_data *data)
 {
 	int	height;
 	int	width;
 
 	data->tex_img.no_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-		"Textures/NO_EXIT.xpm", &height, &width);
+			"Textures/NO_EXIT.xpm", &height, &width);
 	if (!data->tex_img.no_exit_img)
 		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
 	data->tex_img.so_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-		"Textures/SO_EXIT.xpm", &height, &width);
+			"Textures/SO_EXIT.xpm", &height, &width);
 	if (!data->tex_img.so_exit_img)
 		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
 	data->tex_img.we_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-		"Textures/WE_EXIT.xpm", &height, &width);
+			"Textures/WE_EXIT.xpm", &height, &width);
 	if (!data->tex_img.we_exit_img)
 		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
 	data->tex_img.ea_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
-		"Textures/EA_EXIT.xpm", &height, &width);
+			"Textures/EA_EXIT.xpm", &height, &width);
 	if (!data->tex_img.ea_exit_img)
 		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
 }
