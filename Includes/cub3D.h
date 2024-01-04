@@ -80,6 +80,7 @@ enum	e_errors
 	EMPTYL,
 	SEP,
 	DPX,
+	TEXDIM,
 };
 
 enum	e_fog
@@ -383,7 +384,7 @@ int		check_parsing_flags(t_textures textures, t_colors colors);
 void	line_found(t_parser *parser, size_t *line_count);
 void	parse_id(t_parser *parser, char *id, size_t	*i);
 void	get_textures(t_parser *parser);
-int		open_textures(t_data *data, t_parser *parser);
+void	open_textures(t_data *data, t_parser *parser);
 void	get_colors(t_parser *parser, char *id, size_t *i);
 void	get_trgb(t_data *data, t_parser *parser);
 void	get_map(t_parser *parser);

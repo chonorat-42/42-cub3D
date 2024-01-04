@@ -6,13 +6,13 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:25:30 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/11/24 18:19:54 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:20:29 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	open_textures(t_data *data, t_parser *parser)
+void	open_textures(t_data *data, t_parser *parser)
 {
 	int	width;
 	int	height;
@@ -20,20 +20,27 @@ int	open_textures(t_data *data, t_parser *parser)
 	data->tex_img.no_img = mlx_xpm_file_to_image(data->mlx.mlx,
 			parser->textures.no_path, &width, &height);
 	if (data->tex_img.no_img == NULL)
-		return (free_data(data), print_error(PARSING, TEXOP), 1);
+		return (free_data(data), print_error(PARSING, TEXOP), exit(1));
+	if (width != 256 || height != 256)
+		return (free_data(data), print_error(PARSING, TEXDIM), exit(1));
 	data->tex_img.so_img = mlx_xpm_file_to_image(data->mlx.mlx,
 			parser->textures.so_path, &width, &height);
 	if (data->tex_img.so_img == NULL)
-		return (free_data(data), print_error(PARSING, TEXOP), 1);
+		return (free_data(data), print_error(PARSING, TEXOP), exit(1));
+	if (width != 256 || height != 256)
+		return (free_data(data), print_error(PARSING, TEXDIM), exit(1));
 	data->tex_img.ea_img = mlx_xpm_file_to_image(data->mlx.mlx,
 			parser->textures.ea_path, &width, &height);
 	if (data->tex_img.ea_img == NULL)
-		return (free_data(data), print_error(PARSING, TEXOP), 1);
+		return (free_data(data), print_error(PARSING, TEXOP), exit(1));
+	if (width != 256 || height != 256)
+		return (free_data(data), print_error(PARSING, TEXDIM), exit(1));
 	data->tex_img.we_img = mlx_xpm_file_to_image(data->mlx.mlx,
 			parser->textures.we_path, &width, &height);
 	if (data->tex_img.we_img == NULL)
-		return (free_data(data), print_error(PARSING, TEXOP), 1);
-	return (0);
+		return (free_data(data), print_error(PARSING, TEXOP), exit(1));
+	if (width != 256 || height != 256)
+		return (free_data(data), print_error(PARSING, TEXDIM), exit(1));
 }
 
 static void	parse_line(t_parser *parser, char *line)

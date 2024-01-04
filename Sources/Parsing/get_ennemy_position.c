@@ -6,7 +6,7 @@
 /*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:39:45 by pgouasmi          #+#    #+#             */
-/*   Updated: 2023/12/12 14:19:12 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:07:25 by pgouasmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,17 @@ static int	ennemy_present(char **map, t_data *data)
 
 void	get_ennemy_position(t_data *data)
 {
+	int height;
+	int width;
+
 	if (!ennemy_present(data->parser.map, data))
 		return ;
+	data->ghost.img = mlx_xpm_file_to_image(data->mlx.mlx,
+			"Textures/ghost.xpm", &height, &width);
+	if (!data->ghost.img)
+		return (print_error(TEXOP, 0), free_data(data), exit(1));
+	if (height != 256 || width != 256)
+		return (print_error(TEXDIM, 0), free_data(data), exit(1));
 }
 
 static int	add_exit(t_exit **lst, size_t j, size_t i)
@@ -70,6 +79,29 @@ static int	add_exit(t_exit **lst, size_t j, size_t i)
 	return (0);
 }
 
+static void load_exit_images(t_data *data)
+{
+	int	height;
+	int	width;
+
+	data->tex_img.no_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
+		"Textures/NO_EXIT.xpm", &height, &width);
+	if (!data->tex_img.no_exit_img)
+		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
+	data->tex_img.so_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
+		"Textures/SO_EXIT.xpm", &height, &width);
+	if (!data->tex_img.so_exit_img)
+		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
+	data->tex_img.we_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
+		"Textures/WE_EXIT.xpm", &height, &width);
+	if (!data->tex_img.we_exit_img)
+		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
+	data->tex_img.ea_exit_img = mlx_xpm_file_to_image(data->mlx.mlx,
+		"Textures/EA_EXIT.xpm", &height, &width);
+	if (!data->tex_img.ea_exit_img)
+		return (print_error(PARSING, TEXOP), free_data(data), exit(1));
+}
+
 void	get_exit_position(t_data *data)
 {
 	size_t	j;
@@ -91,4 +123,6 @@ void	get_exit_position(t_data *data)
 		}
 		j++;
 	}
+	if (data->exit)
+		load_exit_images(data);
 }
