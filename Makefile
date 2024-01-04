@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+         #
+#    By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/16 13:10:41 by chonorat          #+#    #+#              #
-#    Updated: 2023/12/15 16:08:54 by pgouasmi         ###   ########.fr        #
+#    Updated: 2023/12/17 16:09:47 by chonorat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,18 +42,26 @@ FILES = cub3D\
 		Mlx/start_mlx\
 		Mlx/key_hook\
 		Mlx/pixel_to_frame\
+		Mlx/mouse_hook\
+		Mlx/options_hook\
 		Initialization/parser_init\
 		Initialization/data_init\
 		Initialization/initstart_ennemy\
+		Execution/execution\
+		Execution/pause_menu\
+		Execution/options_menu\
+		Execution/get_options\
+		Execution/end_menu\
 		Parsing/parsing\
 		Parsing/get_file_content\
-		Print/execution\
 		Print/print_minimap\
 		Print/print_player\
 		Raycasting/raycasting\
 		Raycasting/print_column\
+		Raycasting/print_sprite\
 		Raycasting/get_fog\
 		Move/move_player\
+		Move/move_ennemy\
 		Move/get_move\
 		Move/rotate_cam\
 		Parsing/get_file_utils\
@@ -102,7 +110,7 @@ Objects/%.o: Sources/%.c Makefile $(HEADER)
 ifeq ($(OS),Linux)
 	$(DIR) Objects
 	$(DIR) Objects/Errors Objects/Mlx Objects/Parsing Objects/Initialization Objects/Raycasting Objects/Pathfinding
-	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move
+	$(DIR) Objects/Free Objects/Exit Objects/Print Objects/Prints Objects/Move Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -O2 -c $(CFLAGS) $< -o $@
 else

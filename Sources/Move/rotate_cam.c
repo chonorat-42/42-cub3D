@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:36:37 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 14:08:13 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/17 14:22:20 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	mouse_rotate_cam(t_data *data)
 	if (data->mouse_pos[0] <= 0 || data->mouse_pos[0] >= data->screen_res[0]
 		|| data->mouse_pos[1] <= 0 || data->mouse_pos[1] >= data->screen_res[1])
 	{
-		mlx_mouse_move(data->mlx.mlx, data->mlx.window, data->screen_res[0] >> 1, data->screen_res[1] >> 1);
+		mlx_mouse_move(data->mlx.mlx, data->mlx.window,
+			data->screen_res[0] >> 1, data->screen_res[1] >> 1);
 		mlx_mouse_get_pos(data->mlx.mlx, data->mlx.window,
 			&data->mouse_pos[0], &data->mouse_pos[1]);
 		data->reset_mouse = 1;

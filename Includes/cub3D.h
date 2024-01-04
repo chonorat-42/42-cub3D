@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgouasmi <pgouasmi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:33 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/15 16:08:27 by pgouasmi         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:23:26 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@
 # define S_PLAYER_SPEED 0.05
 # define PLAYER_SPEED 0.025
 # define CAM_SPEED 0.05
-
-//RESOLUTION
-# define SCREEN_RES_X 1920
-# define SCREEN_RES_Y 1080
 
 # define MAX 1000000
 
@@ -252,6 +248,15 @@ struct	s_sprite
 	int				screen_x;
 	int				sprite_h;
 	int				sprite_w;
+	int				start_y;
+	int				end_y;
+	int				start_x;
+	int				end_x;
+	int				tex_x;
+	int				tex_y;
+	int				color;
+	int				d;
+	int				y;
 	struct s_img	sprite;
 };
 
@@ -368,7 +373,7 @@ int		mouse_hook(int mousekey, int x, int y, t_data *data);
 //INITIALIZATION
 void	init_data(t_data *data);
 void	initialize_parser(t_parser *parser);
-void	init_raycast(struct s_raycast *data_rc);
+void	init_raycast(t_data *data, struct s_raycast *data_rc);
 void	initstart_ennemy(t_data *data);
 void	init_pause(t_data *data);
 
@@ -415,17 +420,29 @@ void	evaluate_options(t_data *data, unsigned long long **arr, int y, int x);
 void	evaluate_north(t_data *data, unsigned long long **arr, int y, int x);
 void	evaluate_south(t_data *data, unsigned long long **arr, int y, int x);
 
-//PRINT
+//EXECUTION
 int		execution(t_data *data);
+void	pause_menu(t_data *data);
+void	options_hook(t_data *data);
+void	set_pause(t_data *data);
+void	show_options_text(t_data *data);
+void	show_difficulty(t_data *data);
+void	show_fog(t_data *data);
+void	show_minimap(t_data *data);
+void	show_mouse_sens(t_data *data);
+void	death_screen(t_data *data);
+void	escape_screen(t_data *data);
+
+//PRINT
 void	print_minimap(t_data *data);
 void	print_player(t_data *data, double radius, int color);
 int		wall_hit(t_data *data, int pos_x, int pos_y);
-void	print_sprite(t_data *data, struct s_raycast *data_rc);
 
 //RAYCASTING
 void	raycasting(t_data *data);
 int		get_fog(int color, double fog_intensity, double distance);
 void	print_column(t_data *data, struct s_raycast *data_rc, int x);
+void	get_sprite(t_data *data, struct s_raycast *data_rc);
 
 //MOVE
 void	get_move(t_data *data);
@@ -434,6 +451,7 @@ void	move_backward(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	rotate_cam(t_data *data);
+void	move_ennemy(t_data *data);
 
 //FREE
 void	free_data(t_data *data);

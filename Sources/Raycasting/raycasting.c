@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:10:01 by chonorat          #+#    #+#             */
-/*   Updated: 2023/12/14 16:03:13 by chonorat         ###   ########lyon.fr   */
+/*   Updated: 2023/12/17 16:18:37 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	raycasting(t_data *data)
 	struct s_raycast	data_rc;
 
 	x = 0;
-	init_raycast(&data_rc);
+	init_raycast(data, &data_rc);
 	data->zbuffer = malloc((data->screen_res[0] + 1) * sizeof(double));
 	ft_bzero(data->zbuffer, data->screen_res[0] + 1);
 	data_rc.height = data->screen_res[1];
@@ -108,7 +108,7 @@ void	raycasting(t_data *data)
 		x++;
 	}
 	if (data->ennemy.pres)
-		print_sprite(data, &data_rc);
+		get_sprite(data, &data_rc);
 	if (data->zbuffer)
 	{
 		free(data->zbuffer);
